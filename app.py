@@ -12,3 +12,8 @@ def frontpage():
 def spottedlanterfly():
     # Show lanterfly page
     return render_template("spottedlanternfly.html")
+
+@app.route("/me")
+def aboutme():
+    # Show about me page
+    return render_template("me.html")
