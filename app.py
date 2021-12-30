@@ -2,7 +2,6 @@ from flask import Flask, redirect, render_template, request
 
 mitchwebb = Flask(__name__)
 
-
 @mitchwebb.route("/")
 def frontpage():
     # Show front page
