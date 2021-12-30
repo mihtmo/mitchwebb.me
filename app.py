@@ -1,21 +1,21 @@
 from flask import Flask, redirect, render_template, request
 
-app = Flask(__name__)
+mitchwebb = Flask(__name__)
 
 
-@app.route("/")
+@mitchwebb.route("/")
 def frontpage():
     # Show front page
     return render_template("frontpage.html")
 
 
-@app.route("/spottedlanternfly")
+@mitchwebb.route("/spottedlanternfly")
 def spottedlanterfly():
     # Show lanterfly page
     return render_template("spottedlanternfly.html")
 
 
-@app.route("/me")
+@mitchwebb.route("/me")
 def aboutme():
     # Show about me page
     return render_template("me.html")
