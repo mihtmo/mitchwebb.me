@@ -1,7 +1,7 @@
 import os
 from flask import Flask, redirect, render_template, request
 
-app = Flask(__name__)
+mitchwebb.me = Flask(__name__)
 
 @app.route("/")
 def frontpage():
