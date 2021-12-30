@@ -1,1 +1,1 @@
-web: gunicorn app:mitchwebb.me
+web: gunicorn app:mitchwebb
