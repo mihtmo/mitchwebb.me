@@ -4,6 +4,10 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+a {
+    color: green;
+}
+
 /* Colors for brand */
 nav .navbar-brand .blue
 {
