@@ -12,8 +12,8 @@ def frontpage():
 @mitchwebb.route("/spottedlanternfly")
 def lanternfly():
     # Run spottedlanternfly.py
-    spottedlanternfly()
-    return render_template("spottedlanternfly.html")
+    observations = spottedlanternfly()
+    return render_template("spottedlanternfly.html", observations=observations)
 
 
 @mitchwebb.route("/me")

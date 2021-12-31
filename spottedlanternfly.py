@@ -9,5 +9,5 @@ def spottedlanternfly():
     response = get(f"{site}{endpoint}")
     observations = response.json()
 
-    return
+    return (observations)
 

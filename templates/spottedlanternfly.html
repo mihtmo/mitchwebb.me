@@ -16,11 +16,9 @@
                 <th>Date Observed</th>
                 <th>Dead/Alive</th>
             </tr>
+            {{ observations }}
             {% for observation in observations %}
                 <tr>
-                    <td>{{ observation['location'] }}</td>
-                    <td>{{ observation['date'] }}</td>
-                    <td>{{ observation['living'] }}</td>
                 </tr>
             {% endfor %}
         </table>
