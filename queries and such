@@ -1,0 +1,10 @@
+CREATE TABLE observations (
+    id smallint,
+    observed_on timestamptz,
+    latitude float4,
+    longitude float4,
+    place varchar(50),
+    inaturl text,
+    captive varchar(6),
+    photos text
+);
