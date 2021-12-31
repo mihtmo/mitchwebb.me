@@ -5,26 +5,26 @@
 {% endblock %}
 
 {% block main %}
-        <script>
 
-            document.addEventListener('DOMContentLoaded', function() {
-                let submit = document.querySelector('input');
-                submit.addEventListener('click', function() {
-                    submit.style.backgroundColor = 'red';
-                    document.querySelector('#tinytext').innerHTML = 'actually though, go report this somewhere else. maybe the inaturalist website.';
-                    });
-            });
+    <body class="container">
 
-        </script>
-    <body class='container'>
-        
-        <h1>Spotted Lanternfly</h1>
-        <h3 style='margin-bottom: 20px'>data points:</h3>
-        <ul style='list-style: none; padding-left:0;'>
-            <li>Here is the first data point</li>
-            <li>Here is the second one</li>
-            <li>Some day these will be real data points,<br> but I don't know how to use flask yet</li>
-        </ul>
+        <h1>Spotted Lanternfly Observations</h1>
+
+        <table style="margin-left: auto; margin-right:auto;">
+            <tr>
+                <th>Location</th>
+                <th>Date Observed</th>
+                <th>Dead/Alive</th>
+            </tr>
+            {% for observation in observations %}
+                <tr>
+                    <td>{{ observation['location'] }}</td>
+                    <td>{{ observation['date'] }}</td>
+                    <td>{{ observation['living'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
         <br>
         
         Seen a lanternfly? Don't put it somewhere useful! Report it directly to this offline, unmonitored webpage!

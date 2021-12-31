@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request
+from spottedlanterfly import spottedlanternfly
 
 mitchwebb = Flask(__name__)
 
@@ -9,9 +10,8 @@ def frontpage():
 
 
 @mitchwebb.route("/spottedlanternfly")
-def spottedlanterfly():
-    # Show lanterfly page
-    return render_template("spottedlanternfly.html")
+    # Run spottedlanternflyapp
+    spottedlanternfly()
 
 
 @mitchwebb.route("/me")
