@@ -8,3 +8,15 @@ CREATE TABLE observations (
     captive varchar(6),
     photos text
 );
+
+INSERT INTO observations(id,
+    observed_on,
+    latitude,
+    longitude,
+    place,
+    inaturl,
+    captive,
+    photos)
+VALUES (my_json
+
+SELECT
