@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    MitchWebb: Spotted Lanternfly
+    spotted lanternfly
 {% endblock %}
 
 {% block main %}
@@ -18,18 +18,16 @@
                 <th>Longitude</th>
                 <th>Location</th>
                 <th>iNat Link</th>
-                <th>Captive</th>
                 <th>Photo</th>
             </tr>
             {% for row in observations %}
                 <tr>
                     <td>{{ row['id'] }}</td>
-                    <td>{{ row['observed_on_string'] }}</td>
+                    <td>{{ row['time_observed_at_utc'] }}</td>
                     <td>{{ row['latitude'] }}</td>
                     <td>{{ row['longitude'] }}</td>
                     <td>{{ row['place_guess'] }}</td>
                     <td><a href="{{ row['uri'] }}">Original Observation</a></td>
-                    <td>{{ row['captive'] }}</td>
                     <td><a href="{{ row['photos'][0]['medium_url'] }}">Photo</a></td>
                 </tr>
             {% endfor %}
