@@ -1,48 +1,53 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    spotted lanternfly
+    MitchWebb: Spotted Lanternfly
 {% endblock %}
 
 {% block main %}
-        <script>
 
-            document.addEventListener('DOMContentLoaded', function() {
-                let submit = document.querySelector('input');
-                submit.addEventListener('click', function() {
-                    submit.style.backgroundColor = 'red';
-                    document.querySelector('#tinytext').innerHTML = 'actually though, go report this somewhere else. maybe the inaturalist website.';
-                    });
-            });
+    <body class="container">
 
-        </script>
-        
-        <title>spotted lanternfly</title>
+        <h1>Spotted Lanternfly Observations</h1>
 
-    <body class='container'>
-        
-        <h1>spotted lanternfly</h1>
-        <h3 style='margin-bottom: 20px'>data points:</h3>
-        <ul style='list-style: none; padding-left:0;'>
-            <li>here is the first data point</li>
-            <li>here is a second one</li>
-            <li>some day these will be real data points, <br> but I don't know how to use flask yet</li>
-        </ul>
-        
+        <br>
+
+        <table style="margin-left: auto; margin-right:auto;">
+            <tr>
+                <th>iNat Observation ID</th>
+                <th>Date Observed</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Location</th>
+                <th>iNat Link</th>
+                <th>Captive</th>
+                <th>Photo</th>
+            </tr>
+            {% for row in observations %}
+                <tr>
+                    <td>{{ row['id'] }}</td>
+                    <td>{{ row['observed_on_string'] }}</td>
+                    <td>{{ row['latitude'] }}</td>
+                    <td>{{ row['longitude'] }}</td>
+                    <td>{{ row['place_guess'] }}</td>
+                    <td><a href="{{ row['uri'] }}">Original Observation</a></td>
+                    <td>{{ row['captive'] }}</td>
+                    <td><a href="{{ row['photos'][0]['medium_url'] }}">Photo</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+
         <br>
         
-        seen a lanternfly? don't put it somewhere useful, report it directly to this offline, unmonitored webpage!
+        Seen a lanternfly? Don't put it somewhere useful! Report it directly to this offline, unmonitored webpage!
         <input type="text" id="sighting">
         <button id="submit">submit</button>
-        
-        <p id="tinytext"></p>
-        
         <br>
-
     </body>
 
+    <br>
     <footer class="small text-center text-muted">
-        Data provided for free by <a href="https://iextrading.com/developer">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
+        Data provided br <a href="https://api.inaturalist.org/v1/docs/">iNaturalist</a>.
     </footer>
 
 {% endblock %}

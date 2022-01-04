@@ -4,6 +4,10 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+a {
+    color: green;
+}
+
 /* Colors for brand */
 nav .navbar-brand .blue
 {
@@ -44,4 +48,9 @@ main img
 {
     /* Constrain images on small screens */
     max-width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
