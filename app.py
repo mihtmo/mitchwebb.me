@@ -8,7 +8,6 @@ def frontpage():
     # Show front page
     return render_template("frontpage.html")
 
-
 @mitchwebb.route("/spottedlanternfly")
 def slfly():
     # Run spottedlanternfly.py
