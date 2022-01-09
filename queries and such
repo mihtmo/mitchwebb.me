@@ -5,7 +5,6 @@ CREATE TABLE observations (
     longitude float4,
     place varchar(50),
     inaturl text,
-    captive varchar(6),
     photos text
 );
 
