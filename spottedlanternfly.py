@@ -13,6 +13,7 @@ def spottedlanternfly():
     observations = response.json()
 
     DATABASE_URL = os.environ.get('DATABASE_URL')
+    print(f"{DATABASE_URL}")
     conn = None
 
     try:
