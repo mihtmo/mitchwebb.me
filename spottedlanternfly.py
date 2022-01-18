@@ -42,5 +42,3 @@ def spottedlanternfly():
             print('Database connection closed.')
 
     return observations
-
-spottedlanternfly()

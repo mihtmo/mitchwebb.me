@@ -12,7 +12,7 @@ def frontpage():
 def slfly():
     # Run spottedlanternfly.py
     observations = spottedlanternfly()
-    return render_template("spottedlanternfly.html", observations=observations)
+    return render_template("index.html", observations=observations)
 
 
 @mitchwebb.route("/me")
