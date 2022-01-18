@@ -26,22 +26,19 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="5dc15274-ca69-4afc-9b8c-121bdd521799">
-        <schema name="information_schema" object-types="table, view, sequence, function" />
-        <schema name="pg_catalog" object-types="table, view, sequence, function" />
-        <schema name="pg_toast" object-types="table, view, sequence, function" />
-        <schema name="public" object-types="table, view, sequence, function" />
+        <schema name="information_schema" object-types="table, view, function" />
+        <schema name="pg_catalog" object-types="table, view, function" />
+        <schema name="public" object-types="table, view, function" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="5dc15274-ca69-4afc-9b8c-121bdd521799">
-      <console name="inat-observations" type="STANDARD" schema="information_schema" session="Main"><![CDATA[SELECT * FROM observations;]]></console>
+      <console name="inat-observations" type="STANDARD" schema="information_schema" session="Main"><![CDATA[COPY * FROM observations TO 'Users/mitch/Desktop/observations.csv';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="5dc15274-ca69-4afc-9b8c-121bdd521799" object-ref="consoles/inat-observations" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="5dc15274-ca69-4afc-9b8c-121bdd521799" />
@@ -86,7 +83,7 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="inat-observations.c4dg8qnwhxer.us-west-2.rds.amazonaws.com" />
+          <host value="observations.c4dg8qnwhxer.us-west-2.rds.amazonaws.com" />
           <port value="5432" />
           <database value="postgres" />
           <type value="USER_PASSWORD" />
