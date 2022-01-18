@@ -10,9 +10,8 @@ def frontpage():
 
 @mitchwebb.route("/spottedlanternfly")
 def slfly():
-    # Run spottedlanternfly.py
-    return render_template("index.html", observations=observations)
-
+    # Open QGIS map
+    return render_template("index.html")
 
 @mitchwebb.route("/me")
 def aboutme():
