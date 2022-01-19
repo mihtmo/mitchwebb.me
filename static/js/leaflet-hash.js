@@ -102,8 +102,6 @@
 			if (parsed) {
 				this.movingMap = true;
 
-				this.map.setView(parsed.center, parsed.zoom);
-
 				this.movingMap = false;
 			} else {
 				this.onMapMove(this.map);
@@ -128,7 +126,7 @@
 		isListening: false,
 		hashChangeInterval: null,
 		startListening: function() {
-			this.map.on("moveend", this.onMapMove, this);
+			//this._map.on("moveend", this.onMapMove, this);
 
 			if (HAS_HASHCHANGE) {
 				L.DomEvent.addListener(window, "hashchange", this.onHashChange);
@@ -159,4 +157,5 @@
 	L.Map.prototype.removeHash = function() {
 		this._hash.removeFrom();
 	};
+	var hash = L.hash(map);
 })(window);

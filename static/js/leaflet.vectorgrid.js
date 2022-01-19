@@ -2582,4 +2582,3 @@ L.canvas.tile = function(tileCoord, tileSize, opts){
 // for protobuf tiles
 
 }());
-//# sourceMappingURL=Leaflet.VectorGrid.bundled.js.map
