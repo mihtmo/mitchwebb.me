@@ -11,7 +11,7 @@ def frontpage():
 @mitchwebb.route("/spottedlanternfly")
 def slfly():
     # Open QGIS map
-    return render_template("lanternfly.html")
+    return render_template("newlanternfly.html")
 
 @mitchwebb.route("/me")
 def aboutme():
