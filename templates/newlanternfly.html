@@ -13,23 +13,31 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}">
         <style>
         #map {
-            width: 1241px;
-            height: 639px;
+            width: 80vw;
+            height: 75vh;
+            margin-left: auto;
+            margin-right: auto;
         }
         .hexagon {
             opacity: 0.7
+        }
+        #textbox {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            font-family: arial;
         }
         </style>
         <title></title>
     </head>
     <body>
-        <div id="map" data-source="{{ url_for('static', filename='js/observationsv2_1.json') }}">
-        </div>
         <script src="{{ url_for('static', filename='js/qgis2web_expressions.js') }}"></script>
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
         <script src="{{ url_for('static', filename='js/leaflet.rotatedMarker.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/leaflet.pattern.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='js/leaflet.pattern.js') }}"></script> -->
         <script src="{{ url_for('static', filename='js/leaflet-hash.js') }}"></script>
         <script src="{{ url_for('static', filename='js/Autolinker.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/rbush.min.js') }}"></script>
@@ -39,72 +47,32 @@
         <script src="{{ url_for('static', filename='js/nouislider.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/wNumb.js') }}"></script>
         <script src="{{ url_for('static', filename='js/observationsv2_1.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/leaflet-hexbin.min.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='js/leaflet-hexbin.min.js') }}"></script> -->
         <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
         <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
         <script src="{{ url_for('static', filename='js/colorbrewer.js') }}"></script>
 
-        <div id='observations' data-source="{{ url_for('static', filename='js/observationsv2_1.json') }}"></div>
-            <script type="text/javascript">
-              (function () {
-                  var max, scale,
-                      classes = 9,
-                      scheme = colorbrewer["YlOrRd"][classes],
-                      container = L.DomUtil.get('observations'),
-                      map = L.map(container).setView([-43.6, 172.3], 10);
+        <div id="textbox"><h3>Spotted Lanternfly Sightings in North America</h3></div>
 
-                  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  }).addTo(map);
+        <div id="map" data-source="{{ url_for('static', filename='js/observationsv2_1.json') }}">
+        </div>
 
-                  // Async call for data. Source URL is loaded from container element's
-                  // 'data-source' attribute.
-                  d3.json(container.dataset.source, function(collection) {
-                      // When data arrives, create leaflet layer with custom style callback.
-                      L.hexLayer(collection, {
-                          applyStyle: hex_style
-                      }).addTo(map);
-                  });
-
-                  /**
-                   * Hexbin style callback.
-                   *
-                   * Determines a quantize scale (http://bl.ocks.org/4060606) based on the
-                   * map's initial data density (which is based on the initial zoom level)
-                   * and applies a colorbrewer (http://colorbrewer2.org/) colour scheme
-                   * accordingly.
-                   */
-                  function hex_style(hexagons) {
-                      // Maintain a density scale relative to initial zoom level.
-                      if (!(max && scale)) {
-                          max = d3.max(hexagons.data(), function (d) { return d.length; });
-                          scale = d3.scale.quantize()
-                                  .domain([0, max])
-                                  .range(d3.range(classes));
-                      }
-
-                      hexagons
-                          .attr("stroke", scheme[classes - 1])
-                          .attr("fill", function (d) {
-                              return scheme[scale(d.length)];
-                          });
-                  }
-              }());
-
+        <script type="text/javascript">
 
             var highlightLayer;
             function highlightFeature(e) {
                 highlightLayer = e.target;
 
                 if (e.target.feature.geometry.type === 'LineString') {
-                  highlightLayer.setStyle({
-                    color: '#ffff00',
-                  });
-                } else {
-                  highlightLayer.setStyle({
-                    fillColor: '#ffff00',
-                    fillOpacity: 1
-                  });
+                    highlightLayer.setStyle({
+                        color: '#ffff00',
+                    });
+                }
+                else {
+                    highlightLayer.setStyle({
+                        fillColor: '#ffff00',
+                        fillOpacity: 1
+                    });
                 }
             }
             var map = L.map('map', {
@@ -131,6 +99,42 @@
                 minNativeZoom: 0,
                 maxNativeZoom: 18
             });
+
+            var max, scale,
+                classes = 9,
+                scheme = colorbrewer["YlOrRd"][classes],
+                container = L.DomUtil.get('map')
+
+            d3.json(container.dataset.source, function(collection) {
+                L.hexLayer(collection, {
+                    applyStyle: hex_style
+                }).addTo(map);
+            });
+
+            /**
+            * Hexbin style callback.
+            *
+            * Determines a quantize scale (http://bl.ocks.org/4060606) based on the
+            * map's initial data density (which is based on the initial zoom level)
+            * and applies a colorbrewer (http://colorbrewer2.org/) colour scheme
+            * accordingly.
+            */
+
+            function hex_style(hexagons) {
+                // Maintain a density scale relative to initial zoom level.
+                if (!(max && scale)) {
+                    max = d3.max(hexagons.data(), function (d) { return d.length; });
+                    scale = d3.scale.quantize()
+                              .domain([0, max])
+                              .range(d3.range(classes));
+                }
+
+                hexagons
+                    .attr("stroke", scheme[classes - 1])
+                    .attr("fill", function (d) {
+                    return scheme[scale(d.length)];
+                });
+            }
             layer_Stamen_0;
             map.addLayer(layer_Stamen_0);
             function pop_observationsv2_1(feature, layer) {
