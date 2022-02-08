@@ -16,6 +16,7 @@ def spottedlanternfly():
 
     conn = None
 
+
     try:
         # Establish database connection
         conn = psycopg2.connect(DATABASE_URL)
@@ -25,11 +26,16 @@ def spottedlanternfly():
         # cur.execute("\copy (SELECT * FROM information_schema.observations) TO
         # '/Users/mitch/Desktop/observations.csv' DELIMITER ',' CSV HEADER;")
 
-        with open('./static/js/observationsv2_1.js', 'a') as f:
+        with open('static/js/observations.js', 'a') as f:
 
             for row in observations:
+
                 print(f"{row['id']}")
-                cur.execute("INSERT INTO information_schema.observations "
+                if row['time_observed_at_utc'] is None:
+                    print("entry skipped due to missing observation date")
+                    continue
+
+                cur.execute("INSERT INTO observations "
                             "(id, observed_on, latitude, longitude, place, inaturl, photos) "
                             "VALUES (%s, %s, %s, %s, %s, %s, %s);",
                             (row['id'], row['time_observed_at_utc'], row['latitude'],
@@ -42,7 +48,7 @@ def spottedlanternfly():
                     f.seek(f.tell() - 2, os.SEEK_SET)
                     f.truncate()
                     f.write(",")
-                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"observed_on\":" 
+                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"observed_on\":"
                             f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
                             f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
                             f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
