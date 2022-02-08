@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/qgis2web.css') }}">
         <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/observations_style.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.js"></script>
         <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
         <script src="https://d3js.org/d3.v7.min.js" charset="utf-8"></script>
@@ -62,8 +63,8 @@
         }
 
         .hexbin-hexagon {
-            stroke: #222;
-            stroke-width: .75px;
+            stroke: #500;
+            stroke-width: .4px;
             opacity: var(--hex-opacity);
         }
 

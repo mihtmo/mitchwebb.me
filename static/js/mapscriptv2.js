@@ -4,7 +4,7 @@
     var map = L.map(container, {
         zoomControl:true,
         maxZoom:14,
-        minZoom:5
+        minZoom:3,
     });
 
     // Give some credit!
@@ -29,10 +29,10 @@
         pane: 'pane_Stamen_0',
         opacity: 1.0,
         attribution: '',
-        minZoom: 5,
+        minZoom: 3,
         maxZoom: 14,
-        minNativeZoom: 0,
-        maxNativeZoom: 18
+        minNativeZoom: 3,
+        maxNativeZoom: 14
     });
 
     // Add tiles layer to map
@@ -100,7 +100,7 @@
     function style_observations() {
         return {
             pane: 'pane_observations',
-            radius: 8.0,
+            radius: 7.0,
             opacity: 1,
             color: 'rgba(35,35,35,0.617)',
             dashArray: '',
@@ -163,12 +163,12 @@
     map.getPane('pane_hexgrid').style['mix-blend-mode'] = 'normal';
 
     // TODO: Possibly delete, doesn't seem to connect
-    //var center = [39.4, -78];
+    var center = [39.4, -78];
 
     // Define hexgrid options
     var options = {
         radius : 16,
-        opacity: 0.7,
+        opacity: 0.8,
         duration: 500,
         pane: 'pane_hexgrid',
         layerName: 'layer_hexgrid'
@@ -178,7 +178,7 @@
 
     layer_hexgrid.colorScale().range(['lightgrey', 'red']);
     layer_hexgrid
-        .radiusRange([13, 15])
+        .radiusRange([13, 16])
         .lng(function(d) { return d[0]; })
         .lat(function(d) { return d[1]; })
         .colorValue(function(d) { return d.length; })
@@ -192,7 +192,7 @@
 
     // Change map views at a certain zoom level (hide individual observations until zoomed in)
     map.on('zoomend', function() {
-        if (map.getZoom() <= 11){
+        if (map.getZoom() <= 10){
             if (map.hasLayer(layer_observations)){
                 map.removeLayer(layer_observations),
                 map.addLayer(layer_hexgrid);

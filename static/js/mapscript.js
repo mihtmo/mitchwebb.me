@@ -41,9 +41,9 @@
         opacity: 1.0,
         attribution: '',
         minZoom: 3,
-        maxZoom: 28,
-        minNativeZoom: 0,
-        maxNativeZoom: 18
+        maxZoom: 14,
+        minNativeZoom: 3,
+        maxNativeZoom: 14
     });
 
     layer_Stamen_0;
