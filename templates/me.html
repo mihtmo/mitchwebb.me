@@ -2,11 +2,13 @@
 
 {% block title %}
     mihtmo
-{% endblock %}
+{% endblock title %}
 
-{% block main %}
-        <h3>welcome to my website, it's good to see you</h3>
-        <p>i'm still working on it, but this page isn't very high on my list</p>
+{% block body %}
+
+    <div class="centered">
+        <div id="titlebox">welcome to my website, it's good to see you</div>
+        <div id="textbox">i'm still working on it, but this page isn't very high on my list, honestly</div>
         <br>
 
         <footer style="text-align: center;">
@@ -14,4 +16,6 @@
             |
             <a class='links' href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
         </footer>
-{% endblock %}
+    </div>
+
+{% endblock body %}

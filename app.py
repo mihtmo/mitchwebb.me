@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, render_template
 from spottedlanternfly import spottedlanternfly
 
 mitchwebb = Flask(__name__)
@@ -11,7 +11,7 @@ def frontpage():
 @mitchwebb.route("/spottedlanternfly")
 def slfly():
     # Open QGIS map
-    return render_template("newlanternfly.html")
+    return render_template("lanternfly.html")
 
 @mitchwebb.route("/me")
 def aboutme():

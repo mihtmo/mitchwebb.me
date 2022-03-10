@@ -16440,7 +16440,7 @@ function parseIsoNative(string) {
   return isNaN(date) ? null : date;
 }
 
-var parseIso = +new Date("2000-01-01T00:00:00.000Z")
+var parseIso = +new Date("2000-01-01T00:00:00.00Z")
     ? parseIsoNative
     : exports.utcParse(isoSpecifier);
 

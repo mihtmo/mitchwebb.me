@@ -9,7 +9,7 @@ var style_observations = function(feature, resolution){
     ''
     var labelText = "";
     size = 0;
-    var labelFont = "13.0px \'Helvetica\', sans-serif";
+    var labelFont = "13.0px \'Montserrat\', sans-serif";
     var labelFill = "#323232";
     var bufferColor = "";
     var bufferWidth = 0;
