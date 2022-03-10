@@ -1,0 +1,79 @@
+
+/* main css for website */
+
+    html {
+        font-family: 'Montserrat Light';
+        background-color: #f7f6f2;
+    }
+
+    body {
+        text-align: center;
+    }
+
+    .centered {
+        margin: 0 auto;
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: middle;
+        top: 50%;
+        height: 100%;
+        width: 75%;
+    }
+
+    #titlebox {
+        font-size: 25px;
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    #textbox {
+        font-size: 14px;
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+
+
+/* noUi Slider Overrides */
+
+    .noUi-value, .noUi-value-horizontal, .noUi-value-large {
+        margin-top: 5px;
+        width: 90%;
+    }
+
+    .noUi-target {
+        width: 95%;
+        margin: auto;
+    }
+
+    .noUi-connects {
+        background: #fffcf2;
+    }
+
+    .noUi-connect {
+        background: #f2dc83 !important;
+    }
+
+    #timeline_info {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+/* Slider disabled state */
+
+     [disabled = "true"] .noUi-connect {
+        background: #eaeaea !important;
+     }
+     [disabled = "true"] .noUi-connects {
+        background: #f7f7f7 !important;
+     }
+     [disabled = "true"].noUi-target,
+     [disabled = "true"].noUi-handle,
+     [disabled = "true"] .noUi-handle {
+        cursor: not-allowed;
+     }
+
+/* Leaflet Overrides */
+    .leaflet-container {
+        font-family: 'Montserrat Light' !important;
+    }

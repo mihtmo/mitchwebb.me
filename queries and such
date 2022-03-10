@@ -1,6 +1,6 @@
 CREATE TABLE observations (
-    id int,
-    observed_on timestamptz,
+    id int UNIQUE,
+    time timestamptz NOT NULL,
     latitude float4,
     longitude float4,
     place text,
