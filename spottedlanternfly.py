@@ -36,7 +36,7 @@ def spottedlanternfly():
                     continue
 
                 cur.execute("INSERT INTO observations "
-                            "(id, observed_on, latitude, longitude, place, inaturl, photos) "
+                            "(id, time, latitude, longitude, place, inaturl, photos) "
                             "VALUES (%s, %s, %s, %s, %s, %s, %s);",
                             (row['id'], row['time_observed_at_utc'], row['latitude'],
                              row['longitude'], row['place_guess'], row['uri'], row['photos'][0]['medium_url']))
@@ -48,7 +48,7 @@ def spottedlanternfly():
                     f.seek(f.tell() - 2, os.SEEK_SET)
                     f.truncate()
                     f.write(",")
-                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"observed_on\":"
+                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
                             f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
                             f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
                             f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
@@ -63,3 +63,5 @@ def spottedlanternfly():
         if conn is not None:
             conn.close()
             print('Database connection closed.')
+
+# spottedlanternfly()

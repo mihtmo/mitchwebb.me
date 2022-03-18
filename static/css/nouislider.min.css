@@ -224,6 +224,7 @@
    top: 100%;
    left: 0;
    width: 100%;
+   overflow: hidden;
  }
  .noUi-value-horizontal {
    -webkit-transform: translate(-50%, 50%);

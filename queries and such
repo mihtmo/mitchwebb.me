@@ -9,7 +9,7 @@ CREATE TABLE observations (
 );
 
 INSERT INTO observations(id,
-    observed_on,
+    time,
     latitude,
     longitude,
     place,
@@ -19,3 +19,7 @@ INSERT INTO observations(id,
 VALUES (my_json
 
 SELECT
+
+
+PATH="/Applications/Postgres.app/Contents/Versions/14/bin:$PATH"
+heroku pg:psql -a mitchwebb postgresql-fluffy-62542

@@ -1,6 +1,11 @@
 
 /* main css for website */
 
+    @viewport {
+        width: device-width ;
+        zoom: 1.0 ;
+    }
+
     html {
         font-family: 'Montserrat Light';
         background-color: #f7f6f2;
@@ -41,7 +46,7 @@
     }
 
     .noUi-target {
-        width: 95%;
+        width: 85%;
         margin: auto;
     }
 
@@ -56,6 +61,7 @@
     #timeline_info {
         margin-top: 10px;
         margin-bottom: 10px;
+
     }
 
 
@@ -67,13 +73,24 @@
      [disabled = "true"] .noUi-connects {
         background: #f7f7f7 !important;
      }
-     [disabled = "true"].noUi-target,
-     [disabled = "true"].noUi-handle,
+     [disabled = "true"] .noUi-target,
+     [disabled = "true"] .noUi-handle,
      [disabled = "true"] .noUi-handle {
         cursor: not-allowed;
+     }
+
+     [disabled = "true"] .noUi-pips,
+     [disabled = "true"] .noUi-pips-horizontal {
+        opacity: 50%;
      }
 
 /* Leaflet Overrides */
     .leaflet-container {
         font-family: 'Montserrat Light' !important;
     }
+
+/* Mobile Adjustments
+    [mobile = "true"] .noUi-marker-normal:nth-child(even) {
+        opacity: 0%;
+    }
+*/
