@@ -7,7 +7,7 @@
     }
 
     html {
-        font-family: 'Montserrat Light';
+        font-family: 'Montserrat', sans-serif;
         background-color: #f7f6f2;
     }
 
@@ -39,7 +39,7 @@
     #mybutton {
         margin-top: 10px;
         margin-bottom: 50px;
-        font-family: 'Montserrat Light' !important;
+        font-family: 'Montserrat', sans-serif;
         background-color: #f1f0ec;
         border-radius: 5px;
     }
@@ -101,5 +101,5 @@
 
 /* Leaflet Overrides */
     .leaflet-container {
-        font-family: 'Montserrat Light' !important;
+        font-family: 'Montserrat', sans-serif !important;
     }
