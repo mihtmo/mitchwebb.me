@@ -67,7 +67,7 @@ map.addControl(new Slider());
 
 // A little bit of mobile responsiveness
 if (window.innerWidth <= 750){
-    // slider.setAttribute("mobile", "true"),
+    document.getElementsByClassName('leaflet-control-attribution')[0].style.display = 'none',
     slider.noUiSlider.pips({
         mode: 'values',
         values: years.map(year=>Date.parse(year)),
