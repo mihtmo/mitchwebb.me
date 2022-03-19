@@ -115,8 +115,6 @@
             opacity: 1,
             color: 'black',
             dashArray: '',
-//            lineCap: 'butt',
-//            lineJoin: 'miter',
             weight: 1,
             fill: true,
             fillOpacity: .6,
