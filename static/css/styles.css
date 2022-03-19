@@ -34,7 +34,18 @@
     #textbox {
         font-size: 14px;
         padding-top: 30px;
-        padding-bottom: 50px;
+    }
+
+    #mybutton {
+        margin-top: 10px;
+        margin-bottom: 50px;
+        font-family: 'Montserrat Light' !important;
+        background-color: #f1f0ec;
+        border-radius: 5px;
+    }
+
+    #more {
+        display: none;
     }
 
 
@@ -92,9 +103,3 @@
     .leaflet-container {
         font-family: 'Montserrat Light' !important;
     }
-
-/* Mobile Adjustments
-    [mobile = "true"] .noUi-marker-normal:nth-child(even) {
-        opacity: 0%;
-    }
-*/

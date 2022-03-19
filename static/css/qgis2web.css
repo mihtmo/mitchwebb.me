@@ -124,10 +124,6 @@
         background-color: #f8f8f8 !important;
     }
 
-    :root {
-        --hex-opacity: 1;
-    }
-
     #observation_map {
         height: 55vh;
     }

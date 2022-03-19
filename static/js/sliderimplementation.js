@@ -1,9 +1,6 @@
 
 // constants for the slider
 var slider = document.getElementById('map-slider');
-// var default_start_date = first_date
-// var default_end_date = last_date
-
 
 // implement the noUiSlider
 noUiSlider.create(slider, {
@@ -71,7 +68,6 @@ map.addControl(new Slider());
 // A little bit of mobile responsiveness
 if (window.innerWidth <= 750){
     // slider.setAttribute("mobile", "true"),
-    
     slider.noUiSlider.pips({
         mode: 'values',
         values: years.map(year=>Date.parse(year)),

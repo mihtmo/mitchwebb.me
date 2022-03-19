@@ -2,7 +2,7 @@
 
 {% block head %}
 
-<!-- Title greeting based on time of day -->
+<!-- Greet that cute ol' user (hello) based on time of day -->
     <script>
         var currentTime = new Date().getHours();
         if (currentTime >= 6 && currentTime <=11){
@@ -28,7 +28,7 @@
 
 {% block body %}
 
-    <div class="centered" style="75vh;">
+    <div class="centered">
         <div id="titlebox" style="font-size: 30px">Mitch Webb</div>
         <br>
         <img src="static/stranger.png" alt="Strange Creature Icon" style="width: 300px">
@@ -41,4 +41,3 @@
     </div>
 
 {% endblock body %}
-t

@@ -149,9 +149,6 @@
     map.getPane('pane_observations').style['mix-blend-mode'] = 'normal';
 
     // Create observations layer and assign to Leaflet pane
-
-//    var totalsightings = Object.keys(json_observations).length;
-
     var layer_observations = new L.geoJson(json_observations, {
         attribution: '',
         interactive: true,
@@ -259,7 +256,6 @@
         L.control.textbox({ position: 'bottomleft' }).addTo(map);
 
     // Map toggle to switch between hexgrid with time control and ALL points -without- time control
-    var timeslider = document.getElementById("map-slider");
     var startholder;
     var endholder;
 

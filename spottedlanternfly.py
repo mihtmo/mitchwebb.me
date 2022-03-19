@@ -23,8 +23,6 @@ def spottedlanternfly():
 
         # Create cursor
         cur = conn.cursor()
-        # cur.execute("\copy (SELECT * FROM information_schema.observations) TO
-        # '/Users/mitch/Desktop/observations.csv' DELIMITER ',' CSV HEADER;")
 
         with open('static/js/observations.js', 'a') as f:
 

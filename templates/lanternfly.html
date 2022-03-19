@@ -9,11 +9,9 @@
 
 {% block head %}
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}"> -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/nouislider/dist/nouislider.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/qgis2web.css') }}">
-<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/back_up.css') }}">-->
 
 {% endblock head %}
 
@@ -32,11 +30,36 @@
 
         <div id="map-slider"></div>
 
-        <div id="textbox" style="padding-top: 65px">This map shows sightings of the spotted lanternfly in the continental
-                                                    US using data from iNaturalist's API. It is a work in progress. Use
-                                                    the switch at the top right to view all individual sightings!</div>
-
+        <div id="textbox" style="padding-top: 65px"><p>This map shows sightings of the spotted lanternfly in the continental
+                                                    US using data from iNaturalist's API (automatically updated daily). 
+                                                    It is a work in progress. Use the switch at the top right to view all individual sightings!</p>
+                                                    <span id="more"><p>This map is made using <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a> 
+                                                    with the help of <a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener noreferrer">QGIS</a>, 
+                                                    <a href="https://refreshless.com/nouislider/" target="_blank" rel="noopener noreferrer">noUiSlider</a>, and 
+                                                    Asymmetrik's <a href="https://github.com/Asymmetrik/leaflet-d3" target="_blank" rel="noopener noreferrer">Leaflet-D3 Hexbins</a>.</p>
+                                                    <p>The default view is a hexgrid heatmap of sightings in whatever range of dates you choose.
+                                                    Try making a range of a few months and scanning through to see the sightings bloom every fall/winter!
+                                                    The slider ranges update automatically depending on the bounds of the data included, and
+                                                    the text in the lower left-hand corner of the map will let you know how many data points you're
+                                                    including in you're range.</p>
+                                                    <p>Try changing layers! When switching to the "All Sightings" layer, every data 
+                                                    point will be revealed. You can then view the data for an individual sighting by clicking on 
+                                                    the dot of your interest. From there you can also visit the original listing on iNaturalist or see the
+                                                    original observation photo taken of the insect.</p>
+                                                    <p>Thank you for visiting!</p>
+                                                    </span>
+                                                    <button onclick="readMore()" id="mybutton">Read More</button>
     </div>
+
+    <script> 
+
+        function readMore() {
+            document.getElementById("mybutton").style.display = "none";
+            document.getElementById("more").style.display = "block";
+            document.getElementById("textbox").style.marginBottom = "50px"
+        }
+    
+    </script>
 
     <script src="{{ url_for('static', filename='js/Autolinker.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/time_arrays.js') }}"></script>
