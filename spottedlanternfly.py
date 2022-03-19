@@ -64,4 +64,4 @@ def spottedlanternfly():
             conn.close()
             print('Database connection closed.')
 
-# spottedlanternfly()
+spottedlanternfly()
