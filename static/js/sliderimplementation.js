@@ -1,8 +1,8 @@
 
 // constants for the slider
 var slider = document.getElementById('map-slider');
-var default_start_date = first_date
-var default_end_date = last_date
+// var default_start_date = first_date
+// var default_end_date = last_date
 
 
 // implement the noUiSlider
@@ -10,13 +10,13 @@ noUiSlider.create(slider, {
     behaviour: 'tap-drag',
     connect: true,
     range: {
-        min: timestamp(default_start_date),
-        max: timestamp(default_end_date)
+        min: timestamp(first_date),
+        max: timestamp(last_date)
     },
     direction: 'ltr',
     step: 7 * 24 * 60 * 60 * 1000,
     // Handles start at
-    start: [timestamp(default_start_date), timestamp('May 1, 2016')],
+    start: [timestamp(first_date), timestamp('May 1, 2016')],
     format: wNumb({
         decimals: 0
     }),
@@ -25,22 +25,15 @@ noUiSlider.create(slider, {
         values: years.map(year=>Date.parse(year)),
         format: {
             to: function(year) {
-                    // custom function to format the months.
-    //                var target_month = new Date(month)
-    //                if (window.innerWidth > 740){
-    //                    month_label = months_short[target_month.getMonth()]
-    //                    return month_label
-    //                }
-                    var target_date = new Date(year)
-                    var target_year = (target_date.getFullYear() + 1)
-                    if (window.innerWidth < 740) {
-//                        console.log(years.indexOf(target_year))
-                        shortyears = years_short[years.indexOf(target_year)]
-                        return shortyears
-                    }
-                    else {
-                        return target_year
-                    }
+                var target_date = new Date(year)
+                var target_year = (target_date.getFullYear() + 1)
+                if (window.innerWidth < 740) {
+                    shortyears = years_short[years.indexOf(target_year)]
+                    return shortyears
+                }
+                else {
+                    return target_year
+                }
             },
             from: function(value){
                     return value
@@ -69,8 +62,6 @@ var Slider = L.Control.extend({
     },
     onAdd: function (map) {
       var controlSlider = L.DomUtil.create('div', 'map-slider', L.DomUtil.get('map'));
-      // here we can fill the slider with colors, strings and whatever
-//      controlSlider.innerHTML = '<form><input id="command" type="checkbox"/>command</form>';
       return controlSlider;
     },
 });
@@ -79,9 +70,28 @@ map.addControl(new Slider());
 
 // A little bit of mobile responsiveness
 if (window.innerWidth <= 750){
-    timeslider.setAttribute("mobile", "true")
-    slider.noUiSlider.updateOptions.pips({
-        density: 4
+    // slider.setAttribute("mobile", "true"),
+    
+    slider.noUiSlider.pips({
+        mode: 'values',
+        values: years.map(year=>Date.parse(year)),
+        density: 2,
+        format: {
+            to: function(year) {
+                var target_date = new Date(year)
+                var target_year = (target_date.getFullYear() + 1)
+                if (window.innerWidth < 740) {
+                    shortyears = years_short[years.indexOf(target_year)]
+                    return shortyears
+                }
+                else {
+                    return target_year
+                }
+            },
+            from: function(value){
+                    return value
+            }
+        }
     })
 };
 

@@ -215,8 +215,6 @@
             let filtered_obj = obj.filter(data => timestamp(data.properties['time']) >= start_date && timestamp(data.properties['time']) <= end_date)
             map_data = filtered_obj
         console.log('date provided')
-        default_start_date = start_date
-        default_end_date = end_date
         }
         else{
             console.log('date not provided, so adding all data')
@@ -247,7 +245,6 @@
     // Add textbox to map showing number of total data included
     L.Control.textbox = L.Control.extend({
             onAdd: function(map) {
-
             var maptext = L.DomUtil.create('div');
             maptext.id = 'maptext';
             maptext.innerHTML = 'Sightings Included: '
@@ -267,15 +264,15 @@
     var endholder;
 
     map.on('baselayerchange', function(e) {
-        if (timeslider.hasAttribute("disabled")) {
-            timeslider.removeAttribute("disabled"),
+        if (slider.hasAttribute("disabled")) {
+            slider.removeAttribute("disabled"),
             document.getElementById('event-start').innerHTML = startholder,
             document.getElementById('dash').innerHTML = " - ",
             document.getElementById('event-end').innerHTML = endholder,
             maptext.innerHTML = "Sightings Included: " + dateValues[2] + " / " + totalsightings
         }
         else {
-            timeslider.setAttribute("disabled", "true")
+            slider.setAttribute("disabled", "true")
             startholder = document.getElementById('event-start').textContent,
             endholder = document.getElementById('event-end').textContent,
             document.getElementById('event-start').innerHTML = "",

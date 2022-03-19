@@ -4,13 +4,10 @@
   "description": "A visual representation of the spread of the spotted lanternfly in the continental US.",
   "main": "mapscriptv2.js",
   "license": "CC BY 3.0 US",
-  "devDependencies": {
-    Flask: '2.0.2',
-    requests: '2.26.0',
-    psycopg2: '2.9.3'',
-    gunicorn: '20.1.0',
-    pip: '21.3.1',
-  },
   "dependencies": {
+    "nouislider": "^15.5.1"
+  },
+  "devDependencies": {
+    "flask": "^0.2.10"
   }
 }

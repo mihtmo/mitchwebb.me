@@ -45,6 +45,10 @@
         width: 90%;
     }
 
+    .noUi-pips-horizontal {
+        overflow: hidden;
+    }
+
     .noUi-target {
         width: 85%;
         margin: auto;

@@ -31,7 +31,6 @@
     .leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
         border: 0px;
     }
-    }
     .fa, .leaflet-container, a {
         color: #000000 !important;
     }
@@ -149,7 +148,7 @@
 
     .hexagon {
         opacity: 0.8;
-    }''
+    }
 
     .hexbin-hexagon {
         stroke: #500;
@@ -158,9 +157,15 @@
     }
 
     #maptext {
+        margin-bottom: 18px;
+        margin-left: 18px;
         padding-top: 2px;
         padding-bottom: 2px;
         padding-left: 7px;
         padding-right: 7px;
         background-color: #f3f3f3;
+    }
+
+    [mobile = "true"] .leaflet-bottom {
+        margin-bottom: 19px;
     }
