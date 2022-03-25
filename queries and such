@@ -1,6 +1,6 @@
 CREATE TABLE observations (
     id int,
-    observed_on timestamptz,
+    time timestamptz,
     latitude float4,
     longitude float4,
     place text,
@@ -16,7 +16,6 @@ INSERT INTO observations(id,
     inaturl,
     captive,
     photos)
-VALUES (my_json
 
 SELECT
 

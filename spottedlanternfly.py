@@ -5,7 +5,7 @@ import psycopg2
 
 def spottedlanternfly():
 
-    DATABASE_URL = os.environ.get('DATABASE_URL')
+    DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
 
     site = "https://www.inaturalist.org"
     endpoint = "/observations.json?orderby=observed_on&license=any&taxon_id=324726&" \
