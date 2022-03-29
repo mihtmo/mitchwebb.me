@@ -22,7 +22,7 @@
         vertical-align: middle;
         top: 50%;
         height: 100%;
-        width: 75%;
+        /* width: 75%; */
     }
 
     #titlebox {
@@ -42,6 +42,7 @@
         font-family: 'Montserrat', sans-serif;
         background-color: #f1f0ec;
         border-radius: 5px;
+        width: 60px;
     }
 
     #more {
@@ -54,6 +55,10 @@
     .noUi-value, .noUi-value-horizontal, .noUi-value-large {
         margin-top: 5px;
         width: 90%;
+    }
+
+    .noUi-horizontal {
+        width: 75% !important;
     }
 
     .noUi-pips-horizontal {

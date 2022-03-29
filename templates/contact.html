@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    send me a message
+{% endblock title %}
+
+{% block head %}
+{% endblock head %}
+
+{% block body %}
+ 
+    <div class="centered">
+
+        <div id="titlebox" style="margin-bottom: 20px;"">thanks for visiting, send me a note!</div>
+
+        <form action="https://formspree.io/f/mnqwbdwo" method="POST" style="text-align: left">
+            <label for="email_address" style="text-align: left !important;">your email address *</label><br>
+                <input type="text" id="email_address" placeholder="so I can get back to you" name="email_address" required><br>
+            <label for="message">your message *</label><br>
+                <textarea id="message" placeholder="so I know what you're thinking" name="message" required></textarea><br>
+            <input type="submit" id="mybutton" class="g-recaptcha" value="submit" style="float: right;">
+        </form>
+        
+        <style>
+            input {
+                text-align: left;
+                font-family: "Montserrat";
+                font-size: 14px;
+            }
+            input:focus::placeholder {
+                color: transparent;
+            }
+            
+            textarea {
+                text-align: left;
+                font-family: "Montserrat";
+                font-size: 14px;
+            }
+            textarea:focus::placeholder {
+                color: transparent;
+            }
+
+            #email_address {
+                width: 300px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            #message {
+                width: 70vw;
+                max-width: 750px;
+                height: 40vh;
+                max-height: 900px;
+                margin-top:10px;
+                margin-bottom:10px;
+            }
+        </style>
+
+        </div>
+
+        <br>
+
+        <footer id="textbox" style="font-size: 16px">
+            <a class='links' href="https://www.mitchwebb.me">home</a>
+            |
+            <a class='links' href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
+            |
+            <a class='links' href="https://www.mitchwebb.me/me">me</a>
+        </footer>
+
+    </div>
+
+{% endblock body %}

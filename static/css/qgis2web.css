@@ -126,6 +126,8 @@
 
     #observation_map {
         height: 55vh;
+        width: 75vw;
+        margin: auto;
     }
 
     .checklist:before {

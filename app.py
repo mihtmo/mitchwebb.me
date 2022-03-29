@@ -16,3 +16,8 @@ def slfly():
 def aboutme():
     # Show about me page
     return render_template("me.html")
+
+@mitchwebb.route("/contact")
+def contact():
+    # Show contact page
+    return render_template("contact.html")
