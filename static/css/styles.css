@@ -15,6 +15,13 @@
         text-align: center;
     }
 
+    #footers {
+        font-size: 16px;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .centered {
         margin: 0 auto;
         display: inline-block;
@@ -132,17 +139,23 @@
         color: transparent;
     }
 
+    #contactform {
+        max-width: 750px;
+        width: 70vw;
+        margin: auto;
+    }
+
     #email_address {
         width: 300px;
+        max-width: 75%;
         margin-top: 10px;
         margin-bottom: 10px;
     }
 
     #message {
-        width: 70vw;
-        max-width: 750px;
         height: 40vh;
         max-height: 900px;
         margin-top:10px;
         margin-bottom:10px;
+        width: 98.5%;
     }

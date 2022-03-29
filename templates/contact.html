@@ -13,24 +13,24 @@
 
         <div id="titlebox" style="margin-bottom: 20px;"">thanks for visiting, send me a note!</div>
 
-        <form action="https://formspree.io/f/mnqwbdwo" method="POST" style="text-align: left">
-            <label for="email_address" style="text-align: left !important;">your email address *</label><br>
-                <input type="text" id="email_address" placeholder="so I can get back to you" name="email_address" required><br>
-            <label for="message">your message *</label><br>
-                <textarea id="message" placeholder="so I know what you're thinking" name="message" required></textarea><br>
-            <input type="submit" id="mybutton" class="g-recaptcha" value="submit" style="float: right;">
-        </form>
-
-        <br>
-
-        <footer id="textbox" style="font-size: 16px">
-            <a class='links' href="https://www.mitchwebb.me">home</a>
-            |
-            <a class='links' href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
-            |
-            <a class='links' href="https://www.mitchwebb.me/me">me</a>
-        </footer>
+        <div id="contactform">
+            <form action="https://formspree.io/f/mnqwbdwo" method="POST" style="text-align: left">
+                <label for="email_address" style="text-align: left !important;">your email address *</label><br>
+                    <input type="text" id="email_address" placeholder="so I can get back to you" name="email_address" required><br>
+                <label for="message">your message *</label><br>
+                    <textarea id="message" placeholder="so I know what you're thinking" name="message" required></textarea><br>
+                <input type="submit" id="mybutton" class="g-recaptcha" value="submit" style="float: right;">
+            </form>
+        </div>
 
     </div>
+
+    <footer id="footers">
+        <a href="https://www.mitchwebb.me">home</a>
+        |
+        <a href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
+        |
+        <a href="https://www.mitchwebb.me/me">me</a>
+    </footer>
 
 {% endblock body %}
