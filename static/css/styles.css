@@ -28,11 +28,15 @@
         font-size: 25px;
         padding-top: 50px;
         padding-bottom: 30px;
+        max-width: 75%;
+        margin: auto;
     }
 
     #textbox {
         font-size: 14px;
         padding-top: 30px;
+        max-width: 75%;
+        margin: auto;
     }
 
     #mybutton {
