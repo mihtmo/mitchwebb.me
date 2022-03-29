@@ -22,7 +22,6 @@
         vertical-align: middle;
         top: 50%;
         height: 100%;
-        /* width: 75%; */
     }
 
     #titlebox {
@@ -42,7 +41,6 @@
         font-family: 'Montserrat', sans-serif;
         background-color: #f1f0ec;
         border-radius: 5px;
-        width: 60px;
     }
 
     #more {
@@ -107,4 +105,40 @@
 /* Leaflet Overrides */
     .leaflet-container {
         font-family: 'Montserrat', sans-serif !important;
+    }
+
+
+/* Contact Form */
+
+    input {
+        text-align: left;
+        font-family: "Montserrat";
+        font-size: 14px;
+    }
+    input:focus::placeholder {
+        color: transparent;
+    }
+
+    textarea {
+        text-align: left;
+        font-family: "Montserrat";
+        font-size: 14px;
+    }
+    textarea:focus::placeholder {
+        color: transparent;
+    }
+
+    #email_address {
+        width: 300px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #message {
+        width: 70vw;
+        max-width: 750px;
+        height: 40vh;
+        max-height: 900px;
+        margin-top:10px;
+        margin-bottom:10px;
     }
