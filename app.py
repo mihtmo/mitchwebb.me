@@ -21,23 +21,31 @@ def slfly():
     # Establish connection with Heroku PSQL DB
     DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
     conn = psycopg2.connect(DATABASE_URL)
-
     try:
         # Create cursor
         cur = conn.cursor()
-        observations = cur.fetchall()
+        cur.execute("SELECT * FROM observations")
+        observationstable = cur.fetchall()
+        
         with open('static/js/observations.js', 'a') as f:
 
-            for row in observations:
+            for row in observationstable:
+                    print("inserting extra data")
                     f.seek(0, 2)
                     f.seek(f.tell() - 2, os.SEEK_SET)
                     f.truncate()
                     f.write(",")
-                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
-                            f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
-                            f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
-                            f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
-                            f"\"coordinates\":[{row['longitude']},{row['latitude']}]}}}}")
+                    print(observationstable)
+                    # f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
+                    #         f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
+                    #         f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
+                    #         f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
+                    #         f"\"coordinates\":[{row['longitude']},{row['latitude']}]}}}}")
+                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row[0]},\"time\":"
+                            f"\"{row[1]}\",\"latitude\":{row[2]},\"longitude\":"
+                            f"{row[3]},\"place\":\"{row[4]}\",\"inaturl\":\"{row[5]}\","
+                            f"\"photos\":\"{row[6]}\"}}, \"geometry\":{{\"type\":\"Point\", "
+                            f"\"coordinates\":[{row[3]},{row[2]}]}}}}")
                     f.write("]}")
             f.close()
 
