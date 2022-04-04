@@ -9,7 +9,7 @@ def spottedlanternfly():
 
     site = "https://www.inaturalist.org"
     endpoint = "/observations.json?orderby=observed_on&license=any&taxon_id=324726&quality_grade=" \
-                "research&swlng=-178.2&swlat=6.6&nelng=-49.0&nelat=83.3&per_page=1&page=0"
+                "research&swlng=-178.2&swlat=6.6&nelng=-49.0&nelat=83.3&per_page=200&page=0"
 
     response = get(f"{site}{endpoint}")
     observations = response.json()
