@@ -27,18 +27,18 @@ def slfly():
         cur.execute("SELECT * FROM observations")
         observationstable = cur.fetchall()
         
-        with open('static/js/observations.js', 'a') as f:
+        with open('static/js/observations.js', 'r+') as f:
 
             for row in observationstable:
                 currentID = row[0]
                 # read file content
                 readfile = f.read()
                 # checking condition for string found or not
-                if currentID in readfile: 
+                if str(currentID) in readfile: 
                     print("Observation already contained in dataset")
                     continue
                 else: 
-                    print("inserting extra data")
+                    print("Inserting extra data")
                     f.seek(0, 2)
                     f.seek(f.tell() - 2, os.SEEK_SET)
                     f.truncate()
