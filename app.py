@@ -30,12 +30,19 @@ def slfly():
         with open('static/js/observations.js', 'a') as f:
 
             for row in observationstable:
+                currentID = row[0]
+                # read file content
+                readfile = f.read()
+                # checking condition for string found or not
+                if currentID in readfile: 
+                    print("Observation already contained in dataset")
+                    continue
+                else: 
                     print("inserting extra data")
                     f.seek(0, 2)
                     f.seek(f.tell() - 2, os.SEEK_SET)
                     f.truncate()
                     f.write(",")
-                    print(observationstable)
                     # f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
                     #         f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
                     #         f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
