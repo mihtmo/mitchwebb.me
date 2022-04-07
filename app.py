@@ -24,37 +24,47 @@ def slfly():
     try:
         # Create cursor
         cur = conn.cursor()
-        cur.execute("SELECT * FROM observations")
-        observationstable = cur.fetchall()
+        # Count rows in PostgreSQL
+        rowcount = cur.execute("SELECT * FROM observations")
         
-        with open('static/js/observations.js', 'r+') as f:
-
-            for row in observationstable:
-                currentID = row[0]
-                # read file content
+        # If database is empty, just load page
+        if rowcount == None:
+            print("No new rows in database")
+        
+        # If database contains rows, add any missing data points to file on Heroku
+        else:
+            with open('static/js/observations.js', 'r+') as f:
+                # This could be done more efficiently (if it made much of a difference) by only reading
+                # the number of instances of the string "Feature", multiplied by the value of rowcount from
+                # the END of the file, and loading that chunk into readfile.
+                observationstable = cur.fetchall()
                 readfile = f.read()
-                # checking condition for string found or not
-                if str(currentID) in readfile: 
-                    print("Observation already contained in dataset")
-                    continue
-                else: 
-                    print("Inserting extra data")
-                    f.seek(0, 2)
-                    f.seek(f.tell() - 2, os.SEEK_SET)
-                    f.truncate()
-                    f.write(",")
-                    # f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
-                    #         f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
-                    #         f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
-                    #         f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
-                    #         f"\"coordinates\":[{row['longitude']},{row['latitude']}]}}}}")
-                    f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row[0]},\"time\":"
-                            f"\"{row[1]}\",\"latitude\":{row[2]},\"longitude\":"
-                            f"{row[3]},\"place\":\"{row[4]}\",\"inaturl\":\"{row[5]}\","
-                            f"\"photos\":\"{row[6]}\"}}, \"geometry\":{{\"type\":\"Point\", "
-                            f"\"coordinates\":[{row[3]},{row[2]}]}}}}")
-                    f.write("]}")
-            f.close()
+                # Prepare file for new data
+                f.seek(2, 2)
+                f.truncate()
+                for row in observationstable:
+                    currentID = row[0]
+                    # Check if new data has already been added (only need to check one)
+                    print(currentID)
+                    if str(currentID) in readfile: 
+                        print("New observations already contained in dataset")
+                        break
+                    else: 
+                        print("Inserting extra data")
+                        f.write(",")
+                        # f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
+                        #         f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
+                        #         f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
+                        #         f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
+                        #         f"\"coordinates\":[{row['longitude']},{row['latitude']}]}}}}")
+                        f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row[0]},\"time\":"
+                                f"\"{row[1]}\",\"latitude\":{row[2]},\"longitude\":"
+                                f"{row[3]},\"place\":\"{row[4]}\",\"inaturl\":\"{row[5]}\","
+                                f"\"photos\":\"{row[6]}\"}}, \"geometry\":{{\"type\":\"Point\", "
+                                f"\"coordinates\":[{row[3]},{row[2]}]}}}}")
+                # Close file syntax
+                f.write("]}")
+                f.close()
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
