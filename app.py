@@ -24,11 +24,12 @@ def slfly():
     try:
         # Create cursor
         cur = conn.cursor()
-        # Count rows in PostgreSQL
-        rowcount = cur.execute("SELECT * FROM observations")
+        # See if there are any rows in databas
+        cur.execute("SELECT EXISTS (SELECT 1 FROM observations)")
+        ispopulated = cur.fetchall()
         
         # If database is empty, just load page
-        if rowcount == None:
+        if ispopulated == False:
             print("No new rows in database")
         
         # If database contains rows, add any missing data points to file on Heroku
@@ -37,10 +38,12 @@ def slfly():
                 # This could be done more efficiently (if it made much of a difference) by only reading
                 # the number of instances of the string "Feature", multiplied by the value of rowcount from
                 # the END of the file, and loading that chunk into readfile.
+                cur.execute("SELECT * FROM observations")
                 observationstable = cur.fetchall()
                 readfile = f.read()
                 # Prepare file for new data
-                f.seek(2, 2)
+                f.seek(0, 2)
+                f.seek(f.tell() - 2, os.SEEK_SET)
                 f.truncate()
                 for row in observationstable:
                     currentID = row[0]
@@ -50,7 +53,7 @@ def slfly():
                         print("New observations already contained in dataset")
                         break
                     else: 
-                        print("Inserting extra data")
+                        print("New data:")
                         f.write(",")
                         # f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
                         #         f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
@@ -72,7 +75,7 @@ def slfly():
     finally:
         if conn is not None:
             conn.close()
-            print('Database connection closed.')
+            print('Database connection closed')
     # Open QGIS map
     return render_template("lanternfly.html")
 

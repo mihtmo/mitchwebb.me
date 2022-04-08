@@ -52,6 +52,7 @@ def spottedlanternfly():
             #                 f"\"coordinates\":[{row['longitude']},{row['latitude']}]}}}}")
             #         f.write("]}")
             # f.close()
+            
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
