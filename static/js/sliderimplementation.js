@@ -1,6 +1,8 @@
 
 // constants for the slider
 var slider = document.getElementById('map-slider');
+console.log(timestamp(first_date))
+console.log(timestamp(last_date))
 // implement the noUiSlider
 noUiSlider.create(slider, {
     behaviour: 'tap-drag',
