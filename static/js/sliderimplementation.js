@@ -7,8 +7,8 @@ noUiSlider.create(slider, {
     behaviour: 'tap-drag',
     connect: true,
     range: {
-        min: 0,
-        max: 0,
+        min: timestamp(first_date),
+        max: timestamp(last_date)
     },
     direction: 'ltr',
     step: 7 * 24 * 60 * 60 * 1000,
