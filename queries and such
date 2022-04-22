@@ -22,3 +22,9 @@ SELECT
 
 PATH="/Applications/Postgres.app/Contents/Versions/14/bin:$PATH"
 heroku pg:psql -a mitchwebb postgresql-fluffy-62542
+
+CREATE TABLE heatdata (
+    date DATE
+    temp_hi INT
+    temp_lo INT
+)

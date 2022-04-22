@@ -55,11 +55,6 @@ def slfly():
                     else: 
                         print("New data:")
                         f.write(",")
-                        # f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row['id']},\"time\":"
-                        #         f"\"{row['time_observed_at_utc']}\",\"latitude\":{row['latitude']},\"longitude\":"
-                        #         f"{row['longitude']},\"place\":\"{row['place_guess']}\",\"inaturl\":\"{row['uri']}\","
-                        #         f"\"photos\":\"{row['photos'][0]['medium_url']}\"}}, \"geometry\":{{\"type\":\"Point\", "
-                        #         f"\"coordinates\":[{row['longitude']},{row['latitude']}]}}}}")
                         f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row[0]},\"time\":"
                                 f"\"{row[1]}\",\"latitude\":{row[2]},\"longitude\":"
                                 f"{row[3]},\"place\":\"{row[4]}\",\"inaturl\":\"{row[5]}\","
@@ -88,3 +83,33 @@ def aboutme():
 def contact():
     # Show contact page
     return render_template("contact.html")
+
+@mitchwebb.route("/heatblanket", methods=['GET', 'POST'])
+def hblanket():
+    
+    # Establish connection with Heroku PostgreSQL
+    DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
+    
+    conn = None
+    
+    try:
+        # Establish database connection
+        conn = psycopg2.connect(DATABASE_URL)
+
+        # Create cursor
+        cur = conn.cursor()
+
+        cur.execute("SELECT (date::VARCHAR(19)), temp_hi, temp_lo FROM heatdata")
+        fulltable = cur.fetchall()
+        daynum = len(fulltable)
+        
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+
+    finally:
+        if conn is not None:
+            conn.close()
+            print('Database connection closed')
+            
+    #Show heatblanket page
+    return render_template("heatblanket.html", fulltable = fulltable, daynum = daynum)

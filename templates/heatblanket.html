@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    feeling warm
+{% endblock title %}
+
+{% block head %}
+{% endblock head %}
+
+{% block body %}
+<script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
+
+    <div id="blanket">
+        
+        <script type="text/javascript">
+
+            var newdiv;
+            var divIDName;
+            var hitemp;
+            var lotemp;
+            var daynum = {{daynum}};
+            var fulltable = {{fulltable|tojson|safe}};
+            var hicolor;
+            var locolor;
+            var i;
+
+            for(let i = 0; i < daynum; i++){
+                newdiv = document.createElement('div');
+                divIDName = 'day'+i;
+                newdiv.setAttribute('id', divIDName);
+                newdiv.setAttribute('class', 'blanketcolumn');
+                newdiv.setAttribute('align', 'left');
+                hitemp = fulltable[i][1];
+                lotemp = fulltable[i][2];
+                hicolor = colorScale(hitemp);
+                locolor = colorScale(lotemp);
+                newdiv.style.backgroundImage = `linear-gradient(${hicolor}, ${locolor})`;
+                document.getElementById("blanket").appendChild(newdiv);
+            }
+
+        </script>
+
+    </div>
+
+    <p>This page is a visual representation of temperatures in Austin, TX during 2022. 
+        It's building itself left-to-right as the year goes on.</p>
+
+    <footer id="footers">
+        <a href="https://www.mitchwebb.me">home</a>
+        |
+        <a href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
+        |
+        <a href="https://www.mitchwebb.me/me">me</a>
+        |
+        <a href="https://www.mitchwebb.me/contact">contact</a>
+    </footer>
+
+{% endblock body %}
