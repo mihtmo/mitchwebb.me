@@ -20,11 +20,11 @@
         margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 20px;
     }
 
     .centered {
         margin: 0 auto;
-        display: inline-block;
         overflow: hidden;
         vertical-align: middle;
         top: 50%;
