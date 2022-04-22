@@ -1,7 +1,6 @@
 
 // constants for the slider
 var slider = document.getElementById('map-slider');
-
 // implement the noUiSlider
 noUiSlider.create(slider, {
     behaviour: 'tap-drag',

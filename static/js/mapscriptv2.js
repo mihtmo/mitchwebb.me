@@ -199,7 +199,7 @@
 
     // Add data to map
     //initial call for all the data
-    addDataToHexMap(geo_data, '2012-01-01', '2022-01-01');
+    addDataToHexMap(geo_data);
 
     var totalsightings
 
