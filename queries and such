@@ -1,6 +1,6 @@
 CREATE TABLE observations (
     id int,
-    time timestamptz,
+    time text,
     latitude float4,
     longitude float4,
     place text,
