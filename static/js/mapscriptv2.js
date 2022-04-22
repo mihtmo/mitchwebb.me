@@ -277,3 +277,4 @@
     });
 
     L.control.layers(overlays, null).addTo(map);
+    console.log('mapscript end')
