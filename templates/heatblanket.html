@@ -12,33 +12,37 @@
 
     <div id="blanket">
         
-        <script type="text/javascript">
+        <div id="texturebox">
 
-            var newdiv;
-            var divIDName;
-            var hitemp;
-            var lotemp;
-            var daynum = {{daynum}};
-            var fulltable = {{fulltable|tojson|safe}};
-            var hicolor;
-            var locolor;
-            var i;
+            <script type="text/javascript">
 
-            for(let i = 0; i < daynum; i++){
-                newdiv = document.createElement('div');
-                divIDName = 'day'+i;
-                newdiv.setAttribute('id', divIDName);
-                newdiv.setAttribute('class', 'blanketcolumn');
-                newdiv.setAttribute('align', 'left');
-                hitemp = fulltable[i][1];
-                lotemp = fulltable[i][2];
-                hicolor = colorScale(hitemp);
-                locolor = colorScale(lotemp);
-                newdiv.style.backgroundImage = `linear-gradient(${hicolor}, ${locolor})`;
-                document.getElementById("blanket").appendChild(newdiv);
-            }
+                var newdiv;
+                var divIDName;
+                var hitemp;
+                var lotemp;
+                var daynum = {{daynum}};
+                var fulltable = {{fulltable|tojson|safe}};
+                var hicolor;
+                var locolor;
+                var i;
 
-        </script>
+                for(let i = 0; i < daynum; i++){
+                    newdiv = document.createElement('div');
+                    divIDName = 'day'+i;
+                    newdiv.setAttribute('id', divIDName);
+                    newdiv.setAttribute('class', 'blanketcolumn');
+                    newdiv.setAttribute('align', 'left');
+                    hitemp = fulltable[i][1];
+                    lotemp = fulltable[i][2];
+                    hicolor = colorScale(hitemp);
+                    locolor = colorScale(lotemp);
+                    newdiv.style.backgroundImage = `linear-gradient(${hicolor}, ${locolor})`;
+                    document.getElementById("texturebox").appendChild(newdiv);
+                }
+
+            </script>
+
+        </div>
 
     </div>
 

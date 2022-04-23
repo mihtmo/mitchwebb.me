@@ -169,10 +169,20 @@
         margin-right: 30px;
         margin-top: 30px;
         margin-bottom: 20px;
+        position: relative;
+    }
+
+    #texturebox {
+        width: max-content;
+        height: 100%;
+        background-image: url("../images/white-linen.png");
+        position: relative;
     }
 
     .blanketcolumn {
         height: 100%;
-        width: 0.273972602%;
+        width: calc(95vw/365);
         float: left;
+        z-index:-1;
+        position: relative;
     }
