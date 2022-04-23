@@ -175,7 +175,8 @@
     #texturebox {
         width: max-content;
         height: 100%;
-        background-image: url("../images/cream-pixels.png");
+        background-image: url("../images/simple-texture.png");
+        background-size: contain;
         position: relative;
     }
 
