@@ -36,13 +36,18 @@ def heatblanket():
             
             # Check if date already exists
             if row['DATE'] in str(included_dates):
+                # For heroku task logging
                 print(f"date already added ({row['DATE']})")
                 continue
 
-            cur.execute("INSERT INTO heatdata "
-                        "(date, temp_hi, temp_lo) "
-                        "VALUES (%s, %s, %s);",
-                        (row['DATE'], row['TMAX'], row['TMIN']))
+
+            else: 
+                cur.execute("INSERT INTO heatdata "
+                            "(date, temp_hi, temp_lo) "
+                            "VALUES (%s, %s, %s);",
+                            (row['DATE'], row['TMAX'], row['TMIN']))
+                # For heroku task logging
+                print(f"new date added ({row['DATE']})")
 
             conn.commit()
             
