@@ -99,7 +99,7 @@ def hblanket():
         # Create cursor
         cur = conn.cursor()
 
-        cur.execute("SELECT (date::VARCHAR(19)), temp_hi, temp_lo FROM heatdata")
+        cur.execute("SELECT (date::VARCHAR(19)), temp_hi, temp_lo, visib, rain FROM weatherdata")
         fulltable = cur.fetchall()
         daynum = len(fulltable)
         

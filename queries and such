@@ -26,6 +26,8 @@ source "/Users/mitch/Desktop/My Computer/Coding Projects/Website/mitchwebb.me/.v
 
 CREATE TABLE heatdata (
     date DATE
-    temp_hi INT
-    temp_lo INT
-)
+    temp_hi NUMERIC(3,1)
+    temp_lo NUMERIC(3,1)
+    visib NUMERIC(3,1)
+    rain NUMERIC(3,2)
+);

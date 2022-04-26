@@ -7,17 +7,17 @@ import psycopg2
 def heatblanket():
     
     today = date.today()
-    buffer = today - timedelta(days = 10)
+    buffer = today - timedelta(days = 15)
 
     DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
     
-    # Pull in the last 10 days of data to allow for update buffer on their end
+    # Pull in the last 15 days of data to allow for update buffer on their end
     site = "https://www.ncei.noaa.gov/access"
-    endpoint = "/services/data/v1?dataset=daily-summaries&stations=USW00013958&" \
-               "startDate={}&endDate={}&dataTypes=TMAX,TMIN&format=json".format(buffer, today)
+    endpoint = "/services/data/v1?dataset=global-summary-of-the-day&stations=72254413958&" \
+               "startDate={}&endDate={}&dataTypes=MAX,MIN,PRCP,VISIB&format=json".format(buffer, today)
 
     response = get(f"{site}{endpoint}")
-    heatdata = response.json()
+    weatherdata = response.json()
 
     conn = None
 
@@ -27,12 +27,12 @@ def heatblanket():
 
         # Create cursor
         cur = conn.cursor()
-        # Pull in last 10 days, convert datetime format to readable format
-        cur.execute("SELECT (date::VARCHAR(19)) FROM heatdata ORDER BY date DESC LIMIT 10;")
+        # Pull in last 15 days, convert datetime format to readable format
+        cur.execute("SELECT (date::VARCHAR(19)) FROM weatherdata ORDER BY date DESC LIMIT 15;")
         included_dates = cur.fetchall()
 
         # Insert new items
-        for row in heatdata:
+        for row in weatherdata:
             
             # Check if date already exists
             if row['DATE'] in str(included_dates):
@@ -40,14 +40,13 @@ def heatblanket():
                 print(f"date already added ({row['DATE']})")
                 continue
 
-
-            else: 
-                cur.execute("INSERT INTO heatdata "
-                            "(date, temp_hi, temp_lo) "
-                            "VALUES (%s, %s, %s);",
-                            (row['DATE'], row['TMAX'], row['TMIN']))
-                # For heroku task logging
-                print(f"new date added ({row['DATE']})")
+            # else: 
+            cur.execute("INSERT INTO weatherdata "
+                        "(date, temp_hi, temp_lo, visib, rain) "
+                        "VALUES (%s, %s, %s, %s, %s);",
+                        (row['DATE'], row['MAX'], row['MIN'], row['VISIB'], row['PRCP']))
+            # For heroku task logging
+            print(f"new date added ({row['DATE']})")
 
             conn.commit()
             
