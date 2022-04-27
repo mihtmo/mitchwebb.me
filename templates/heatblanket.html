@@ -16,6 +16,10 @@
 
             <script type="text/javascript">
 
+                $(window).on("orientationchange",function(){
+                    location.reload(); 
+                }); 
+
                 var daynum = {{daynum}};
                 var fulltable = {{fulltable|tojson|safe}};
                 var columnwidth = ((.90*(window.innerWidth))/(daynum)) + 'px';
