@@ -15,6 +15,22 @@
         text-align: center;
     }
 
+    a:visited { 
+        color:black; 
+    }
+    a:hover { 
+        color:darkgrey; 
+    }
+    a:focus { 
+        color: darkgrey; 
+    }
+    a:hover, a:active { 
+        color:darkgrey; 
+    }
+    a {
+        color: black
+    }
+
     #footers {
         font-size: 16px;
         margin-top: 30px;

@@ -32,7 +32,7 @@
         border: 0px;
     }
     .fa, .leaflet-container, a {
-        color: #000000 !important;
+        color: #000000;
     }
     .leaflet-control-zoom-in, .leaflet-control-zoom-out,
     .leaflet-control-locate a,
