@@ -4,7 +4,7 @@ import os
 import psycopg2
 
 
-def heatblanket():
+def weatherblanketblanket():
     
     today = date.today()
     buffer = today - timedelta(days = 15)
@@ -59,4 +59,4 @@ def heatblanket():
             conn.close()
             print('Database connection closed.')
 
-heatblanket()
+weatherblanket()

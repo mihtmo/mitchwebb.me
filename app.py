@@ -84,8 +84,8 @@ def contact():
     # Show contact page
     return render_template("contact.html")
 
-@mitchwebb.route("/heatblanket", methods=['GET', 'POST'])
-def hblanket():
+@mitchwebb.route("/weatherblanket", methods=['GET', 'POST'])
+def wblanket():
     
     # Establish connection with Heroku PostgreSQL
     DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
@@ -111,5 +111,5 @@ def hblanket():
             conn.close()
             print('Database connection closed')
             
-    #Show heatblanket page
-    return render_template("heatblanket.html", fulltable = fulltable, daynum = daynum)
+    #Show weatherblanket page
+    return render_template("weatherblanket.html", fulltable = fulltable, daynum = daynum)
