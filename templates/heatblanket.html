@@ -16,15 +16,9 @@
 
             <script type="text/javascript">
 
-                var newdiv;
-                var divIDName;
-                var hitemp;
-                var lotemp;
                 var daynum = {{daynum}};
                 var fulltable = {{fulltable|tojson|safe}};
-                var hicolor;
-                var locolor;
-                var i;
+                var columnwidth = ((.90*(window.innerWidth))/(daynum)) + 'px';
 
                 for(let i = 0; i < daynum; i++){
                     newdiv = document.createElement('div');
@@ -37,6 +31,7 @@
                     hicolor = heatcolorScale(hitemp);
                     locolor = heatcolorScale(lotemp);
                     newdiv.style.backgroundImage = `linear-gradient(${hicolor}, ${locolor})`;
+                    newdiv.style.width = columnwidth;
                     document.getElementById("texturebox").appendChild(newdiv);
                 }
 
@@ -52,16 +47,8 @@
 
             <script type="text/javascript">
 
-                var newdiv;
-                var divIDName;
-                var hitemp;
-                var rain;
-                var rain_coef;
-                var daynum = {{daynum}};
-                var fulltable = {{fulltable|tojson|safe}};
-                var i;
                 // Variable of the half-width of each column, used for rounding corners
-                var halfwidth = ((.95*(window.innerWidth))/(365 * 2)) + 'px';
+                var halfwidth = ((.90*(window.innerWidth))/(daynum * 2)) + 'px';
 
                 for(let i = 0; i < daynum; i++){
                     newdiv = document.createElement('div');
@@ -73,6 +60,7 @@
                     rain_coef = raincolorScale(rain);
                     lotemp = fulltable[i][2];
                     locolor = heatcolorScale(lotemp);
+                    newdiv.style.width = columnwidth;
                     newdiv.style.backgroundImage = `linear-gradient(${locolor}, #429bd6)`;
 
                     // Create invisible divs or drips of representative length
@@ -81,7 +69,7 @@
                         newdiv.style.opacity = '0%'
                     }
                     else {
-                        newdiv.style.height = (rain_coef * 300) + '%';
+                        newdiv.style.height = (rain_coef * 400) + '%';
                     }
 
                     // Round bottom ends of drips
@@ -100,10 +88,8 @@
     </div>
 
     <div id="blankettext">This is an artistic representation of temperatures and precipitation levels in 
-        Austin, TX during 2022. The visual is building itself from left to right as the year 
-        goes on.
+        Austin, TX during 2022. The visual will automatically add one column for each day of the year.
     </div>
-
 
 
     <!-- <div id="visiblanket">
