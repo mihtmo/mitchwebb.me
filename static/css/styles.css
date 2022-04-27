@@ -184,6 +184,7 @@
         float: left;
         z-index:-1;
         position: relative;
+        min-height: 1px;
     }
 
     #rainblanket {
