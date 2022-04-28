@@ -7,7 +7,7 @@
 {% block head %}
 {% endblock head %}
 
-{% block body %}
+{% block main %}
 <script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
 
     <div id="heatblanket">
@@ -21,8 +21,8 @@
                     location.reload(); 
                 }); 
 
-                var daynum = {{daynum}};
-                var fulltable = {{fulltable|tojson|safe}};
+                var daynum = {{ daynum }};
+                var fulltable = {{ fulltable|tojson|safe }};
                 var columnwidth = ((.90*(window.innerWidth))/(daynum)) + 'px';
 
                 for(let i = 0; i < daynum; i++){
@@ -133,14 +133,9 @@
 
     </div> -->
 
-    <footer id="footers">
-        <a href="https://www.mitchwebb.me">home</a>
-        |
-        <a href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
-        |
-        <a href="https://www.mitchwebb.me/me">me</a>
-        |
-        <a href="https://www.mitchwebb.me/contact">contact</a>
-    </footer>
+{% endblock main %}
 
-{% endblock body %}
+{% block footer %}
+<a href="https://www.mitchwebb.me/">home</a>
+|
+{% endblock footer %}

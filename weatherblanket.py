@@ -4,7 +4,7 @@ import os
 import psycopg2
 
 
-def weatherblanketblanket():
+def weatherblanket():
     
     today = date.today()
     buffer = today - timedelta(days = 15)

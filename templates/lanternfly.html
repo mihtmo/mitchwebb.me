@@ -16,7 +16,7 @@
 {% endblock head %}
 
 
-{% block body %}
+{% block main %}
 
     <div class="centered">
 
@@ -52,16 +52,6 @@
                                                     <button onclick="readMore()" id="mybutton">Read More</button>
     </div>
 
-    <footer id="footers">
-        <a href="https://www.mitchwebb.me/">home</a>
-        |
-        <a href="https://www.mitchwebb.me/weatherblanket">weatherblanket</a>
-        |
-        <a href="https://www.mitchwebb.me/me">me</a>
-        |
-        <a href="https://www.mitchwebb.me/contact">contact</a>
-    </footer>
-
     <script> 
 
         function readMore() {
@@ -95,4 +85,10 @@
     <script src="{{ url_for('static', filename='js/labels.js') }}"></script>
     <script src="{{ url_for('static', filename='js/tailDT.js') }}"></script>
 
-{% endblock body %}
+{% endblock main %}
+
+
+{% block footer %}
+<a href="https://www.mitchwebb.me/">home</a>
+|
+{% endblock footer %}

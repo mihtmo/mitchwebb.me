@@ -7,7 +7,7 @@
 {% block head %}
 {% endblock head %}
 
-{% block body %}
+{% block main %}
  
     <div class="centered">
 
@@ -25,14 +25,9 @@
 
     </div>
 
-    <footer id="footers">
-        <a href="https://www.mitchwebb.me">home</a>
-        |
-        <a href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
-        |
-        <a href="https://www.mitchwebb.me/weatherblanket">weatherblanket</a>
-        |
-        <a href="https://www.mitchwebb.me/me">me</a>
-    </footer>
+{% endblock main %}
 
-{% endblock body %}
+{% block footer %}
+<a href="https://www.mitchwebb.me/">home</a>
+|
+{% endblock footer %}

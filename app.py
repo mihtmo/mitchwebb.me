@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import csv
 import os
 import psycopg2
 
@@ -113,3 +114,14 @@ def wblanket():
             
     #Show weatherblanket page
     return render_template("weatherblanket.html", fulltable = fulltable, daynum = daynum)
+
+@mitchwebb.route("/discography", methods=['GET', 'POST'])
+def discography():
+
+    # Open select_discography.csv and read into variable
+    with open('static/select_discography.csv', newline='') as csvfile:
+        discographydata = list(csv.reader(csvfile))
+        disccount = len(discographydata)
+
+    # Show discography page
+    return render_template("discography.html", discographydata = discographydata, disccount = disccount)

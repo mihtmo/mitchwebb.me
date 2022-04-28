@@ -33,7 +33,26 @@
 
     <body>
 
-        {% block body %}{% endblock body %}
+        {% block main %}{% endblock  main %}
+
+        <footer id="footers">
+
+            {% block footer %}{% endblock footer %}
+            <div class="dropdown">
+                <button class="dropbtn">projects</button>
+                <div class="dropdown-content">
+                  <a href="https://www.mitchwebb.me/spottedlanternfly">spotted lanternfly</a>
+                  <a href="https://www.mitchwebb.me/weatherblanket">weatherblanket</a>
+                </div>
+              </div> 
+            |
+            <a href="https://www.mitchwebb.me/discography">discography</a>
+            |
+            <a href="https://www.mitchwebb.me/me">me</a>
+            |
+            <a href="https://www.mitchwebb.me/contact">contact</a>
+    
+        </footer>
 
     </body>
 
