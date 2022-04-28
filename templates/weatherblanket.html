@@ -97,41 +97,8 @@
         and the minimim daily temperature (at the bottom). The drips below the bars indicate precipitation levels
         for that day. The visual will automatically add one column for each day of the year.</p>
         <p>This visual is best viewed on desktop or in landscape-mode.</p>
+
     </div>
-
-
-    <!-- <div id="visiblanket">
-        
-        <div id="visibox">
-
-            <script type="text/javascript">
-
-                var newdiv;
-                var divIDName;
-                var visib;
-                var visib_coef;
-                var daynum = {{daynum}};
-                var fulltable = {{fulltable|tojson|safe}};
-                var i;
-
-                for(let i = 0; i < daynum; i++){
-                    newdiv = document.createElement('div');
-                    divIDName = 'day'+i;
-                    newdiv.setAttribute('id', divIDName);
-                    newdiv.setAttribute('class', 'blanketcolumn');
-                    newdiv.setAttribute('align', 'left');
-                    visib = fulltable[i][3];
-                    visib_coef = viscolorScale(visib);
-                    newdiv.style.backgroundColor = '#C4C4C4' 
-                    newdiv.style.opacity = visib_coef;
-                    document.getElementById("visibox").appendChild(newdiv);
-                }
-
-            </script>
-
-        </div>
-
-    </div> -->
 
 {% endblock main %}
 
