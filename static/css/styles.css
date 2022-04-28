@@ -111,13 +111,13 @@
     }
     
     /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {background-color: #e4e3e0;}
+    .dropdown-content a:hover, .dropdown-content a:active {background-color: #e4e3e0;}
     
     /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .dropdown-content .dropdown:active .dropdown-content {display: block;}
     
     /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {color: black;} 
+    .dropdown:hover .dropbtn, .dropdown:active .dropbtn {color: black;} 
 
 /* noUi Slider Overrides */
 
