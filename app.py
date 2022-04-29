@@ -125,3 +125,9 @@ def discography():
 
     # Show discography page
     return render_template("discography.html", discographydata = discographydata, disccount = disccount)
+
+@mitchwebb.route("/projects")
+def projects():
+    
+    # Show projects page
+    return render_template("projects.html")
