@@ -48,11 +48,11 @@ def slfly():
                 f.truncate()
                 for row in observationstable:
                     currentID = row[0]
-                    # Check if new data has already been added (only need to check one)
+                    # Check if new data has already been added
                     print(currentID)
                     if str(currentID) in readfile: 
-                        print("New observations already contained in dataset")
-                        break
+                        print("Observations already contained in dataset")
+                        continue
                     else: 
                         print("New data:")
                         f.write(",")
