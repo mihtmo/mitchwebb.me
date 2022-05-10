@@ -1,0 +1,98 @@
+
+#closed_album {
+    position: absolute;
+    aspect-ratio: 1/1;
+    width: 70%;
+    background-image: url("../images/olly-olly.jpg");
+    background-size: cover;
+    border-radius: 3px;
+    left: 5%;
+    transition: transform 2s;
+}
+
+#record_container:hover > #closed_album {
+    transform: translateX(-30px);
+}
+
+#record_container {
+    /* height: 100vh; */
+    height: 50vh;
+    min-height: 350px;
+    width: 50vw;
+    min-width: 300px;
+    max-width: 50vh;
+    margin: auto;
+    margin-top: 30vh;
+    margin-bottom: 20vh;
+}
+
+#vinyl {
+    position: absolute;
+    aspect-ratio: 1/1;
+    width: 70%;
+    background-image: url("../images/templp.png");
+    background-size: cover;
+    right: 0;
+    z-index: -2;
+    transition: transform 2s;
+}
+
+#record_container:hover > #vinyl {
+    transform: translateX(50px);
+}
+
+.animatelp { 
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+ 
+@keyframes floating {
+    0% { transform: translatey(0px); }
+    50%  { transform: translatey(15px); }
+    100%   { transform: translatey(0px); }   
+}
+
+#liner_notes {
+    width: 85vw;
+    aspect-ratio: 1/1;
+    background-image: url("../images/tempalbumnotes.jpg");
+    background-size: cover;
+    border-radius: 3px;
+    transition: transform 2s;
+    margin: auto;
+    margin-top: 30px;
+    opacity: 0;
+    display: none;
+}
+
+.fadeout {
+    animation: fadeout 1s 1 linear forwards;
+}
+
+@keyframes fadeout {
+    0% {opacity: 1; }
+    100% {opacity: 0; }
+  }
+  
+@-webkit-keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fadein {
+    animation: fadein 1s 1 linear forwards;
+}
+
+@keyframes fadein {
+    0% {opacity: 0; }
+    100% {opacity: 1; }
+  }
+  
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

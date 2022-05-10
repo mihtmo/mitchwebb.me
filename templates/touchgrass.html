@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+    <link href="/static/css/record_viewer.css" rel="stylesheet">
+
+{% endblock head %}
+
+{% block title %}
+
+    touch grass
+
+{% endblock title %}
+
+
+{% block main %}
+
+    <script>
+        function hideandshow(elem) {
+            elem.classList.add("fadeout");
+            dummy_container = document.getElementById("dummy_container");
+            setTimeout(function() { dummy_container.style.display = "none"; }, 1000);
+            liner_notes = document.getElementById("liner_notes");
+            setTimeout(function() { liner_notes.style.display = "block"; liner_notes.classList.add("fadein"); }, 1000);
+        }
+        function displaynone() {
+
+
+        }
+    </script>
+
+    <div class="centered">
+    
+        <div id="dummy_container">
+
+            <div id="record_container" class="animatelp" onclick="hideandshow(this.parentNode)" style="cursor: pointer;">
+
+                <div id="closed_album"></div>
+                <div id="vinyl"></div>
+
+            </div>
+
+        </div>
+
+        <div id="liner_notes"></div>
+        
+
+    </div>
+
+{% endblock main %}
+<!-- {% block footer %}{% endblock footer %} -->

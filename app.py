@@ -131,3 +131,9 @@ def projects():
     
     # Show projects page
     return render_template("projects.html")
+
+@mitchwebb.route("/touchgrass")
+def touchgrass():
+    
+    # Show touch grass page
+    return render_template("touchgrass.html")
