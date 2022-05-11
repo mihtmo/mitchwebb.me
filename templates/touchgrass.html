@@ -41,11 +41,17 @@
     <script>
         var record_container = document.getElementById("record_container");
         var vinyl_front = document.getElementById("vinyl_front");
+        var jacket_front = document.getElementById("jacket_front");
         var jacket_back = document.getElementById("jacket_back");
+        var dummy_container = document.getElementById("dummy_container");
+        var back_slider = document.getElementById("back_slider");
 
         function hideandshow() {
-            record_container.classList.add("fadeout");
-            setTimeout(function() { record_container.style.display = "none"; }, 1000);
+            dummy_container.classList.add("fadeout");
+            vinyl_front.style.transform = "translateX(500px)";
+            jacket_front.style.transform = "translateX(-200px)";
+            back_slider.style.transform = "translateX(200px)";
+            setTimeout(function() { dummy_container.style.display = "none"; }, 1000);
             sleeve_front = document.getElementById("sleeve_front");
             setTimeout(function() { sleeve_front.style.display = "block"; sleeve_front.classList.add("fadein"); }, 1000);
         }
@@ -55,14 +61,7 @@
         function expandvinyl() {
             vinyl_front.classList.remove("translatevinyl");
         }
-        // function retractboth(){
-        //     vinyl_front.style.transform = "translateX(0%)";
-        //     jacket_front.style.transform = "translate(0%)";
-        // }
-        // function expandboth() {
-        //     vinyl_front.style.transform = "translateX(25%)";
-        //     jacket_front.style.transform = "translate(-15%)";
-        // }
+        
         function rotaterecord() {
             if (record_container.classList.contains("isrotated")) {
                 record_container.style.transform = "rotateY(0deg)";
