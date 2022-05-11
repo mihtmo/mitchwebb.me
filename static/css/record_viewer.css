@@ -1,44 +1,74 @@
 
-#closed_album {
-    position: absolute;
+#jacket_front, #jacket_back {
     aspect-ratio: 1/1;
-    width: 70%;
-    background-image: url("../images/olly-olly.jpg");
+    height: 50vh;
+    max-height: 50vw;
     background-size: cover;
     border-radius: 3px;
-    left: 5%;
+    transition: transform 2s;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+#jacket_front {
+    background-image: url("../images/olly-olly.jpg");
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    color: black;
+}
+
+#jacket_back {
+    color: white;
+    transform: rotateY(180deg);
+}
+
+#back_slider {
+    background-image: url("../images/finch.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
     transition: transform 2s;
 }
 
-#record_container:hover > #closed_album {
-    transform: translateX(-30px);
+#record_container:hover > #jacket_front {
+    transform: translateX(-25%);
+}
+
+#record_container:hover #back_slider {
+    transform: translateX(25%);
+}
+
+#record_container:hover > #vinyl_front {
+    transform: translateX(20%);
 }
 
 #record_container {
     /* height: 100vh; */
-    height: 50vh;
-    min-height: 350px;
-    width: 50vw;
-    min-width: 300px;
+    height: fit-content;
+    width: fit-content;
     max-width: 50vh;
     margin: auto;
-    margin-top: 30vh;
-    margin-bottom: 20vh;
+    display: grid;
+    grid-template-rows: auto 1fr; /* NEW */
+    grid-template-columns: auto 300px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 
-#vinyl {
-    position: absolute;
+#vinyl_front {
     aspect-ratio: 1/1;
-    width: 70%;
+    height: 50vh;
+    max-height: 50vw;
     background-image: url("../images/templp.png");
     background-size: cover;
     right: 0;
-    z-index: -2;
+    z-index: -10;
     transition: transform 2s;
-}
-
-#record_container:hover > #vinyl {
-    transform: translateX(50px);
+    grid-row-start: 1;
+    grid-column-start: 1;
+    margin-left: 10%;
 }
 
 .animatelp { 
@@ -46,17 +76,22 @@
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
-    margin-left: 30px;
-    margin-top: 5px;
+    /* margin-left: 30px;
+    margin-top: 5px; */
+}
+
+.translatevinyl {
+    transition: transform .5s !important;
+    transform: translateX(-10%);
 }
  
 @keyframes floating {
     0% { transform: translatey(0px); }
-    50%  { transform: translatey(15px); }
+    50%  { transform: translatey(5px); }
     100%   { transform: translatey(0px); }   
 }
 
-#liner_notes {
+#sleeve_front {
     width: 85vw;
     aspect-ratio: 1/1;
     background-image: url("../images/tempalbumnotes.jpg");
@@ -95,4 +130,37 @@
 @-webkit-keyframes fadein {
     0% { opacity: 0; }
     100% { opacity: 1; }
+}
+
+#rotate_icon {
+    position: absolute;
+    background-image: url("../images/rotateicon.jpg");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    margin: auto;
+    margin-top: 75vh;
+}
+
+#vinyl_arrow {
+    position: absolute;
+    background-image: url("../images/trianglearrow_right.png");
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    margin: auto;
+    margin-left: 70vh;
+    margin-top: calc(25vh - 20px);
+}
+
+#dummy_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#icons {
+    position: absolute;
+    margin: auto;
 }

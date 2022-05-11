@@ -15,37 +15,66 @@
 
 {% block main %}
 
-    <script>
-        function hideandshow(elem) {
-            elem.classList.add("fadeout");
-            dummy_container = document.getElementById("dummy_container");
-            setTimeout(function() { dummy_container.style.display = "none"; }, 1000);
-            liner_notes = document.getElementById("liner_notes");
-            setTimeout(function() { liner_notes.style.display = "block"; liner_notes.classList.add("fadein"); }, 1000);
-        }
-        function displaynone() {
-
-
-        }
-    </script>
-
     <div class="centered">
     
         <div id="dummy_container">
 
-            <div id="record_container" class="animatelp" onclick="hideandshow(this.parentNode)" style="cursor: pointer;">
-
-                <div id="closed_album"></div>
-                <div id="vinyl"></div>
-
+            <div id="record_container">
+                <div id="jacket_front"></div>
+                <div id="jacket_back">
+                    <div id="back_slider"></div>
+                </div>
+                <div id="vinyl_front"></div>
+                <div id="vinyl_back"></div>
+                <div id="vinyl_arrow" onclick="hideandshow()" style="cursor: pointer;"></div>
             </div>
+
+            <div id="rotate_icon" onclick="rotaterecord()" onmouseover="retractvinyl()" onmouseout="expandvinyl()" style="cursor: pointer;"></div>
 
         </div>
 
-        <div id="liner_notes"></div>
-        
+        <div id="sleeve_front"></div>
+    
 
     </div>
+
+    <script>
+        var record_container = document.getElementById("record_container");
+        var vinyl_front = document.getElementById("vinyl_front");
+        var jacket_back = document.getElementById("jacket_back");
+
+        function hideandshow() {
+            record_container.classList.add("fadeout");
+            setTimeout(function() { record_container.style.display = "none"; }, 1000);
+            sleeve_front = document.getElementById("sleeve_front");
+            setTimeout(function() { sleeve_front.style.display = "block"; sleeve_front.classList.add("fadein"); }, 1000);
+        }
+        function retractvinyl() {
+            vinyl_front.classList.add("translatevinyl");
+        }
+        function expandvinyl() {
+            vinyl_front.classList.remove("translatevinyl");
+        }
+        // function retractboth(){
+        //     vinyl_front.style.transform = "translateX(0%)";
+        //     jacket_front.style.transform = "translate(0%)";
+        // }
+        // function expandboth() {
+        //     vinyl_front.style.transform = "translateX(25%)";
+        //     jacket_front.style.transform = "translate(-15%)";
+        // }
+        function rotaterecord() {
+            if (record_container.classList.contains("isrotated")) {
+                record_container.style.transform = "rotateY(0deg)";
+                record_container.classList.remove("isrotated");
+                
+            }
+            else {
+                record_container.style.transform = "rotateY(180deg)";
+                record_container.classList.add("isrotated");
+            }
+        }
+    </script>
 
 {% endblock main %}
 <!-- {% block footer %}{% endblock footer %} -->
