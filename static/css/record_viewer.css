@@ -7,10 +7,9 @@
     border-radius: 3px;
     transition: transform 2s;
     grid-row-start: 1;
-    grid-column-start: 1;
+    grid-column-start: 3;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    margin-left: 10%;
 }
 
 #jacket_front {
@@ -52,12 +51,11 @@
     margin: auto;
     display: grid;
     grid-template-rows: auto 1fr; /* NEW */
-    /* grid-template-columns: auto 300px; */
-    grid-template-columns: auto;
+    grid-template-columns: .5fr .5fr 1fr .5fr .5fr;
     transition: transform 3s;
     transform-style: preserve-3d;
-    grid-row-start: 1;
-    grid-column-start: 1;
+    /* grid-row-start: 2;
+    grid-column-start: 1; */
     /* margin-top: 35%; */
 }
 
@@ -71,8 +69,8 @@
     z-index: -1;
     transition: transform 2s;
     grid-row-start: 1;
-    grid-column-start: 1;
-    margin-left: 20%;
+    grid-column-start: 3;
+    margin-left: 10%;
 }
 
 #jacket_thickness {
@@ -93,7 +91,8 @@
     transform-origin: 100% 50%;
     transform: rotateY(-90deg);
     border-radius: 1px;
-    margin-left: 10%;
+    grid-column-start: 3;
+    grid-row-start: 1;
   }
 
 .animatelp { 
@@ -176,12 +175,10 @@
     max-height: 12vw;
     width: 12vh;
     max-width: 12vw;
+    margin-top: 5%;
     margin: auto;
-    grid-row-start: 1;
+    grid-row-start: 3;
     grid-column-start: 1;
-    padding-top: 120%;
-    background-origin: content-box;
-    background-repeat: no-repeat;
 }
 
 #vinyl_arrow {
@@ -192,19 +189,23 @@
     max-height: 10vw;
     width: 10vh;
     max-width: 10vw;
-    margin-left: 190%;
-    margin-top: 200%;
+    margin-left: 10%;
     z-index: -2;
     grid-row-start: 1;
-    grid-column-start: 2;
+    grid-column-start: 5;
+    margin: auto;
+    margin-left: 5%;
 }
 
 #dummy_container {
-    display: grid;
-    justify-content: center;
+    /* display: grid;
+    justify-content: center; */
+    display: flex;
     align-items: center;
-    height: 100vh;
-    margin-top: -3vh;
+    margin-top: 21vh;
+    margin: auto;
+    max-width: 150vh;
+    /* grid-template-rows: .5fr 1fr .5fr; */
 }
 
 #icons {
