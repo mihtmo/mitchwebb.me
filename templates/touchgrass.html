@@ -8,7 +8,7 @@
 
 {% block title %}
 
-    touch grass
+    go touch grass!
 
 {% endblock title %}
 
@@ -21,20 +21,27 @@
 
             <div id="record_container">
                 <div id="jacket_front"></div>
+                <div id="jacket_thickness"></div>
                 <div id="jacket_back">
                     <div id="back_slider"></div>
                 </div>
                 <div id="vinyl_front"></div>
-                <div id="vinyl_back"></div>
                 <div id="vinyl_arrow" onclick="hideandshow()" style="cursor: pointer;"></div>
             </div>
 
             <div id="rotate_icon" onclick="rotaterecord()" onmouseover="retractvinyl()" onmouseout="expandvinyl()" style="cursor: pointer;"></div>
 
         </div>
-
-        <div id="sleeve_front"></div>
-    
+        <div id="sleeve_box">
+            <div id="jacket_front_large"></div>
+            <div id="sleeve">
+                <div id="temptext">
+                    <div style="padding-top: 15%"><h2>TEMP</h2></div>
+                    <div id="critter"></div>
+                </div>
+            </div>
+            <div id="playing_vinyl" class="rotating"></div>
+        </div>
 
     </div>
 
@@ -49,11 +56,11 @@
         function hideandshow() {
             dummy_container.classList.add("fadeout");
             vinyl_front.style.transform = "translateX(500px)";
-            jacket_front.style.transform = "translateX(-200px)";
+            jacket_front.style.transform = "translateX(-500px)";
             back_slider.style.transform = "translateX(200px)";
             setTimeout(function() { dummy_container.style.display = "none"; }, 1000);
-            sleeve_front = document.getElementById("sleeve_front");
-            setTimeout(function() { sleeve_front.style.display = "block"; sleeve_front.classList.add("fadein"); }, 1000);
+            sleeve_box = document.getElementById("sleeve_box");
+            setTimeout(function() { sleeve_box.style.display = "flex"; sleeve_box.classList.add("fadein"); }, 1000);
         }
         function retractvinyl() {
             vinyl_front.classList.add("translatevinyl");
@@ -61,7 +68,7 @@
         function expandvinyl() {
             vinyl_front.classList.remove("translatevinyl");
         }
-        
+
         function rotaterecord() {
             if (record_container.classList.contains("isrotated")) {
                 record_container.style.transform = "rotateY(0deg)";

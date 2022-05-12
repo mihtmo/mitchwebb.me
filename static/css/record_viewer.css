@@ -10,6 +10,7 @@
     grid-column-start: 1;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    margin-left: 10%;
 }
 
 #jacket_front {
@@ -48,13 +49,16 @@
     /* height: 100vh; */
     height: fit-content;
     width: fit-content;
-    max-width: 50vh;
     margin: auto;
     display: grid;
     grid-template-rows: auto 1fr; /* NEW */
-    grid-template-columns: auto 300px;
-    transition: transform 0.8s;
+    /* grid-template-columns: auto 300px; */
+    grid-template-columns: auto;
+    transition: transform 3s;
     transform-style: preserve-3d;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    /* margin-top: 35%; */
 }
 
 #vinyl_front {
@@ -64,12 +68,33 @@
     background-image: url("../images/templp.png");
     background-size: cover;
     right: 0;
-    z-index: -10;
+    z-index: -1;
     transition: transform 2s;
     grid-row-start: 1;
     grid-column-start: 1;
-    margin-left: 10%;
+    margin-left: 20%;
 }
+
+#jacket_thickness {
+    background-color: #1c1c1c;
+    background-image: -webkit-linear-gradient(hsla(0,0%,100%,.25), hsla(0,0%,0%,.25));
+    bottom: 0;
+    left: -.5vh;
+    position: absolute;
+    top: 0px;
+    border-style: solid;
+    border: 1px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: .5vh;
+    z-index: -20;
+    transition: 3s;
+    transform-origin: 100% 50%;
+    transform: rotateY(-90deg);
+    border-radius: 1px;
+    margin-left: 10%;
+  }
 
 .animatelp { 
     animation-name: floating;
@@ -91,17 +116,29 @@
     100%   { transform: translatey(0px); }   
 }
 
-#sleeve_front {
-    width: 85vw;
+#sleeve {
+    height: 85vh;
+    position: relative;
+    border-style: solid;
+    border: 1px;
+    max-height: 85vw;
     aspect-ratio: 1/1;
-    background-image: url("../images/tempalbumnotes.jpg");
-    background-size: cover;
-    border-radius: 3px;
+    border-radius: 1%;
     transition: transform 2s;
     margin: auto;
     margin-top: 30px;
-    opacity: 0;
-    display: none;
+}
+
+#sleeve::before {    
+    content: "";
+    background-image: url("../images/sleeve_texture.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
 }
 
 .fadeout {
@@ -133,34 +170,119 @@
 }
 
 #rotate_icon {
-    position: absolute;
-    background-image: url("../images/rotateicon.jpg");
+    background-image: url("../images/rotateicon.png");
     background-size: cover;
-    height: 50px;
-    width: 50px;
+    height: 12vh;
+    max-height: 12vw;
+    width: 12vh;
+    max-width: 12vw;
     margin: auto;
-    margin-top: 75vh;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    padding-top: 120%;
+    background-origin: content-box;
+    background-repeat: no-repeat;
 }
 
 #vinyl_arrow {
-    position: absolute;
+    /* position: absolute; */
     background-image: url("../images/trianglearrow_right.png");
     background-size: cover;
-    height: 40px;
-    width: 40px;
-    margin: auto;
-    margin-left: 70vh;
-    margin-top: calc(25vh - 20px);
+    height: 10vh;
+    max-height: 10vw;
+    width: 10vh;
+    max-width: 10vw;
+    margin-left: 190%;
+    margin-top: 200%;
+    z-index: -2;
+    grid-row-start: 1;
+    grid-column-start: 2;
 }
 
 #dummy_container {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: -3vh;
 }
 
 #icons {
     position: absolute;
     margin: auto;
+}
+
+/* Temporarily abandoned record playing icon */
+
+#playing_vinyl {
+    position: absolute;
+    background-image: url("../images/templp.png");
+    background-size: cover;
+    height: 85vh;
+    position: absolute;
+    border-style: solid;
+    border: 1px;
+    max-height: 85vw;
+    aspect-ratio: 1/1;
+    border-radius: 1%;
+    animation-name: rotating;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    margin-top: 30px;
+    box-shadow: 1, 1, 1;
+    left: calc(100vw - (50vw - 50vh));
+    margin-left: 10vw;
+}
+
+#sleeve_box {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    opacity: 0;
+}
+
+@-moz-keyframes rotating {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes rotating {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes rotating {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+#critter {
+    width: 50%;
+    height: 60%;
+    padding-bottom: -20px;
+    background-image: url("../stranger.png");
+    background-size: cover;
+}
+
+#temptext {
+    color: darkgrey;
+    text-decoration: bold;
+    font-size: 5vh;
+}
+
+#jacket_front_large {
+    background-image: url("../images/olly-olly.jpg");
+    background-size: cover;
+    height: 85vh;
+    position: absolute;
+    border-style: solid;
+    border: 1px;
+    max-height: 85vw;
+    aspect-ratio: 1/1;
+    border-radius: 1%;
+    transition: transform 2s;
+    margin-top: 30px;
+    box-shadow: 1, 1, 1;
+    right: calc(100vw - (50vw - 50vh));
+    margin-right: 10vw;
 }
