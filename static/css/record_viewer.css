@@ -41,7 +41,7 @@
 }
 
 #record_container:hover > #vinyl_front {
-    transform: translateX(20%);
+    transform: translateX(18%);
 }
 
 #record_container {
@@ -67,7 +67,7 @@
     background-image: url("../images/templp.png");
     background-size: cover;
     right: 0;
-    z-index: -1;
+    z-index: -11;
     transition: transform 2s;
     grid-row-start: 1;
     grid-column-start: 3;
@@ -188,11 +188,11 @@
     width: 10vh;
     max-width: 10vw;
     margin-left: 10%;
-    z-index: -2;
+    z-index: -12;
     grid-row-start: 1;
     grid-column-start: 5;
     margin: auto;
-    margin-left: 5%;
+    padding-left: 5%;
 }
 
 #dummy_container {
@@ -203,6 +203,7 @@
     margin: auto;
     margin-top: 21vh;
     max-width: 150vh;
+    perspective: 100%;
     /* grid-template-rows: .5fr 1fr .5fr; */
 }
 
