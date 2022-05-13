@@ -10,6 +10,7 @@
     grid-column-start: 3;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    z-index: -10;
 }
 
 #jacket_front {
@@ -87,7 +88,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     width: .5vh;
-    z-index: -20;
+    z-index: -10;
     transition: 3s;
     transform-origin: 100% 50%;
     transform: rotateY(-90deg);
