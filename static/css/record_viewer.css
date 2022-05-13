@@ -203,7 +203,7 @@
     display: flex;
     align-items: center;
     margin: auto;
-    margin-top: 21vh;
+    margin-top: max(calc(50vh - 25vh), calc(50vh - 25vw));
     max-width: 150vh;
     perspective: 100%;
     /* grid-template-rows: .5fr 1fr .5fr; */
