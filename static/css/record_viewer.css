@@ -68,7 +68,7 @@
     background-image: url("../images/templp.png");
     background-size: cover;
     right: 0;
-    z-index: -11;
+    z-index: -200;
     transition: transform 2s;
     grid-row-start: 1;
     grid-column-start: 3;
@@ -189,7 +189,7 @@
     width: 10vh;
     max-width: 10vw;
     margin-left: 10%;
-    z-index: -12;
+    z-index: -201;
     grid-row-start: 1;
     grid-column-start: 5;
     margin: auto;
