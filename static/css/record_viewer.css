@@ -23,6 +23,7 @@
 #jacket_back {
     color: white;
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 #back_slider {
@@ -35,14 +36,17 @@
 
 #record_container:hover > #jacket_front {
     transform: translateX(-25%);
+    -webkit-transform: translateX(-25%)
 }
 
 #record_container:hover #back_slider {
     transform: translateX(25%);
+    -webkit-transform: translateX(25%);
 }
 
 #record_container:hover > #vinyl_front {
     transform: translateX(18%);
+    -webkit-transform: translateX(18%);
 }
 
 #record_container {
@@ -93,6 +97,7 @@
     transition: 3s;
     transform-origin: 100% 50%;
     transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
     border-radius: 1px;
     grid-column-start: 3;
     grid-row-start: 1;
@@ -110,12 +115,18 @@
 .translatevinyl {
     transition: transform .5s !important;
     transform: translateX(-10%);
+    -webkit-transform: translateX(-10%);
 }
- 
+
 @keyframes floating {
     0% { transform: translatey(0px); }
     50%  { transform: translatey(5px); }
     100%   { transform: translatey(0px); }   
+}
+@-webkit-keyframes floating {
+    0% { -webkit-transform: translatey(0px); }
+    50%  { -webkit-transform: translatey(5px); }
+    100%   { -webkit-transform: translatey(0px); }   
 }
 
 #sleeve {
