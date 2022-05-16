@@ -10,8 +10,6 @@
     grid-column-start: 3;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
     z-index: -10;
 }
 
@@ -34,24 +32,22 @@
     width: 100%;
     height: 100%;
     transition: transform 2s;
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
     z-index: -10;
 }
 
-#record_container:hover > #jacket_front {
+#record_container:hover #vinyl_front {
+    transform: translateX(18%);
+    -webkit-transform: translateX(18%);
+}
+
+#record_container:hover #jacket_front {
     transform: translateX(-25%);
     -webkit-transform: translateX(-25%)
 }
 
-#record_container:hover #back_slider {
+#record_container:hover #jacket_back {
     transform: translateX(25%);
     -webkit-transform: translateX(25%);
-}
-
-#record_container:hover > #vinyl_front {
-    transform: translateX(18%);
-    -webkit-transform: translateX(18%);
 }
 
 #record_container {
