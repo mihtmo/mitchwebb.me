@@ -50,6 +50,7 @@
         var record_container = document.getElementById("record_container");
         var rotate_icon = document.getElementById("rotate_icon");
         var vinyl_front = document.getElementById("vinyl_front");
+        var jacket_thickness = document.getElementById("jacket_thickness");
         var jacket_front = document.getElementById("jacket_front");
         var jacket_back = document.getElementById("jacket_back");
         var dummy_container = document.getElementById("dummy_container");
@@ -60,6 +61,7 @@
             rotate_icon.classList.add("fadeout");
             vinyl_front.style.transform = "translateX(500px)";
             jacket_front.style.transform = "translateX(-500px)";
+            jacket_thickness.style.transform = "translateX(-500px)";
             back_slider.style.transform = "translateX(200px)";
             setTimeout(function() { dummy_container.style.display = "none"; rotate_icon.style.display = "none"; }, 1000);
             sleeve_box = document.getElementById("sleeve_box");
