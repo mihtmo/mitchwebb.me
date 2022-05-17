@@ -57,7 +57,6 @@
     width: fit-content;
     margin: auto;
     display: grid;
-    grid-template-rows: auto 1fr; /* NEW */
     grid-template-columns: .5fr .5fr 1fr .5fr .5fr;
     transition: transform 2s;
     transform-style: preserve-3d;
