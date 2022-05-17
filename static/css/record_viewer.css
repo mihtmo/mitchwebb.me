@@ -72,12 +72,12 @@
     max-height: 50vw;
     background-image: url("../images/templp.png");
     background-size: cover;
-    right: 0;
     z-index: -200;
     transition: transform 2s;
     transform-style: preserve-3d;
     grid-row-start: 1;
     grid-column-start: 3;
+    position: absolute;
     margin-left: 10%;
 }
 
