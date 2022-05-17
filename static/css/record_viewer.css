@@ -23,8 +23,8 @@
 
 #jacket_back {
     color: white;
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
 }
 
 #back_slider {
@@ -218,6 +218,7 @@
     margin: auto;
     margin-top: max(calc(50vh - 25vh), calc(50vh - 25vw));
     max-width: 150vh;
+    perspective: 100%;
     /* grid-template-rows: .5fr 1fr .5fr; */
 }
 
