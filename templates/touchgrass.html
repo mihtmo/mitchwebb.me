@@ -36,10 +36,13 @@
         <div id="sleeve_box">
             <div id="jacket_front_large"></div>
             <div id="sleeve">
-                <div id="temptext">
-                    <div style="padding-top: 15%"><h2>TEMP</h2></div>
-                    <div id="critter"></div>
-                </div>
+                <div id="text1" class="sleevetext"></div>
+                <div id="text2" class="sleevetext"></div>
+                <div id="text3" class="sleevetext"></div>
+                <div id="text4" class="sleevetext"></div>
+                <div id="text5" class="sleevetext"></div>
+                <div id="text6" class="sleevetext"></div>
+                <div id="text7" class="sleevetext"></div>
             </div>
             <div id="playing_vinyl" class="rotating"></div>
         </div>
@@ -70,9 +73,13 @@
         }
         function retractvinyl() {
             vinyl_front.classList.add("translatevinyl");
+            jacket_front.classList.add("translatejacket");
+            back_slider.classList.add("translatejacket");
         }
         function expandvinyl() {
             vinyl_front.classList.remove("translatevinyl");
+            jacket_front.classList.remove("translatejacket");
+            back_slider.classList.remove("translatejacket");
         }
 
         function rotaterecord() {

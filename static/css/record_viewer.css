@@ -5,7 +5,7 @@
     max-height: 50vw;
     background-size: cover;
     border-radius: 3px;
-    transition: transform 2s;
+    transition: transform 1s;
     grid-row-start: 1;
     grid-column-start: 3;
     -webkit-backface-visibility: hidden; /* Safari */
@@ -32,7 +32,7 @@
     background-size: cover;
     width: 100%;
     height: 100%;
-    transition: transform 2s;
+    transition: transform 1s;
     z-index: -1;
 }
 
@@ -51,11 +51,6 @@
     -webkit-transform: translateX(25%);
 }
 
-#record_container:hover #jacket_thickness {
-    opacity: 0;
-    transition: opacity 0s;
-}
-
 #record_container {
     /* height: 100vh; */
     height: fit-content;
@@ -63,7 +58,7 @@
     margin: auto;
     display: grid;
     grid-template-columns: .5fr .5fr 1fr .5fr .5fr;
-    transition: transform 2s;
+    transition: transform 1s;
     transform-style: preserve-3d;
     margin-bottom: 5%;
     /* grid-row-start: 2;
@@ -78,7 +73,7 @@
     background-image: url("../images/templp.png");
     background-size: cover;
     z-index: -2;
-    transition: transform 2s;
+    transition: transform 1s;
     transform-style: preserve-3d;
     grid-row-start: 1;
     grid-column-start: 3;
@@ -100,9 +95,9 @@
     -webkit-box-sizing: border-box;
     width: .5vh;
     z-index: -3;
-    transition: 2s;
+    transition: 1s;
     transform-origin: 100% 50%;
-    transform: rotateY(-90deg);
+    transform: rotateY(-90deg) translateZ(-1px);
     -webkit-transform: rotateY(-90deg);
     border-radius: 1px;
     grid-column-start: 3;
@@ -120,8 +115,14 @@
 
 .translatevinyl {
     transition: transform .5s !important;
-    transform: translateX(-10%);
-    -webkit-transform: translateX(-10%);
+    transform: translateX(-19%);
+    -webkit-transform: translateX(-19%);
+}
+
+.translatejacket {
+    transition: transform .5s !important;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
 }
 
 @keyframes floating {
@@ -129,6 +130,7 @@
     50%  { transform: translatey(5px); }
     100%   { transform: translatey(0px); }   
 }
+
 @-webkit-keyframes floating {
     0% { -webkit-transform: translatey(0px); }
     50%  { -webkit-transform: translatey(5px); }
@@ -137,15 +139,57 @@
 
 #sleeve {
     height: 85vh;
+    max-height: 85vw;
+    transition: transform 1s;
     position: relative;
     border-style: solid;
     border: 1px;
-    max-height: 85vw;
     aspect-ratio: 1/1;
     border-radius: 1%;
-    transition: transform 2s;
     margin: auto;
     margin-top: 30px;
+}
+
+.sleevetext {
+    height: 100%;
+    width: 100%;
+    transition: transform 1s;
+    position: absolute;
+}
+
+#text1 {
+    background: url("../images/sleeve/sleeve_1intro.png");
+    background-size: cover;
+}
+
+#text2 {
+    background: url("../images/sleeve/sleeve_2twoweeks.png");
+    background-size: cover;
+}
+
+#text3 {
+    background: url("../images/sleeve/sleeve_3silverbowgoldenbird.png");
+    background-size: cover;
+}
+
+#text4 {
+    background: url("../images/sleeve/sleeve_4marimba.png");
+    background-size: cover;
+}
+
+#text5 {
+    background: url("../images/sleeve/sleeve_5outroabove.png");
+    background-size: cover;
+}
+
+#text6 {
+    background: url("../images/sleeve/sleeve_6twostepsoutside.png");
+    background-size: cover;
+}
+
+#text7 {
+    background: url("../images/sleeve/sleeve_7outrolullaby.png");
+    background-size: cover;
 }
 
 #sleeve::before {    
@@ -245,7 +289,7 @@
     aspect-ratio: 1/1;
     border-radius: 1%;
     animation-name: rotating;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     margin-top: 30px;
@@ -299,7 +343,7 @@
     max-height: 85vw;
     aspect-ratio: 1/1;
     border-radius: 1%;
-    transition: transform 2s;
+    transition: transform 1s;
     margin-top: 30px;
     box-shadow: 1, 1, 1;
     right: calc(100vw - (50vw - 50vh));
