@@ -99,8 +99,15 @@
         function boldlyrics(obj) {
             boxes.forEach(text => {
                 text.classList.add("notselected")
-            var selected = obj.id
-            selected.classList.add("selected")
+            })
+            obj.classList.add("selected")
+        }
+
+        function resetlyrics(obj) {
+            boxes.forEach(text => {
+                text.classList.remove("notselected")
+            })
+            obj.classList.remove("selected")
         }
     </script>
 
