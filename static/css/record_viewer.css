@@ -12,6 +12,8 @@
     backface-visibility: hidden;
     z-index: 1;
     position: relative;
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: translateZ(1px);
 }
 
 #jacket_front {
@@ -104,14 +106,14 @@
     grid-row-start: 1;
   }
 
-.animatelp { 
+/* .animatelp { 
     animation-name: floating;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     /* margin-left: 30px;
-    margin-top: 5px; */
-}
+    margin-top: 5px;
+} */
 
 .translatevinyl {
     transition: transform .5s !important;
@@ -125,7 +127,7 @@
     -webkit-transform: translateX(0%);
 }
 
-@keyframes floating {
+/* @keyframes floating {
     0% { transform: translatey(0px); }
     50%  { transform: translatey(5px); }
     100%   { transform: translatey(0px); }   
@@ -135,7 +137,7 @@
     0% { -webkit-transform: translatey(0px); }
     50%  { -webkit-transform: translatey(5px); }
     100%   { -webkit-transform: translatey(0px); }   
-}
+} */
 
 #sleeve {
     height: 86vh;
