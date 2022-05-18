@@ -36,13 +36,13 @@
         <div id="sleeve_box">
             <div id="jacket_front_large"></div>
             <div id="sleeve">
-                <div id="text1" class="sleevetext"></div>
-                <div id="text2" class="sleevetext"></div>
-                <div id="text3" class="sleevetext"></div>
-                <div id="text4" class="sleevetext"></div>
-                <div id="text5" class="sleevetext"></div>
-                <div id="text6" class="sleevetext"></div>
-                <div id="text7" class="sleevetext"></div>
+                <div id="text1" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_1intro.png" alt="intro" class="textpng"></div>
+                <div id="text2" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_2twoweeks.png" alt="two weeks" class="textpng"></div>
+                <div id="text3" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_3silverbowgoldenbird.png" alt="silver bow, golden bird" class="textpng"></div>
+                <div id="text4" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_4marimba.png" alt="marimba" class="textpng"></div>
+                <div id="text5" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_5outroabove.png" alt="outro, above" class="textpng"></div>
+                <div id="text6" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_6twostepsoutside.png" alt="two steps outside" class="textpng"></div>
+                <div id="text7" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics()"><img src="../static/images/sleeve/sleeve_7outrolullaby.png" alt="outro, lullaby" class="textpng"></div>
             </div>
             <div id="playing_vinyl" class="rotating"></div>
         </div>
@@ -58,7 +58,9 @@
         var jacket_back = document.getElementById("jacket_back");
         var dummy_container = document.getElementById("dummy_container");
         var back_slider = document.getElementById("back_slider");
-
+        const sleevetext = Array.from(
+            document.getElementsByClassName("sleevetext")
+        );
         function hideandshow() {
             dummy_container.classList.add("fadeout");
             rotate_icon.classList.add("fadeout");
@@ -92,6 +94,13 @@
                 record_container.style.transform = "rotateY(180deg)";
                 record_container.classList.add("isrotated");
             }
+        }
+
+        function boldlyrics(obj) {
+            boxes.forEach(text => {
+                text.classList.add("notselected")
+            var selected = obj.id
+            selected.classList.add("selected")
         }
     </script>
 

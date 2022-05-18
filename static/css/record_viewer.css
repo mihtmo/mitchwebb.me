@@ -151,45 +151,73 @@
 }
 
 .sleevetext {
-    height: 100%;
-    width: 100%;
     transition: transform 1s;
     position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    width: 30%;
+    cursor: pointer;
+}
+
+#sleeve:hover > .sleevetext {
+    opacity: 0.5;
+  }
+
+.textpng {
+    width: 100%;
+    height: 100%;
 }
 
 #text1 {
-    background: url("../images/sleeve/sleeve_1intro.png");
     background-size: cover;
+    left: 3%;
+    right: 67%;
+    top: 3%;
 }
 
 #text2 {
-    background: url("../images/sleeve/sleeve_2twoweeks.png");
     background-size: cover;
+    left: 3%;
+    right: 67%;
+    bottom: 3%;
 }
 
 #text3 {
-    background: url("../images/sleeve/sleeve_3silverbowgoldenbird.png");
     background-size: cover;
+    left: 35%;
+    right:35%;
+    width: 30%;
+    top: 3%;
 }
 
 #text4 {
-    background: url("../images/sleeve/sleeve_4marimba.png");
     background-size: cover;
+    left: 35%;
+    right: 35%;
+    bottom: 3%;
 }
 
 #text5 {
-    background: url("../images/sleeve/sleeve_5outroabove.png");
     background-size: cover;
+    left: 67%;
+    right: 3%;
+    top: 3%;
 }
 
 #text6 {
-    background: url("../images/sleeve/sleeve_6twostepsoutside.png");
     background-size: cover;
+    left: 67%;
+    right: 3%;
+    top: 17%;
+    bottom:16.666666%;
 }
 
 #text7 {
-    background: url("../images/sleeve/sleeve_7outrolullaby.png");
     background-size: cover;
+    left: 67%;
+    right: 3%;
+    bottom: 3%;
 }
 
 #sleeve::before {    
