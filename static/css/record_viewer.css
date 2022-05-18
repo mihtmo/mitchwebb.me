@@ -57,7 +57,7 @@
     width: fit-content;
     margin: auto;
     display: grid;
-    grid-template-columns: .5fr .5fr 1fr .5fr .5fr;
+    grid-template-columns: minmax(0, 1fr) 1.8fr min(50vh, 50vw) 1.8fr minmax(0, 1fr);
     transition: transform 1s;
     transform-style: preserve-3d;
     margin-bottom: 5%;
@@ -115,8 +115,8 @@
 
 .translatevinyl {
     transition: transform .5s !important;
-    transform: translateX(-19%);
-    -webkit-transform: translateX(-19%);
+    transform: translateX(-15%);
+    -webkit-transform: translateX(-15%);
 }
 
 .translatejacket {
@@ -308,7 +308,6 @@
 #dummy_container {
     /* display: grid;
     justify-content: center; */
-    display: flex;
     align-items: center;
     margin: auto;
     margin-top: max(calc(50vh - 25vh), calc(50vh - 25vw));
