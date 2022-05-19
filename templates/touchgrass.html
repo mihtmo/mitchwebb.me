@@ -15,7 +15,7 @@
 
 {% block main %}
 
-    <div class="centered" style="height: 100vh; width: 100vw;">
+    <div class="centered" style="height: 100vh;">
     
         <div id="dummy_container">
 
@@ -44,7 +44,7 @@
                 <div id="text6" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)"><img src="../static/images/sleeve/sleeve_6twostepsoutside.png" alt="two steps outside" class="textpng"></div>
                 <div id="text7" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)"><img src="../static/images/sleeve/sleeve_7outrolullaby.png" alt="outro, lullaby" class="textpng"></div>
                 <div id="singlelyrics_text"></div>
-                <iframe id="bandcamp_player" style="border: 0; height: 42px;" seamless><a href="https://fuvk.bandcamp.com/album/split-death">Touch Grass by Mihtmo</a></iframe>
+                <iframe id="bandcamp_player" seamless><a href="https://fuvk.bandcamp.com/album/split-death">Touch Grass by Mihtmo</a></iframe>
             </div>
             <div id="vinyl_arrow_reverse" onclick="hideandshowreverse()"></div>
             <div id="big_vinyl" class="rotating"></div>
@@ -148,7 +148,7 @@
                 singlelyrics_text.innerHTML = `<span><h3>Intro</h3><p style="font-size:min(1vh, 1vw)">
                                                                             [Instrumental]
                                                                             </p></span>`;
-                bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+                bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
             }
 
             else if (obj.id == "text2") {
@@ -193,7 +193,7 @@
                                                                             <br>
                                                                             I hope I can still sing by then<br>
                                                                             </p></span>`;
-                bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=2654642781/transparent=true/"
+                bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=2654642781/transparent=true/"
             }
             
             else if (obj.id == "text3") {
@@ -209,7 +209,7 @@
                                                                             Gold bird, white lie<br>
                                                                             Love is a thing to keep alive<br>
                                                                             </p></span>`;
-                bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+                bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
             }
 
             else if (obj.id == "text4") {
@@ -237,13 +237,13 @@
                                                                             Oh, I want to tell you everything<br>
                                                                             Anything<br>
                                                                             </p></span>`;
-            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
             }
             else if (obj.id == "text5") {
                 singlelyrics_text.innerHTML = `<span><h3>Outro, Above</h3><p style="font-size:min(1vh, 1vw)">
                                                                             [Instrumental]
                                                                             </p></span>`;
-            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
             }
             else if (obj.id == "text6") {
                 singlelyrics_text.innerHTML = `<span><h3>Two Steps Outside</h3><p style="font-size:min(1vh, 1vw)">
@@ -285,13 +285,13 @@
                                                                             I cannot change what you\’ve been through<br>
                                                                             But I\’ll change you<br>
                                                                             </p></span>`
-            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
             }
             else if (obj.id == "text7") {
                 singlelyrics_text.innerHTML = `<span><h3>Outro, Lullaby</h3><p style="font-size:min(1vh, 1vw)">
                                                                             [Guitar, Thunder]
                                                                             </p></span>`;
-            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+            bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
             }
             setTimeout(function() { singlelyrics_text.style.display = "grid"; singlelyrics_text.classList.add("fadein"); goback_arrow.style.display = "block"; goback_arrow.classList.add("fadein"); bandcamp_player.style.display = "block"; bandcamp_player.classList.add("fadein"); }, 1000);
             setTimeout(function() { goback_arrow.style.display = "default"; singlelyrics_text.classList.remove("fadein"); goback_arrow.classList.remove("fadein"); bandcamp_player.classList.remove("fadein"); }, 2000);
