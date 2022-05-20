@@ -53,6 +53,11 @@
     -webkit-transform: translateX(25%);
 }
 
+#record_container:hover #jacket_thickness {
+    transition: 0s;
+    opacity: 0;
+}
+
 #record_container {
     /* height: 100vh; */
     height: fit-content;
@@ -99,7 +104,7 @@
     z-index: -3;
     transition: 1s;
     transform-origin: 100% 50%;
-    transform: rotateY(-90deg) translateZ(-1px);
+    transform: rotateY(-90deg);
     -webkit-transform: rotateY(-90deg);
     border-radius: 1px;
     grid-column-start: 3;
@@ -152,7 +157,6 @@
     border: 1px;
     aspect-ratio: 1/1;
     border-radius: 1%;
-    
 }
 
 .sleevetext {
@@ -463,8 +467,6 @@
 
 #vinyl_arrow_reverse:hover + #big_vinyl {
     left: calc(50% - (50vh - 50px));
-    /* transform: translateX(calc(-50% - (60vw - (50vw - 50vh))));
-    -webkit-transform: translateX(calc(-50% - (60vw - (50vw - 50vh)))); */
 }
 
 #vinyl_arrow_reverse:hover ~ #jacket_front_large {
