@@ -325,6 +325,7 @@
     max-height: 10vw;
     width: 10vh;
     max-width: 10vw;
+    cursor: pointer;
 }
 
 #vinyl_arrow {
@@ -381,9 +382,8 @@
     min-width: min(calc(80vh - 100px), calc(80vw - 100px));
     aspect-ratio: 1/1;
     border-radius: 1%;
-    transition: transform 1s;
-    left: calc(100vw - (50vw - 50vh));
-    margin-left: 10vw;
+    transition: left 1s; 
+    left: calc(60vw + 50vh);
     z-index: -10;
     
 }
@@ -455,25 +455,20 @@
     max-height: 80vw;
     aspect-ratio: 1/1;
     border-radius: 1%;
-    transition: transform 1s;
-    right: calc(100vw - (50vw - 50vh));
-    margin-right: 10vw;
+    right: calc(60vw + 50vh);
     z-index: 2;
+    transition: right 1s; 
 }
 
+
 #vinyl_arrow_reverse:hover + #big_vinyl {
-    animation-name: none;
-    animation-duration: none;
-    animation-iteration-count: 1 !important;
-    -webkit-animation-iteration-count: 1 !important;
-    animation-duration: 0s !important;
-    transform: translateX(calc(-50% - (60vw - (50vw - 50vh))));
-    -webkit-transform: translateX(calc(-50% - (60vw - (50vw - 50vh))));
+    left: calc(50% - (50vh - 50px));
+    /* transform: translateX(calc(-50% - (60vw - (50vw - 50vh))));
+    -webkit-transform: translateX(calc(-50% - (60vw - (50vw - 50vh)))); */
 }
 
 #vinyl_arrow_reverse:hover ~ #jacket_front_large {
-    transform: translateX(calc(50% + (60vw - (50vw - 50vh))));
-    -webkit-transform: translateX(calc(50% + (60vw - (50vw - 50vh))));
+    right: calc(50% - (50vh - 50px));
 }
 
 /*
