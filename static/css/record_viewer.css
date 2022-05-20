@@ -1,12 +1,4 @@
 
-#root {
-    -webkit-touch-callout: none;
-    user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select:none;
-  }
-
 #jacket_front, #jacket_back {
     aspect-ratio: 1/1;
     height: 50vh;
