@@ -1,4 +1,8 @@
 
+#root {
+    -webkit-touch-callout: none;
+  }
+  
 #jacket_front, #jacket_back {
     aspect-ratio: 1/1;
     height: 50vh;
