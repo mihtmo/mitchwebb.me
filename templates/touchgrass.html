@@ -26,17 +26,17 @@
                     <div id="back_slider" onclick=""></div>
                 </div>
                 <div id="vinyl_front" onclick=""></div>
-                <div id="vinyl_arrow" onclick="hideandshow()"></div>
+                <div id="vinyl_arrow" class="icon" onclick="tolinernotes()"></div>
             </div>
         
         </div>
 
-        <div id="rotate_icon" onclick="rotaterecord()" onmouseover="retractvinyl()" onmouseout="expandvinyl()"></div>
+        <div id="rotate_icon" class="icon" onclick="rotaterecord()" onmouseover="retractvinyl()" onmouseout="expandvinyl()"></div>
 
         <div id="sleeve_box">
             <div id="spacer"></div>
             <div id="sleeve">
-                <div id="goback_arrow" onclick="goback()"></div>
+                <div id="goback_arrow" class="icon" onclick="goback()"></div>
                 <img id="text1" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="../static/images/sleeve/sleeve_1intro.png" alt="intro" class="textpng">
                 <img id="text2" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="../static/images/sleeve/sleeve_2twoweeks.png" alt="two weeks" class="textpng">
                 <img id="text3" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="../static/images/sleeve/sleeve_3silverbowgoldenbird.png" alt="silver bow, golden bird" class="textpng">
@@ -47,7 +47,7 @@
                 <div id="singlelyrics_text"></div>
                 <iframe id="bandcamp_player" seamless><a href="https://fuvk.bandcamp.com/album/split-death">Touch Grass by Mihtmo</a></iframe>
             </div>
-            <div id="vinyl_arrow_reverse" onclick="hideandshowreverse()"></div>
+            <div id="vinyl_arrow_reverse" class="icon" onclick="returntoalbumview()"></div>
             <div id="big_vinyl" class="rotating"></div>
             <div id="jacket_front_large"></div>
         </div>

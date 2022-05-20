@@ -1,3 +1,4 @@
+// Collection of reused variable names
 var sleeve_box = document.getElementById("sleeve_box");
 var record_container = document.getElementById("record_container");
 var rotate_icon = document.getElementById("rotate_icon");
@@ -7,14 +8,13 @@ var jacket_front = document.getElementById("jacket_front");
 var jacket_back = document.getElementById("jacket_back");
 var dummy_container = document.getElementById("dummy_container");
 var back_slider = document.getElementById("back_slider");
-const sleevetext = Array.from(
-    document.getElementsByClassName("sleevetext")
-);
+const sleevetext = Array.from(document.getElementsByClassName("sleevetext"));
 var singlelyrics_text = document.getElementById("singlelyrics_text");
 var goback_arrow = document.getElementById("goback_arrow");
 var bandcamp_player = document.getElementById("bandcamp_player");
 
-function hideandshow() {
+// Function for moving from outer album view to liner notes view
+function tolinernotes() {
     dummy_container.classList.add("fadeout");
     rotate_icon.classList.add("fadeout");
     sleeve_box.classList.remove("fadeout");
@@ -24,19 +24,23 @@ function hideandshow() {
     back_slider.style.transform = "translateX(100vw)";
     setTimeout(function() { dummy_container.style.display = "none"; rotate_icon.style.display = "none"; sleeve_box.style.display = "flex"; sleeve_box.classList.add("fadein"); }, 1000);
     setTimeout(function() { dummy_container.classList.remove("fadeout"); rotate_icon.classList.remove("fadeout"); sleeve_box.classList.remove("fadein"); }, 2000);
-
 }
+
+// Hide vinyl on rotate icon hover
 function retractvinyl() {
     vinyl_front.classList.add("translatevinyl");
     jacket_front.classList.add("translatejacket");
     back_slider.classList.add("translatejacket");
 }
+
+// Show vinyl again
 function expandvinyl() {
     vinyl_front.classList.remove("translatevinyl");
     jacket_front.classList.remove("translatejacket");
     back_slider.classList.remove("translatejacket");
 }
 
+// Rotate record jacket to see back/front
 function rotaterecord() {
     if (record_container.classList.contains("isrotated")) {
         record_container.style.transform = "rotateY(0deg)";
@@ -49,6 +53,7 @@ function rotaterecord() {
     }
 }
 
+// Highlight hovered lyrics
 function boldlyrics(obj) {
     sleevetext.forEach(text => {
         if (obj.id == text.id) {
@@ -60,6 +65,7 @@ function boldlyrics(obj) {
     })
 }
 
+// Return lyrics to original state
 function resetlyrics(obj) {
     sleevetext.forEach(text => {
         if (obj.id == text.id) {
@@ -71,7 +77,8 @@ function resetlyrics(obj) {
     })
 }
 
-function hideandshowreverse() {
+// Return to album jacket view
+function returntoalbumview() {
     sleeve_box.classList.add("fadeout");
     vinyl_front.style.transform = "";
     jacket_front.style.transform = "";
@@ -81,6 +88,19 @@ function hideandshowreverse() {
     setTimeout(function() { dummy_container.classList.remove("fadein"); rotate_icon.classList.remove("fadein"); }, 2000);
 }
 
+// Go back to full lyrics view 
+function goback() {
+    singlelyrics_text.classList.add("fadeout");
+    goback_arrow.classList.add("fadeout");
+    bandcamp_player.classList.add("fadeout");
+    setTimeout(function() { singlelyrics_text.style.display = "none"; singlelyrics_text.classList.remove("fadeout"); goback_arrow.style.display = "none"; goback_arrow.classList.remove("fadeout"); bandcamp_player.classList.remove("fadeout"); bandcamp_player.style.display = "none"; }, 1000);
+    sleevetext.forEach(text => {
+        setTimeout(function() { text.style.display = "block"; text.classList.add("fadein"); }, 1000);
+        setTimeout(function() { text.classList.remove("fadein"); }, 2000);
+    })
+};
+
+// Select single set of lyrics and show bandcamp player
 function singlelyrics(obj) {
     sleevetext.forEach(text => {
         text.classList.remove("notselected")
@@ -240,15 +260,4 @@ function singlelyrics(obj) {
     setTimeout(function() { singlelyrics_text.style.display = "grid"; singlelyrics_text.classList.add("fadein"); goback_arrow.style.display = "block"; goback_arrow.classList.add("fadein"); bandcamp_player.style.display = "block"; bandcamp_player.classList.add("fadein"); }, 1000);
     setTimeout(function() { goback_arrow.style.display = "default"; singlelyrics_text.classList.remove("fadein"); goback_arrow.classList.remove("fadein"); bandcamp_player.classList.remove("fadein"); }, 2000);
 }
-
-function goback() {
-    singlelyrics_text.classList.add("fadeout");
-    goback_arrow.classList.add("fadeout");
-    bandcamp_player.classList.add("fadeout");
-    setTimeout(function() { singlelyrics_text.style.display = "none"; singlelyrics_text.classList.remove("fadeout"); goback_arrow.style.display = "none"; goback_arrow.classList.remove("fadeout"); bandcamp_player.classList.remove("fadeout"); bandcamp_player.style.display = "none"; }, 1000);
-    sleevetext.forEach(text => {
-        setTimeout(function() { text.style.display = "block"; text.classList.add("fadein"); }, 1000);
-        setTimeout(function() { text.classList.remove("fadein"); }, 2000);
-    })
-};
 
