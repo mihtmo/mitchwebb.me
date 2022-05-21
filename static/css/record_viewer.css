@@ -214,19 +214,21 @@
 }
 
 #critterscan {
-    width: 50%;
-    height: 15%;
+    width: 70%;
+    height: 60%;
     position: absolute;
-    bottom: -7%;
-    right: -25%;
+    bottom: 5%;
+    right: 0%;
+    opacity: 20%;
   }
 
 #rockscan {
-    width: 25%;
-    height: 10%;
+    width: 60%;
+    height: 60%;
     position: absolute;
     top: 5%;
-    left: -10%;
+    left: 5%;
+    opacity: 10%;
   }
 
 .notselected {
