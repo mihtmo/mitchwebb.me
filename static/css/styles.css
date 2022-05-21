@@ -109,6 +109,14 @@
 
     }
 
+    #little_critter {
+        -webkit-filter: drop-shadow(2px 2px 2px #e1e0dc);
+        filter: drop-shadow(2px 2px 2px #e1e0dc);
+        width: 90vw; 
+        max-width:325px; 
+        margin-bottom:-25px;
+    }
+
 
 /* Slider disabled state */
 
