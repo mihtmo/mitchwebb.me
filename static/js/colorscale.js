@@ -11,16 +11,16 @@ function heatcolorScale(t){
     else if (t > 32 && t <= 45){
         t = '#9ad0db'
     }
-    else if (t > 45 && t <= 60){
+    else if (t > 45 && t <= 62){
         t = '#bddbd5'
     }
-    else if (t > 60 && t <= 70){
+    else if (t > 62 && t <= 73.5){
         t = '#fff2ce'
     }
-    else if (t > 70 && t <= 80){
+    else if (t > 73.5 && t <= 81){
         t = '#f3b938'
     }
-    else if (t > 80 && t <= 88){
+    else if (t > 81 && t <= 88){
         t = '#fd9415'
     }
     else if (t > 88 && t <= 94){
