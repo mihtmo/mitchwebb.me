@@ -23,7 +23,7 @@
 
                 var daynum = {{ daynum }};
                 var fulltable = {{ fulltable|tojson|safe }};
-                var columnwidth = ((.90*(window.innerWidth))/(daynum)) + 'px';
+                var columnwidth = `calc((.90*100vw)/${daynum})`
 
                 for(let i = 0; i < daynum; i++){
                     newdiv = document.createElement('div');
