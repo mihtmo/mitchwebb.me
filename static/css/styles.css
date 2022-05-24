@@ -307,7 +307,7 @@
         text-align: center;
         /* The width of the container also implies margin around the images. */
         min-width: 200px;
-        width: 26vw;
+        width: 28vw;
     }
     .project_text {
         /* Make the caption a block so it occupies its own line. */
