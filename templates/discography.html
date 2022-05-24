@@ -28,7 +28,9 @@
                 for(let i = 1; i < disccount; i++){
                     newdiv = document.createElement('a');
                     // Give newdiv link
-                    newdiv.setAttribute('href', `${discographydata[i][5]}`)
+                    newdiv.setAttribute('href', `${discographydata[i][5]}`);
+                    newdiv.setAttribute('target', '_blank');
+                    newdiv.setAttribute('rel', 'noopener noreferrer');
                     // Name newdivs in order for css needs
                     divIDName = 'album'+i;
                     newdiv.setAttribute('id', divIDName);
@@ -57,6 +59,6 @@
 {% endblock main %}
 
 {% block footer %}
-    <a href="https://www.mitchwebb.me/">home</a>
+    <a href="/">home</a>
     |
 {% endblock footer %}
