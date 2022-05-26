@@ -59,7 +59,7 @@ def slfly():
                         f.write(f"{{\"type\":\"Feature\",\"properties\":{{\"id\":{row[0]},\"time\":"
                                 f"\"{row[1]}\",\"latitude\":{row[2]},\"longitude\":"
                                 f"{row[3]},\"place\":\"{row[4]}\",\"inaturl\":\"{row[5]}\","
-                                f"\"photos\":\"{row[6]}\"}}, \"geometry\":{{\"type\":\"Point\", "
+                                f"}}, \"geometry\":{{\"type\":\"Point\", "
                                 f"\"coordinates\":[{row[3]},{row[2]}]}}}}")
                 # Close file syntax
                 f.write("]}")

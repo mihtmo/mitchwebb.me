@@ -33,10 +33,10 @@ def spottedlanternfly():
                 continue
 
             cur.execute("INSERT INTO observations "
-                        "(id, time, latitude, longitude, place, inaturl, photos) "
-                        "VALUES (%s, %s, %s, %s, %s, %s, %s);",
+                        "(id, time, latitude, longitude, place, inaturl) "
+                        "VALUES (%s, %s, %s, %s, %s, %s);",
                         (row['id'], row['time_observed_at_utc'], row['latitude'],
-                        row['longitude'], row['place_guess'], row['uri'], row['photos'][0]['medium_url']))
+                        row['longitude'], row['place_guess'], row['uri']))
 
             conn.commit()
 

@@ -8,7 +8,7 @@
     var map = L.map(container, {
         zoomControl:true,
         maxZoom:14,
-        minZoom:3,
+        minZoom:3, 
         preferCanvas: true
     });
 
@@ -81,8 +81,6 @@
 
         let tempdate = new Date(autolinker.link(feature.properties['time']));
         let justdate = tempdate.toLocaleDateString('en-US');
-
-        let imgurl = (feature.properties['photos']);
         let inaturl = (feature.properties['inaturl']);
 
         var popupContent =
@@ -96,12 +94,8 @@
                     <td>' + (feature.properties['place'] !== null ? autolinker.link(feature.properties['place'].toLocaleString()) : '') + '</td>\
                 </tr>\
                 <tr>\
-                    <th scope="row">Links</th>\
+                    <th scope="row">iNat Sighting</th>\
                     <td> <a href='+inaturl+'>iNaturalist Sighting</a> </td>\
-                </tr>\
-                <tr>\
-                    <th scope="row"></th>\
-                    <td> <a href='+imgurl+'>iNaturalist Photo</a> </td>\
                 </tr>\
             </table>';
         layer.bindPopup(popupContent, {maxHeight: 400});

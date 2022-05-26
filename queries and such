@@ -24,6 +24,7 @@ PATH="/Applications/Postgres.app/Contents/Versions/14/bin:$PATH"
 heroku pg:psql -a mitchwebb postgresql-fluffy-62542
 source "/Users/mitch/Desktop/My Computer/Coding Projects/Website/mitchwebb.me/.venv/bin/activate"
 heroku logs --ps scheduler -a mitchwebb
+HEROKU_POSTGRESQL_COPPER_URL=$(heroku config:get HEROKU_POSTGRESQL_COPPER_URL -a mitchwebb)
 
 CREATE TABLE heatdata (
     date DATE
