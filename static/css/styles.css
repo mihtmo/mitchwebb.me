@@ -200,6 +200,13 @@
         background-image: url("../images/simple-texture.png");
         background-size: contain;
         position: relative;
+        transition: 1s;
+    }
+
+    #blankets {
+        transition: 1s ease;
+        width: 90vw;
+        margin: auto;
     }
 
     .blanketcolumn {
@@ -209,6 +216,142 @@
         z-index:-1;
         position: relative;
         min-height: 1px;
+    }
+
+    .blanket_key {
+        width: 1vw;
+        position: absolute;
+        transition: 1s;
+        opacity: 25%;
+        left: 0;
+    }
+
+    #temp_key {
+        height: 80vh;
+        background-image: linear-gradient(0deg, #2c48b8, #429bd6 17%, #6bbcd1 25%, #9ad0db 33%, #bddbd5 46%, #fff2ce 59%, #f3b938 67%, #fd9415 74%, #d95700 79%, #962101 84%, #480300);
+    }
+
+    #precip_key {
+        height: 35vh;
+        background-color: #2c48b8;
+        top: 80vh;
+        border-bottom-left-radius: 2.5vw;
+        border-bottom-right-radius: 2.5vw;
+    }
+
+    .temptics, .preciptics {
+        position: absolute;
+        width: 1vw;
+        left: 0;
+        transition: 1s;
+        margin-top: 0;
+        margin-bottom: 0;
+        opacity: 20%;
+        transition: 1s;
+    }
+
+    #temp_degrees_box{
+        position: absolute;
+        opacity: 0%;
+        transition: 1s;
+        height: 100%;
+        text-align: right;
+        margin-top: 8px;
+    }
+
+    #precip_mm_box{
+        position: absolute;
+        opacity: 0%;
+        transition: 1s;
+        top: 80vh;
+        height: 35vh;
+        text-align: right;
+        margin-top: -24px;
+    }
+
+    .units {
+        position: absolute;
+        left: 20px;
+        margin: 0;
+    }
+
+    #zerodeg {
+        bottom: 0%;
+    }
+
+    #twentydeg {
+        bottom: 20%
+    }
+
+    #fourtydeg {
+        bottom: 40%
+    }
+
+    #sixtydeg {
+        bottom: 60%
+    }
+
+    #eightydeg {
+        bottom: 80%
+    }
+
+    #hundreddeg {
+        top:-16px;
+    }
+
+    .keybox {
+        position: absolute;
+        width: 5vw;
+        height: 80vh;
+    }
+
+    #keybox {
+        left: 0;
+    }
+
+    #key_icon {
+        background-image: url("../images/key.png");
+        background-size: cover;
+        height: 5vw;
+        width: 3vw;
+        position: absolute;
+        top: calc(50% - min(1.5vw, 3vh));
+        cursor: pointer;
+        z-index: -40;
+        opacity: 70%;
+        left: 1.5vw;
+    }
+
+    #keybox:hover > .blanket_key{
+        width: 5vw;
+        opacity: 100%;
+    }
+
+    #keybox:hover .preciptics {
+        width: 95vw;
+    }
+
+    #temp_tic_box {
+        width: 5vw;
+        height: 100%;
+        position: absolute;
+    }
+
+    /* #precip_tic_box {
+
+    } */
+
+    #keybox:hover ~ #blankets {
+        transform: translateX(calc(10vw + 50px));
+    }
+
+    #keybox:hover #temp_degrees_box, #keybox:hover #precip_mm_box {
+        transform: translateX(5vw);
+        opacity: 100%;
+    }
+
+    #keybox:hover .temptics, #keybox:hover .preciptics {
+        transform: translateX(5vw);
     }
 
     #rainblanket {
@@ -222,19 +365,19 @@
     #rainbox {
         width: max-content;
         height: 100%;
-        /* background-image: url("../images/simple-texture.png");
-        background-size: contain; */
         position: absolute;
     }
 
     #blankettext {
-        position: relative;
+        position: absolute;
         z-index: -2;
         width: 90%;
         margin: auto;
-        margin-top: -25vh;
+        padding-top: 3%;
         font-size: 14px;
         height: 35vh;
+        left: 5%;
+        transition: 1s;
       }
 
     #discography {
@@ -289,6 +432,54 @@
 
     .album:hover .albumart, .album:active .albumart {
         filter: blur(1px);
+    }
+
+    #zerotic {
+        bottom: 0;
+    }
+
+    #tentic {
+        bottom: 10%;
+    }
+    #twentytic {
+        bottom: 20%;
+    }
+    #thirtytic {
+        bottom: 30%;
+    }
+    #fourtytic {
+        bottom: 40%;
+    }
+    #fiftytic {
+        bottom: 50%;
+    }
+    #sixtytic {
+        bottom: 60%;
+    }
+    #seventytic {
+        bottom: 70%;
+    }
+    #eightytic {
+        bottom: 80%;
+    }
+    #ninetytic {
+        bottom: 90%;
+    }
+    #hundredtic {
+        top: 0%;
+    }
+
+    #precip_tic25 {
+        top: calc(80vh + calc(35vh * .25));
+    }
+    #precip_tic50 {
+        top: calc(80vh + calc(35vh * .5));
+    }
+    #precip_tic75 {
+        top: calc(80vh + calc(35vh * .75));
+    }
+    #precip_tic100 {
+        top: 115vh;
     }
 
 

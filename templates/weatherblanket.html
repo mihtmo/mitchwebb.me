@@ -10,20 +10,65 @@
 {% block main %}
 <script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
 
+<div id="keybox" class="keybox" onmouseover="hidetext()" onmouseout="showtext()">
+    <div id="temp_key" class="blanket_key"></div>
+    <div id="precip_key" class="blanket_key"></div>
+    <div id="key_icon"></div>
+    <div id="temp_degrees_box">
+        <p id="zerodeg" class="units">0</p>
+        <p id="twentydeg" class="units">20&deg;F</p>
+        <p id="fourtydeg" class="units">40&deg;F</p>
+        <p id="sixtydeg" class="units">60&deg;F</p>
+        <p id="eightydeg" class="units">80&deg;F</p>
+        <p id="hundreddeg" class="units">100&deg;F</p>
+    </div>
+    <div id="precip_mm_box">
+        <p id="twentyfiveprecip" class="units"></p>
+        <p id="fiftyprecip" class="units"></p>
+        <p id="seventyfiveprecip" class="units"></p>
+        <p id="maxprecip" class="units"></p>
+    </div>
+    <div id="temp_tic_box">
+        <hr id="zerotic" class="temptics">
+        <hr id="tentic" class="temptics">
+        <hr id="twentytic" class="temptics">
+        <hr id="thirtytic" class="temptics">
+        <hr id="fourtytic" class="temptics">
+        <hr id="fiftytic" class="temptics">
+        <hr id="sixtytic" class="temptics">
+        <hr id="seventytic" class="temptics">
+        <hr id="eightytic" class="temptics">
+        <hr id="ninetytic" class="temptics">
+        <hr id="hundredtic" class="temptics">
+    </div>
+    <div id="precip_tic_box">
+        <hr id="precip_tic25" class="preciptics">
+        <hr id="precip_tic50" class="preciptics">
+        <hr id="precip_tic75" class="preciptics">
+        <hr id="precip_tic100" class="preciptics">
+    </div>
+</div>
+<!-- <div id="keybox_left" class="keybox">
+    <div id="key_left" class="blanketkey"></div>
+    <div id="arrow_left" class="keyarrow"></div>
+</div> -->
+
+<div id="blankets">
+
     <div id="heatblanket">
-        
+    
         <div id="texturebox">
 
             <script type="text/javascript">
 
                 // Reload window on orientation change
-                $(window).on("orientationchange",function(){
-                    location.reload(); 
-                }); 
+                // $(window).on("orientationchange",function(){
+                //     location.reload(); 
+                // }); 
 
                 var daynum = {{ daynum }};
                 var fulltable = {{ fulltable|tojson|safe }};
-                var columnwidth = `calc((.90*100vw)/${daynum})`
+                var columnwidth = `calc((.9*100vw)/${daynum})`
 
                 for(let i = 0; i < daynum; i++){
                     newdiv = document.createElement('div');
@@ -52,8 +97,16 @@
 
             <script type="text/javascript">
 
+                function hidetext(){
+                    document.getElementById("blankettext").style.opacity = '0%';
+                }
+                function showtext(){
+                    document.getElementById("blankettext").style.opacity = '100%';
+                }
+
                 // Variable of the half-width of each column, used for rounding corners
-                var halfwidth = ((.90*(window.innerWidth))/(daynum * 2)) + 'px';
+                var halfwidth = ((.9*(window.innerWidth))/(daynum * 2)) + 'px';
+                var max_rain = {{ max_rain }};
 
                 for(let i = 0; i < daynum; i++){
                     newdiv = document.createElement('div');
@@ -62,19 +115,19 @@
                     newdiv.setAttribute('class', 'blanketcolumn');
                     newdiv.setAttribute('align', 'left');
                     rain = fulltable[i][4];
-                    rain_coef = raincolorScale(rain);
+                    rain_coef = raincolorScale(rain, max_rain);
                     lotemp = fulltable[i][2];
                     locolor = heatcolorScale(lotemp);
                     newdiv.style.width = columnwidth;
-                    newdiv.style.backgroundImage = `linear-gradient(${locolor}, #429bd6)`;
+                    newdiv.style.backgroundImage = `linear-gradient(${locolor} 60%, #2c48b8)`;
 
-                    // Create invisible divs or drips of representative length
+                    // Create invisible placeholder divs or drips of representative length
                     if (rain_coef == 0){
                         newdiv.style.height = '1px';
                         newdiv.style.opacity = '0%'
                     }
                     else {
-                        newdiv.style.height = (rain_coef * 400) + '%';
+                        newdiv.style.height = (rain_coef * 100) + '%';
                     }
 
                     // Round bottom ends of drips
@@ -85,20 +138,37 @@
 
                     document.getElementById("rainbox").appendChild(newdiv);
                 }
+
+                var precip25 = document.getElementById("twentyfiveprecip")
+                    precip25.style.top = '25%'
+                    precip25.innerHTML = rainmmConvert(.25, max_rain)
+                var precip50 = document.getElementById("fiftyprecip")
+                    precip50.style.top = '50%'
+                    precip50.innerHTML = rainmmConvert(.50, max_rain)
+                var precip75 = document.getElementById("seventyfiveprecip")
+                    precip75.style.top = '75%'
+                    precip75.innerHTML = rainmmConvert(.75, max_rain)
+                var precip100 = document.getElementById("maxprecip")
+                    precip100.style.top = '100%'
+                    precip100.innerHTML = rainmmConvert(1, max_rain)
                 
             </script>
 
         </div>
+        
+        <div id="blankettext"><p>This is an artistic representation of temperatures and precipitation levels in 
+            Austin, TX during 2022. The color of the bars correspond to the maximum daily temperature (at the top)
+            and the minimum daily temperature (at the bottom). The drips below the bars indicate precipitation levels
+            for that day. The visual will automatically add one column for each day of the year. Try hovering over the
+            key on the left side of the screen for more info!</p>
+            <p>This visual is best viewed on desktop or in landscape-mode.</p>
+    
+        </div>
 
     </div>
 
-    <div id="blankettext"><p>This is an artistic representation of temperatures and precipitation levels in 
-        Austin, TX during 2022. The color of the bars correspond to the maximum daily temperature (at the top)
-        and the minimum daily temperature (at the bottom). The drips below the bars indicate precipitation levels
-        for that day. The visual will automatically add one column for each day of the year.</p>
-        <p>This visual is best viewed on desktop or in landscape-mode.</p>
+</div>
 
-    </div>
 
 {% endblock main %}
 

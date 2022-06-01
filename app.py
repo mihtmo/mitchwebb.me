@@ -10,6 +10,7 @@ def frontpage():
     # Show front page
     return render_template("index.html")
 
+
 @mitchwebb.route("/spottedlanternfly")
 def slfly():
     
@@ -75,10 +76,12 @@ def slfly():
     # Open QGIS map
     return render_template("lanternfly.html")
 
+
 @mitchwebb.route("/me")
 def aboutme():
     # Show about me page
     return render_template("me.html")
+
 
 @mitchwebb.route("/contact")
 def contact():
@@ -103,6 +106,12 @@ def wblanket():
         cur.execute("SELECT (date::VARCHAR(19)), temp_hi, temp_lo, visib, rain FROM weatherdata")
         fulltable = cur.fetchall()
         daynum = len(fulltable)
+        max_rain = 0
+        
+        for day in range(daynum):
+            print(day)
+            if fulltable[day][4] > max_rain:
+                max_rain = fulltable[day][4]
         
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -113,7 +122,8 @@ def wblanket():
             print('Database connection closed')
             
     #Show weatherblanket page
-    return render_template("weatherblanket.html", fulltable = fulltable, daynum = daynum)
+    return render_template("weatherblanket.html", fulltable = fulltable, daynum = daynum, max_rain = max_rain)
+
 
 @mitchwebb.route("/discography", methods=['GET', 'POST'])
 def discography():
@@ -126,11 +136,13 @@ def discography():
     # Show discography page
     return render_template("discography.html", discographydata = discographydata, disccount = disccount)
 
+
 @mitchwebb.route("/projects")
 def projects():
     
     # Show projects page
     return render_template("projects.html")
+
 
 @mitchwebb.route("/touchgrass")
 def touchgrass():

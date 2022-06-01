@@ -30,20 +30,24 @@ function heatcolorScale(t){
         t = '#962101'
     }
     else{
-        t = '#591400'
+        t = '#480300'
     }
-
-    console.log(t)
     
     return t;
 }
 
-function raincolorScale(r){
-    r = (r/10)
-    return r;
+function raincolorScale(r, m){
+    c = (r/m);
+    return c;
+}
+
+function rainmmConvert(p, m){
+    mm = Math.round((p * m) * 25.4);
+    rainmm = `${mm}mm`;
+    return rainmm;
 }
 
 function viscolorScale(v){
-    v = Math.abs((v/10)-1)
+    v = Math.abs((v/10)-1);
     return v;
 }

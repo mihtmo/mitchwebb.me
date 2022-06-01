@@ -7,7 +7,8 @@ var jacket_thickness = document.getElementById("jacket_thickness");
 var jacket_front = document.getElementById("jacket_front");
 var jacket_back = document.getElementById("jacket_back");
 var dummy_container = document.getElementById("dummy_container");
-var back_slider = document.getElementById("back_slider");
+var  jacket_back_slider = document.getElementById("jacket_back_slider");
+var vinyl_back_slider = document.getElementById("vinyl_back_slider")
 const sleevetext = Array.from(document.getElementsByClassName("sleevetext"));
 var singlelyrics_text = document.getElementById("singlelyrics_text");
 var goback_arrow = document.getElementById("goback_arrow");
@@ -21,7 +22,8 @@ function tolinernotes() {
     vinyl_front.style.transform = "translateX(100vw)";
     jacket_front.style.transform = "translateX(-100vw)";
     jacket_thickness.style.transform = "translateX(-100vw)";
-    back_slider.style.transform = "translateX(100vw)";
+    jacket_back_slider.style.transform = "translateX(100vw)";
+    vinyl_back_slider.style.transform = "translateX(-100vw)";
     setTimeout(function() { dummy_container.style.display = "none"; rotate_icon.style.display = "none"; sleeve_box.style.display = "flex"; sleeve_box.classList.add("fadein"); }, 1000);
     setTimeout(function() { dummy_container.classList.remove("fadeout"); rotate_icon.classList.remove("fadeout"); sleeve_box.classList.remove("fadein"); }, 2000);
 }
@@ -30,14 +32,16 @@ function tolinernotes() {
 function retractvinyl() {
     vinyl_front.classList.add("translatevinyl");
     jacket_front.classList.add("translatejacket");
-    back_slider.classList.add("translatejacket");
+    jacket_back_slider.classList.add("translatejacket");
+    vinyl_back_slider.classList.add("translatevinyl_reverse");
 }
 
 // Show vinyl again
 function expandvinyl() {
     vinyl_front.classList.remove("translatevinyl");
     jacket_front.classList.remove("translatejacket");
-    back_slider.classList.remove("translatejacket");
+    jacket_back_slider.classList.remove("translatejacket");
+    vinyl_back_slider.classList.remove("translatevinyl_reverse");
 }
 
 // Rotate record jacket to see back/front
@@ -83,7 +87,8 @@ function returntoalbumview() {
     vinyl_front.style.transform = "";
     jacket_front.style.transform = "";
     jacket_thickness.style.transform = "";
-    back_slider.style.transform = "";
+    jacket_back_slider.style.transform = "";
+    vinyl_back_slider.style.transform = "";
     setTimeout(function() { sleeve_box.style.display = "none"; dummy_container.style.display = "grid"; dummy_container.classList.add("fadein"); rotate_icon.style.display = "block"; rotate_icon.classList.add("fadein"); }, 1000);
     setTimeout(function() { dummy_container.classList.remove("fadein"); rotate_icon.classList.remove("fadein"); }, 2000);
 }

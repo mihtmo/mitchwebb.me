@@ -52,9 +52,7 @@
 }
 
 #jacket_front {
-    background-image: url("../images/olly-olly.jpg");
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
+    background-image: url("../images/imaginarydeadlines_jacket_front.png");
     color: black;
 }
 
@@ -64,8 +62,7 @@
     -webkit-transform: rotateY(180deg) translateZ(1px);
 }
 
-#back_slider {
-    background-image: url("../images/finch.jpg");
+.back_slider {
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -73,11 +70,14 @@
     z-index: -1;
 }
 
-#vinyl_front {
+#jacket_back_slider {
+    background-image: url("../images/imaginarydeadlines_jacket_back.png");
+}
+
+#vinyl_front, #vinyl_back {
     aspect-ratio: 1/1;
     height: 50vh;
     max-height: 50vw;
-    background-image: url("../images/templp.png");
     background-size: cover;
     z-index: -2;
     transition: transform 1s;
@@ -86,7 +86,26 @@
     grid-column-start: 3;
     position: absolute;
     margin-left: 10%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    color: black;
 }
+
+#vinyl_back {
+    color: white;
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
+}
+
+#vinyl_back_slider {
+    background-image: url("../images/imaginarylp_side2.png");
+}
+
+#vinyl_front {
+    background-image: url("../images/imaginarylp_side1.png");
+    color: black;
+}
+
 
 #jacket_thickness {
     background-color: #1c1c1c;
@@ -134,9 +153,14 @@
         -webkit-transform: translateX(-25%)
     }
 
-    #record_container:hover #back_slider {
+    #record_container:hover #jacket_back_slider{
         transform: translateX(25%);
         -webkit-transform: translateX(25%);
+    }
+
+    #record_container:hover #vinyl_back_slider {
+        transform: translateX(-18%);
+        -webkit-transform: translateX(-18%);
     }
 
     #record_container:hover #jacket_thickness {
@@ -148,6 +172,12 @@
         transition: transform .5s !important;
         transform: translateX(-15%);
         -webkit-transform: translateX(-15%);
+    }
+
+    .translatevinyl_reverse {
+        transition: transform .5s !important;
+        transform: translateX(15%);
+        -webkit-transform: translateX(15%);
     }
 
     .translatejacket {
@@ -245,7 +275,7 @@
 }
 
 #jacket_front_large {
-    background-image: url("../images/olly-olly.jpg");
+    background-image: url("../images/imaginarydeadlines_jacket_front.png");
     background-size: cover;
     height: calc(100% - 100px);
     min-height: min(calc(80vh - 100px), calc(80vw - 100px));
@@ -263,7 +293,7 @@
 
 #big_vinyl {
     position: absolute;
-    background-image: url("../images/templp.png");
+    background-image: url("../images/imaginarylp_side1.png");
     background-size: cover;
     height: calc(100% - 100px);
     position: absolute;
