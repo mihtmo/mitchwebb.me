@@ -10,7 +10,7 @@
 {% block main %}
 <script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
 
-<div id="keybox" class="keybox" onmouseover="hidetext()" onmouseout="showtext()">
+<div id="keybox" onmouseover="hidetext()" onmouseout="showtext()">
     <div id="temp_key" class="blanket_key"></div>
     <div id="precip_key" class="blanket_key"></div>
     <div id="key_icon"></div>
@@ -68,7 +68,7 @@
 
                 var daynum = {{ daynum }};
                 var fulltable = {{ fulltable|tojson|safe }};
-                var columnwidth = `calc((.9*100vw)/${daynum})`
+                var columnwidth = `calc((.8*100vw)/${daynum})`
 
                 for(let i = 0; i < daynum; i++){
                     newdiv = document.createElement('div');
@@ -105,7 +105,7 @@
                 }
 
                 // Variable of the half-width of each column, used for rounding corners
-                var halfwidth = ((.9*(window.innerWidth))/(daynum * 2)) + 'px';
+                var halfwidth = ((.8*(window.innerWidth))/(daynum * 2)) + 'px';
                 var max_rain = {{ max_rain }};
 
                 for(let i = 0; i < daynum; i++){

@@ -188,10 +188,22 @@
 
     #heatblanket {
         height: 80vh;
-        width: 90vw;
+        width: 80vw;
         margin: auto;
         margin-top: 5vh;
         position: relative;
+    }
+
+    #temp_key:after {
+        content:'';
+        display:block;
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-image: url("../images/simple-texture.png");
+        background-size: auto;
     }
 
     #texturebox {
@@ -205,7 +217,7 @@
 
     #blankets {
         transition: 1s ease;
-        width: 90vw;
+        width: 80vw;
         margin: auto;
     }
 
@@ -219,10 +231,10 @@
     }
 
     .blanket_key {
-        width: 1vw;
+        width: 2.5vw;
         position: absolute;
         transition: 1s;
-        opacity: 25%;
+        opacity: 15%;
         left: 0;
     }
 
@@ -232,7 +244,7 @@
     }
 
     #precip_key {
-        height: 35vh;
+        height: 40vh;
         background-color: #2c48b8;
         top: 80vh;
         border-bottom-left-radius: 2.5vw;
@@ -264,15 +276,15 @@
         opacity: 0%;
         transition: 1s;
         top: 80vh;
-        height: 35vh;
+        height: 40vh;
         text-align: right;
         margin-top: -24px;
     }
 
     .units {
         position: absolute;
-        left: 20px;
         margin: 0;
+        font-size: 14px;
     }
 
     #zerodeg {
@@ -299,27 +311,27 @@
         top:-16px;
     }
 
-    .keybox {
-        position: absolute;
-        width: 5vw;
-        height: 80vh;
-    }
-
     #keybox {
+        position: absolute;
+        width: 10vw;
+        height: 80vh;
         left: 0;
     }
 
     #key_icon {
         background-image: url("../images/key.png");
         background-size: cover;
-        height: 5vw;
-        width: 3vw;
+        height: 8vw;
+        max-height: max(10vh, 4vw);
+        min-height: 5vh;
+        aspect-ratio: 5/8;
         position: absolute;
-        top: calc(50% - min(1.5vw, 3vh));
+        top: calc(50% - min(2.5vw, 4vw));
         cursor: pointer;
         z-index: -40;
         opacity: 70%;
-        left: 1.5vw;
+        left: 2.5vw;
+        transition: 1s;
     }
 
     #keybox:hover > .blanket_key{
@@ -337,16 +349,16 @@
         position: absolute;
     }
 
-    /* #precip_tic_box {
-
-    } */
+    #keybox:hover #key_icon {
+        opacity: 0%;
+    }
 
     #keybox:hover ~ #blankets {
-        transform: translateX(calc(10vw + 50px));
+        transform: translateX(9vw);
     }
 
     #keybox:hover #temp_degrees_box, #keybox:hover #precip_mm_box {
-        transform: translateX(5vw);
+        transform: translateX(calc(6.5vw + 5px));
         opacity: 100%;
     }
 
@@ -355,8 +367,8 @@
     }
 
     #rainblanket {
-        height:35vh;
-        width: 90vw;
+        height:40vh;
+        width: 80vw;
         margin:auto;
         margin-bottom: 20px;
         position: relative;
@@ -371,14 +383,17 @@
     #blankettext {
         position: absolute;
         z-index: -2;
-        width: 90%;
+        width: 80%;
         margin: auto;
         padding-top: 3%;
-        font-size: 14px;
+        font-size: min(2vh, 3vw);
         height: 35vh;
-        left: 5%;
+        left: 10%;
         transition: 1s;
       }
+
+      
+/* Album View CSS */
 
     #discography {
         display: grid;
@@ -470,16 +485,16 @@
     }
 
     #precip_tic25 {
-        top: calc(80vh + calc(35vh * .25));
+        top: calc(80vh + calc(40vh * .25));
     }
     #precip_tic50 {
-        top: calc(80vh + calc(35vh * .5));
+        top: calc(80vh + calc(40vh * .5));
     }
     #precip_tic75 {
-        top: calc(80vh + calc(35vh * .75));
+        top: calc(80vh + calc(40vh * .75));
     }
     #precip_tic100 {
-        top: 115vh;
+        top: 120vh;
     }
 
 
