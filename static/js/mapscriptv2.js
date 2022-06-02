@@ -35,7 +35,7 @@
     map.getPane('pane_Stamen_0').style.zIndex = 400;
     var layer_Stamen_0 = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
         pane: 'pane_Stamen_0',
-        opacity: 1.0,
+        opacity: 0.8,
         attribution: '',
         minZoom: 3,
         maxZoom: 14,
