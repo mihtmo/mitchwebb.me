@@ -125,7 +125,7 @@
     }
 
     #observation_map {
-        height: 55vh;
+        height: 65vh;
         width: 75vw;
         margin: auto;
     }
@@ -149,7 +149,7 @@
     }
 
     .hexbin-hexagon {
-        stroke: #500;
+        stroke: #400;
         stroke-width: .4px;
         opacity: var(--hex-opacity);
     }
@@ -160,6 +160,11 @@
         padding-left: 7px;
         padding-right: 7px;
         background-color: #f3f3f3;
+    }
+
+    .leaflet-control-attribution {
+        margin-right: 10px !important;
+        margin-bottom: 10px !important;
     }
 
     [mobile = "true"] .leaflet-bottom {

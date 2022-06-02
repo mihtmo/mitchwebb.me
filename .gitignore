@@ -3,3 +3,4 @@
 .DS_Store
 .vscode
 observations_dup.js
+/node_modules/

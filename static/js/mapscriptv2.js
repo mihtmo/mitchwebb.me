@@ -25,22 +25,28 @@
         }
         defaultboundaries = map.getBounds()
         map.setMaxBounds([
-            [(defaultboundaries["_northEast"]["lat"] + 5), (defaultboundaries["_northEast"]["lng"] + 5)],
-            [(defaultboundaries["_southWest"]["lat"] - 5), (defaultboundaries["_southWest"]["lng"] - 5)]
+            [(defaultboundaries["_northEast"]["lat"] + 10), (defaultboundaries["_northEast"]["lng"] + 5)],
+            [(defaultboundaries["_southWest"]["lat"] - 10), (defaultboundaries["_southWest"]["lng"] - 5)]
     ]);
     }
+
+    let satFilter = [
+        'saturate:80%',
+        'opacity:85%',
+      ];
 
     // Create map tiles layer using Stamen terrain
     map.createPane('pane_Stamen_0');
     map.getPane('pane_Stamen_0').style.zIndex = 400;
-    var layer_Stamen_0 = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
+    var layer_Stamen_0 = L.tileLayer.colorFilter('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
         pane: 'pane_Stamen_0',
-        opacity: 0.4,
+        opacity: 1,
         attribution: '',
         minZoom: 3,
         maxZoom: 14,
         minNativeZoom: 3,
-        maxNativeZoom: 14
+        maxNativeZoom: 14,
+        filter: satFilter
     });
 
     // Add tiles layer to map
@@ -174,8 +180,8 @@
 
     // Define hexgrid options
     var options = {
-        radius : 9,
-        opacity: 0.8,
+        radius : 11,
+        opacity: 1,
         duration: 100,
         pane: 'pane_hexgrid',
         layerName: 'layer_hexgrid'
@@ -185,11 +191,9 @@
 
     layer_hexgrid.colorScale().range(['#f7f6f2', 'darkred']);
     layer_hexgrid
-        .radiusRange([9, 9])
         .lng(function(d) { return d[0]; })
         .lat(function(d) { return d[1]; })
         .colorValue(function(d) { return d.length; })
-        .radiusValue(function(d) { return d.length; });
 
     // Add data to map
     //initial call for all the data
