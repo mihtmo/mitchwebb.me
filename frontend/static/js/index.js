@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import copyright from '../static/js/copyright.js'
+import copyright from '../static/js/copyright.js';
 // import './index.css';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(<copyright />, document.getElementById("react-root"))
+ReactDOM.render(React.createElement('copyright', null), document.getElementById("react-root"));
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(

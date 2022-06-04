@@ -519,3 +519,7 @@
         /* Make the caption a block so it occupies its own line. */
         display: block;
     }
+
+    .copyright {
+        font-size: 11px;
+    }
