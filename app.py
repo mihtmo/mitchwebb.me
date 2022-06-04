@@ -3,7 +3,7 @@ import csv
 import os
 import psycopg2
 
-mitchwebb = Flask(__name__)
+mitchwebb = Flask(__name__, static_url_path='', static_folder='frontend/static', template_folder='frontend/templates')
 
 @mitchwebb.route("/")
 def frontpage():
@@ -129,7 +129,7 @@ def wblanket():
 def discography():
 
     # Open select_discography.csv and read into variable
-    with open('static/select_discography.csv', newline='') as csvfile:
+    with open('frontend/static/select_discography.csv', newline='') as csvfile:
         discographydata = list(csv.reader(csvfile))
         disccount = len(discographydata)
 

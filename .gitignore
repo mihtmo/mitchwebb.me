@@ -2,5 +2,5 @@
 /.venv/
 .DS_Store
 .vscode
-observations_dup.js
-/node_modules/
+queries-and-such
+node_modules

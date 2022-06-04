@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+    <link href="./css/record_viewer.css" rel="stylesheet">
+
+{% endblock head %}
+
+{% block title %}
+
+    go touch grass!
+
+{% endblock title %}
+
+
+{% block main %}
+
+    <div class="centered" style="height: 100vh;">
+        <div id="inprogress"><h5>This page is in progress. Assets are temporary/borrowed and do not represent a real album.</h5></div>
+        <div id="dummy_container">
+            <div id="record_container" onclick="">
+                <div id="jacket_front" onclick=""></div>
+                <div id="jacket_thickness" onclick=""></div>
+                <div id="jacket_back" onclick="">
+                    <div id="jacket_back_slider" class="back_slider" onclick=""></div>
+                </div>
+                <div id="vinyl_front" onclick=""></div>
+                <div id="vinyl_back" onclick="">
+                    <div id="vinyl_back_slider" class="back_slider" onclick=""></div>
+                </div>
+                <div id="vinyl_arrow" class="icon" onclick="tolinernotes()"></div>
+            </div>
+        
+        </div>
+
+        <div id="rotate_icon" class="icon" onclick="rotaterecord()" onmouseover="retractvinyl()" onmouseout="expandvinyl()"></div>
+
+        <div id="sleeve_box">
+            <div id="spacer"></div>
+            <div id="sleeve">
+                <img id="critterscan" src="{{ url_for('static', filename='./images/critterscan.png') }}" alt="critter">
+                <img id="rockscan" src="{{ url_for('static', filename='./images/rockscan.png') }}" alt="rock">
+                <div id="goback_arrow" class="icon" onclick="goback()"></div>
+                <img id="text1" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_1intro.png') }}" alt="intro" class="textpng">
+                <img id="text2" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_2twoweeks.png') }}" alt="two weeks" class="textpng">
+                <img id="text3" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_3silverbowgoldenbird.png') }}" alt="silver bow, golden bird" class="textpng">
+                <img id="text4" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_4marimba.png') }}" alt="marimba" class="textpng">
+                <img id="text5" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_5outroabove.png') }}" alt="outro, above" class="textpng">
+                <img id="text6" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_6twostepsoutside.png') }}" alt="two steps outside" class="textpng">
+                <img id="text7" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve_7outrolullaby.png') }}" alt="outro, lullaby" class="textpng">
+                <div id="singlelyrics_text"></div>
+                <iframe id="bandcamp_player" seamless><a href="https://fuvk.bandcamp.com/album/split-death">Touch Grass by Mihtmo</a></iframe>
+            </div>
+            <div id="vinyl_arrow_reverse" class="icon" onclick="returntoalbumview()"></div>
+            <div id="big_vinyl" class="rotating"></div>
+            <div id="jacket_front_large"></div>
+        </div>
+
+        <script src="{{ url_for('static', filename='./js/record_viewer.js') }}"></script>
+
+    </div>
+
+{% endblock main %}
+
+{% block footer %}
+    <a href="/">home</a>
+    |
+{% endblock footer %}

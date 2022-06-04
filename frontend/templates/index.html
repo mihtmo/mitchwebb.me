@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+<!-- Greet that cute ol' user (hello) based on time of day -->
+    <script>
+        var currentTime = new Date().getHours();
+        if (currentTime >= 6 && currentTime <=11){
+            var greeting = "mornin'"
+        }
+        else if (currentTime > 11 && currentTime<=17){
+            var greeting = "good afternoon"
+        }
+        else if (currentTime >17 && currentTime <= 21){
+            var greeting = "evenin'"
+        }
+        else if (currentTime >21 && currentTime <=1){
+            var greeting = "g'nite"
+        }
+        else {
+            var greeting = "feeling sleepy"
+        }
+        document.title = greeting
+    </script>
+
+{% endblock head %}
+
+
+{% block main %}
+
+    <div class="centered">
+
+        <div id="titlebox" style="font-size: 30px">Mitch Webb</div>
+
+        <br>
+
+        <img id="little_critter" src="{{ url_for('static', filename='./stranger.png') }}" alt="Strange Creature Icon">
+        
+        <br>
+
+    </div>
+
+{% endblock main %}
+
+{% block footer %}{% endblock footer %}
