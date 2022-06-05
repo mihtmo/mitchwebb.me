@@ -15,8 +15,9 @@
 
 {% block main %}
 
-    <div class="centered" style="height: 100vh;">
+        <div class="centered">
         <div id="inprogress"><h5>This page is in progress. Assets are temporary/borrowed and do not represent a real album.</h5></div>
+        <canvas id="webglRecord" class="webgl"></canvas>
         <div id="dummy_container">
             <div id="record_container" onclick="">
                 <div id="jacket_front" onclick=""></div>
@@ -56,13 +57,23 @@
             <div id="jacket_front_large"></div>
         </div>
 
+
         <script src="{{ url_for('static', filename='./js/record_viewer.js') }}"></script>
+        <script src="{{ url_for('static', filename='./js/three.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='./js/OrbitControls.js') }}"></script>
+        <script src="{{ url_for('static', filename='./js/webgl_record.js') }}"></script>
 
     </div>
-
+    
 {% endblock main %}
 
 {% block footer %}
+
+    <div id="webglBtn">
+        <input type="checkbox" id="webglCheckbox" name="webglCheckbox" onclick="enable3D()">
+            <label for="webgl_btn">Enable 3D</label>
+    </div>
+
     <a href="/">home</a>
     |
 {% endblock footer %}

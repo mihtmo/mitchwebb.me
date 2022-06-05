@@ -10,7 +10,7 @@
 {% block head %}
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/nouislider/dist/nouislider.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/nouislider.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/qgis2web.css') }}">
 
 {% endblock head %}
@@ -64,7 +64,7 @@
     <script src="{{ url_for('static', filename='js/Autolinker.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/time_arrays.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <script src="{{ url_for('static', filename='node_modules/leaflet.tilelayer.colorfilter/src/leaflet-tilelayer-colorfilter.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/leaflet-tilelayer-colorfilter.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/observations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/observations_style.js') }}"></script>
     <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
@@ -74,7 +74,7 @@
     <script src="{{ url_for('static', filename='js/leaflet-hash.js') }}"></script>
     <script src="{{ url_for('static', filename='js/leaflet.rotatedMarker.js') }}"></script>
     <script src="{{ url_for('static', filename='js/wNumb.js') }}"></script>
-    <script src="{{ url_for('static', filename='node_modules/nouislider/dist/nouislider.js') }}"></script>
+    <script src="{{ url_for('static', filename='./js/nouislider.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/sliderimplementation.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/iso8601-js-period@0.2.1/iso8601.min.js"></script>

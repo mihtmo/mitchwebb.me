@@ -266,3 +266,18 @@ function singlelyrics(obj) {
     setTimeout(function() { goback_arrow.style.display = "default"; singlelyrics_text.classList.remove("fadein"); goback_arrow.classList.remove("fadein"); bandcamp_player.classList.remove("fadein"); }, 2000);
 }
 
+function enable3D() {
+    var checkbox = document.getElementById("webglCheckbox")
+    var webglWindow = document.getElementById("webglRecord)")
+
+    if (checkbox.checked == true) {
+        webglRecord.style.display = "block"
+        dummy_container.style.display = "none"
+        rotate_icon.style.display = "none"
+    }
+    else {
+        webglRecord.style.display = "none"
+        dummy_container.style.display = "block"
+        rotate_icon.style.display = "block"
+    }
+}  

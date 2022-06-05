@@ -1,7 +1,3 @@
-// Aggregates
-
-// Color
-
 // Conditionals
 function fnc_coalesce(values, context) {
     for (i = 0; i < values.length; i++) {
@@ -12,18 +8,6 @@ function fnc_coalesce(values, context) {
     }
     return 'ERROR';
 };
-
-// Conversions
-
-// Custom
-
-// Date and Time
-
-// Fields and Values
-
-// Fuzzy Matching
-
-// General
 
 // Geometry
 function fnc_azimuth(values, context) {

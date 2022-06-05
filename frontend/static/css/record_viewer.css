@@ -503,6 +503,21 @@
         to {transform:rotate(360deg);}
     }
 
+
+/* WebGL CSS */
+
+#webglRecord {
+    position: relative; 
+    margin: auto;
+    outline: none;
+    display: none;
+
+}
+
+#webglBtn {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 /*
 Z-INDEX REFERENCE CHART
     big-vinyl: -5
