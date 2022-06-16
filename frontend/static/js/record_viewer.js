@@ -1,18 +1,18 @@
 // Collection of reused variable names
-var sleeve_box = document.getElementById("sleeve_box");
-var record_container = document.getElementById("record_container");
-var rotate_icon = document.getElementById("rotate_icon");
-var vinyl_front = document.getElementById("vinyl_front");
-var jacket_thickness = document.getElementById("jacket_thickness");
-var jacket_front = document.getElementById("jacket_front");
-var jacket_back = document.getElementById("jacket_back");
-var dummy_container = document.getElementById("dummy_container");
-var  jacket_back_slider = document.getElementById("jacket_back_slider");
-var vinyl_back_slider = document.getElementById("vinyl_back_slider")
+const sleeve_box = document.getElementById("sleeve_box");
+const record_container = document.getElementById("record_container");
+const rotate_icon = document.getElementById("rotate_icon");
+const vinyl_front = document.getElementById("vinyl_front");
+const jacket_thickness = document.getElementById("jacket_thickness");
+const jacket_front = document.getElementById("jacket_front");
+const jacket_back = document.getElementById("jacket_back");
+const dummy_container = document.getElementById("dummy_container");
+const  jacket_back_slider = document.getElementById("jacket_back_slider");
+const vinyl_back_slider = document.getElementById("vinyl_back_slider")
 const sleevetext = Array.from(document.getElementsByClassName("sleevetext"));
-var singlelyrics_text = document.getElementById("singlelyrics_text");
-var goback_arrow = document.getElementById("goback_arrow");
-var bandcamp_player = document.getElementById("bandcamp_player");
+const singlelyrics_text = document.getElementById("singlelyrics_text");
+const goback_arrow = document.getElementById("goback_arrow");
+const bandcamp_player = document.getElementById("bandcamp_player");
 
 // Function for moving from outer album view to liner notes view
 function tolinernotes() {
