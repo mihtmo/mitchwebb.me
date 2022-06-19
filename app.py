@@ -17,6 +17,7 @@ def slfly():
     # Establish connection with Heroku PSQL DB
     DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
     conn = psycopg2.connect(DATABASE_URL)
+    
     try:
         # Create cursor
         cur = conn.cursor()
@@ -82,6 +83,7 @@ def contact():
     # Show contact page
     return render_template("contact.html")
 
+
 @mitchwebb.route("/weatherblanket", methods=['GET', 'POST'])
 def wblanket():
     
@@ -97,15 +99,14 @@ def wblanket():
         # Create cursor
         cur = conn.cursor()
 
-        cur.execute("SELECT (date::VARCHAR(19)), temp_hi, temp_lo, visib, rain FROM weatherdata")
+        cur.execute("SELECT (date::VARCHAR(19)), temp_hi, temp_lo, rain FROM weatherdata")
         fulltable = cur.fetchall()
         daynum = len(fulltable)
         max_rain = 0
         
         for day in range(daynum):
-            print(day)
-            if fulltable[day][4] > max_rain:
-                max_rain = fulltable[day][4]
+            if fulltable[day][3] > max_rain:
+                max_rain = fulltable[day][3]
         
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -116,7 +117,7 @@ def wblanket():
             print('Database connection closed')
             
     #Show weatherblanket page
-    return render_template("weatherblanket.html", fulltable = fulltable, daynum = daynum, max_rain = max_rain)
+    return render_template("weatherblanket.html", fulltable=fulltable, daynum=daynum, max_rain=max_rain)
 
 
 @mitchwebb.route("/discography", methods=['GET', 'POST'])
