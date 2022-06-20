@@ -10,11 +10,11 @@
 {% block main %}
 <script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
 
-<div id="keybox" onmouseover="hidetext()" onmouseout="showtext()">
-    <div id="temp_key" class="blanket_key"></div>
-    <div id="precip_key" class="blanket_key"></div>
-    <div id="key_icon"></div>
-    <div id="temp_degrees_box">
+<div id="keybox" onmouseover="hideText()" onmouseout="showText()">
+    <div id="temp-key" class="blanket-key"></div>
+    <div id="precip-key" class="blanket-key"></div>
+    <div id="key-icon"></div>
+    <div id="temp-degrees-box">
         <p id="zerodeg" class="units">0</p>
         <p id="twentydeg" class="units">20&deg;F</p>
         <p id="fourtydeg" class="units">40&deg;F</p>
@@ -22,13 +22,13 @@
         <p id="eightydeg" class="units">80&deg;F</p>
         <p id="hundreddeg" class="units">100&deg;F</p>
     </div>
-    <div id="precip_mm_box">
+    <div id="precip-mm-box">
         <p id="twentyfiveprecip" class="units"></p>
         <p id="fiftyprecip" class="units"></p>
         <p id="seventyfiveprecip" class="units"></p>
         <p id="maxprecip" class="units"></p>
     </div>
-    <div id="temp_tic_box">
+    <div id="temp-tic-box">
         <hr id="zerotic" class="temptics">
         <hr id="tentic" class="temptics">
         <hr id="twentytic" class="temptics">
@@ -41,17 +41,13 @@
         <hr id="ninetytic" class="temptics">
         <hr id="hundredtic" class="temptics">
     </div>
-    <div id="precip_tic_box">
-        <hr id="precip_tic25" class="preciptics">
-        <hr id="precip_tic50" class="preciptics">
-        <hr id="precip_tic75" class="preciptics">
-        <hr id="precip_tic100" class="preciptics">
+    <div id="precip-tic-box">
+        <hr id="precip-tic25" class="preciptics">
+        <hr id="precip-tic50" class="preciptics">
+        <hr id="precip-tic75" class="preciptics">
+        <hr id="precip-tic100" class="preciptics">
     </div>
 </div>
-<!-- <div id="keybox_left" class="keybox">
-    <div id="key_left" class="blanketkey"></div>
-    <div id="arrow_left" class="keyarrow"></div>
-</div> -->
 
 <div id="blankets">
 
@@ -61,28 +57,25 @@
 
             <script type="text/javascript">
 
-                // Reload window on orientation change
-                // $(window).on("orientationchange",function(){
-                //     location.reload(); 
-                // }); 
+                var dayNum = '{{ daynum }}';
+                var fulltable = JSON.parse('{{ fulltable|tojson|safe }}');
+                var columnwidth = `calc((.8*100vw)/${dayNum})`
 
-                var daynum = {{ daynum }};
-                var fulltable = {{ fulltable|tojson|safe }};
-                var columnwidth = `calc((.8*100vw)/${daynum})`
+                for(let i = 0; i < dayNum; i++){
 
-                for(let i = 0; i < daynum; i++){
-                    newdiv = document.createElement('div');
+                    heatBar = document.createElement('div');
                     divIDName = 'day'+i;
-                    newdiv.setAttribute('id', divIDName);
-                    newdiv.setAttribute('class', 'blanketcolumn');
-                    newdiv.setAttribute('align', 'left');
-                    hitemp = fulltable[i][1];
-                    lotemp = fulltable[i][2];
-                    hicolor = heatcolorScale(hitemp);
-                    locolor = heatcolorScale(lotemp);
-                    newdiv.style.backgroundImage = `linear-gradient(${hicolor}, ${locolor})`;
-                    newdiv.style.width = columnwidth;
-                    document.getElementById("texturebox").appendChild(newdiv);
+
+                    heatBar.setAttribute('id', divIDName);
+                    heatBar.setAttribute('class', 'blanket-column tooltip');
+                    heatBar.setAttribute('align', 'left');
+
+                    highColor = heatcolorScale(fulltable[i][1]);
+                    lowColor = heatcolorScale(fulltable[i][2]);
+
+                    heatBar.style.backgroundImage = `linear-gradient(${highColor}, ${lowColor})`;
+                    heatBar.style.width = columnwidth;
+                    document.getElementById("texturebox").appendChild(heatBar);
                 }
 
             </script>
@@ -97,60 +90,59 @@
 
             <script type="text/javascript">
 
-                function hidetext(){
-                    document.getElementById("blankettext").style.opacity = '0%';
+                function hideText(){
+                    document.getElementById("blankettext").style.opacity = '0%'
                 }
-                function showtext(){
-                    document.getElementById("blankettext").style.opacity = '100%';
+                function showText(){
+                    document.getElementById("blankettext").style.opacity = '100%'
                 }
 
                 // Variable of the half-width of each column, used for rounding corners
-                var halfwidth = ((.8*(window.innerWidth))/(daynum * 2)) + 'px';
-                var max_rain = {{ max_rain }};
+                var halfwidth = ((.8*(window.innerWidth))/(dayNum * 2)) + 'px'
+                var maxRain = '{{ max_rain }}'
 
-                for(let i = 0; i < daynum; i++){
-                    newdiv = document.createElement('div');
+                for(let i = 0; i < dayNum; i++){
+                    rainBar = document.createElement('div');
                     divIDName = 'day'+i;
-                    newdiv.setAttribute('id', divIDName);
-                    newdiv.setAttribute('class', 'blanketcolumn');
-                    newdiv.setAttribute('align', 'left');
-                    rain = fulltable[i][3];
-                    rain_coef = raincolorScale(rain, max_rain);
-                    lotemp = fulltable[i][2];
-                    locolor = heatcolorScale(lotemp);
-                    newdiv.style.width = columnwidth;
-                    newdiv.style.backgroundImage = `linear-gradient(${locolor} 60%, #2c48b8)`;
+                    rainBar.setAttribute('id', divIDName);
+                    rainBar.setAttribute('class', 'blanket-column');
+                    rainBar.setAttribute('align', 'left');
+                    rainCoef = raincolorScale(fulltable[i][3], maxRain);
+                    lowTemp = fulltable[i][2];
+                    lowColor = heatcolorScale(lowTemp);
+                    rainBar.style.width = columnwidth;
+                    rainBar.style.backgroundImage = `linear-gradient(${lowColor} 60%, #2c48b8)`;
 
                     // Create invisible placeholder divs or drips of representative length
-                    if (rain_coef == 0){
-                        newdiv.style.height = '1px';
-                        newdiv.style.opacity = '0%'
+                    if (rainCoef == 0){
+                        rainBar.style.height = '1px'
+                        rainBar.style.opacity = '0%'
                     }
                     else {
-                        newdiv.style.height = (rain_coef * 100) + '%';
+                        rainBar.style.height = (rainCoef * 100) + '%'
                     }
 
                     // Round bottom ends of drips
-                    if (rain_coef !== 0){
-                        newdiv.style.borderBottomLeftRadius = halfwidth;
-                        newdiv.style.borderBottomRightRadius = halfwidth;
+                    if (rainCoef !== 0){
+                        rainBar.style.borderBottomLeftRadius = halfwidth
+                        rainBar.style.borderBottomRightRadius = halfwidth
                     }
 
-                    document.getElementById("rainbox").appendChild(newdiv);
+                    document.getElementById("rainbox").appendChild(rainBar)
                 }
 
                 var precip25 = document.getElementById("twentyfiveprecip")
-                    precip25.style.top = '25%'
-                    precip25.innerHTML = rainmmConvert(.25, max_rain)
+                    precip25.style.top = '25%';
+                    precip25.innerHTML = rainmmConvert(.25, maxRain);
                 var precip50 = document.getElementById("fiftyprecip")
-                    precip50.style.top = '50%'
-                    precip50.innerHTML = rainmmConvert(.50, max_rain)
+                    precip50.style.top = '50%';
+                    precip50.innerHTML = rainmmConvert(.50, maxRain);
                 var precip75 = document.getElementById("seventyfiveprecip")
-                    precip75.style.top = '75%'
-                    precip75.innerHTML = rainmmConvert(.75, max_rain)
+                    precip75.style.top = '75%';
+                    precip75.innerHTML = rainmmConvert(.75, maxRain);
                 var precip100 = document.getElementById("maxprecip")
-                    precip100.style.top = '100%'
-                    precip100.innerHTML = rainmmConvert(1, max_rain)
+                    precip100.style.top = '100%';
+                    precip100.innerHTML = rainmmConvert(1, maxRain);
                 
             </script>
 
