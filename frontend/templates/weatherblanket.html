@@ -67,7 +67,7 @@
                     divIDName = 'day'+i;
 
                     heatBar.setAttribute('id', divIDName);
-                    heatBar.setAttribute('class', 'blanket-column tooltip');
+                    heatBar.setAttribute('class', 'blanket-column');
                     heatBar.setAttribute('align', 'left');
 
                     highColor = heatcolorScale(fulltable[i][1]);
@@ -164,7 +164,7 @@
 {% endblock main %}
 
 {% block footer %}
-<a href="https://three-vinyl.herokuapp.com/">Click Here for React-Three-Fiber Version</a>
+<a href="https://three-vinyl.herokuapp.com/" target="_blank" rel="noopener noreferrer">Click Here for React-Three-Fiber Version</a>
 <br />
 <br />
 <a href="/">home</a>
