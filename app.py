@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import csv
 import os
 import psycopg2
+import json
 
 mitchwebb = Flask(__name__, static_url_path='', static_folder='frontend/static', template_folder='frontend/templates')
 
@@ -115,7 +116,7 @@ def wblanket():
         if conn is not None:
             conn.close()
             print('Database connection closed')
-            
+        
     #Show weatherblanket page
     return render_template("weatherblanket.html", fulltable=fulltable, daynum=daynum, max_rain=max_rain)
 

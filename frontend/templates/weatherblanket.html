@@ -59,8 +59,7 @@
 
                 var dayNum = '{{ daynum }}';
                 var fulltable = JSON.parse('{{ fulltable|tojson|safe }}');
-                var columnwidth = `calc((.8*100vw)/${dayNum})`
-
+                
                 for(let i = 0; i < dayNum; i++){
 
                     heatBar = document.createElement('div');
@@ -68,13 +67,11 @@
 
                     heatBar.setAttribute('id', divIDName);
                     heatBar.setAttribute('class', 'blanket-column');
-                    heatBar.setAttribute('align', 'left');
 
                     highColor = heatcolorScale(fulltable[i][1]);
                     lowColor = heatcolorScale(fulltable[i][2]);
 
                     heatBar.style.backgroundImage = `linear-gradient(${highColor}, ${lowColor})`;
-                    heatBar.style.width = columnwidth;
                     document.getElementById("texturebox").appendChild(heatBar);
                 }
 
@@ -110,7 +107,6 @@
                     rainCoef = raincolorScale(fulltable[i][3], maxRain);
                     lowTemp = fulltable[i][2];
                     lowColor = heatcolorScale(lowTemp);
-                    rainBar.style.width = columnwidth;
                     rainBar.style.backgroundImage = `linear-gradient(${lowColor} 60%, #2c48b8)`;
 
                     // Create invisible placeholder divs or drips of representative length

@@ -207,12 +207,13 @@
     }
 
     #texturebox {
-        width: max-content;
+        width: 100%;
         height: 100%;
         background-image: url("../images/simple-texture.png");
         background-size: contain;
         position: relative;
         transition: 1s;
+        display: flex;
     }
 
     #blankets {
@@ -223,11 +224,12 @@
 
     .blanket-column {
         height: 100%;
-        /* width: calc(95vw/365); */
         float: left;
         z-index:-1;
         position: relative;
         min-height: 1px;
+        display: flex;
+        flex: 1;
     }
 
     .blanket-key {
@@ -423,9 +425,10 @@
     }
 
     #rainbox {
-        width: max-content;
+        width: 100%;
         height: 100%;
         position: absolute;
+        display: flex;
     }
 
     #blankettext {
