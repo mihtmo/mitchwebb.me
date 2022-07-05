@@ -287,6 +287,8 @@
         position: absolute;
         margin: 0;
         font-size: 14px;
+        text-align: left;
+        width: 50px;
     }
 
     #zerodeg {
