@@ -5,10 +5,15 @@
 {% endblock title %}
 
 {% block head %}
+
+<link href="./css/weatherblanket.css" rel="stylesheet">
+
 {% endblock head %}
 
 {% block main %}
 <script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
+
+<canvas id="threeBlanket" class="three"></canvas>
 
 <div id="keybox" onmouseover="hideText()" onmouseout="showText()">
     <div id="temp-key" class="blanket-key"></div>
@@ -156,10 +161,24 @@
 
 </div>
 
+    <script src="{{ url_for('static', filename='./js/weatherblanket.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='./js/three.min.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='./js/DragControls.js') }}" type="module">
+        import { DragControls } from '../static/js/DragControls.js'
+    </script>
+    <script src="{{ url_for('static', filename='./js/threeBlanket.js') }}" type="module"></script>
+
+</div>
 
 {% endblock main %}
 
 {% block footer %}
+
+<div id="threeBtn">
+<input type="checkbox" id="threeCheckbox" name="threeCheckbox" onclick="enable3D()">
+    <label for="threeBtn">Enable three.js</label>
+</div>
+<br />
 <a href="https://three-vinyl.herokuapp.com/" target="_blank" rel="noopener noreferrer">Click Here for React-Three-Fiber Version</a>
 <br />
 <br />

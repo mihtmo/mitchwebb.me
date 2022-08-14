@@ -1,59 +1,59 @@
 // Collection of reused variable names
-const sleeve_box = document.getElementById("sleeve_box");
-const record_container = document.getElementById("record_container");
-const rotate_icon = document.getElementById("rotate_icon");
-const vinyl_front = document.getElementById("vinyl_front");
-const jacket_thickness = document.getElementById("jacket_thickness");
-const jacket_front = document.getElementById("jacket_front");
-const jacket_back = document.getElementById("jacket_back");
-const dummy_container = document.getElementById("dummy_container");
-const  jacket_back_slider = document.getElementById("jacket_back_slider");
-const vinyl_back_slider = document.getElementById("vinyl_back_slider")
+const sleeveBox = document.getElementById("sleeve-box");
+const recordContainer = document.getElementById("record-container");
+const rotateIcon = document.getElementById("rotate-icon");
+const vinylFront = document.getElementById("vinyl-front");
+const jacketThickness = document.getElementById("jacket-thickness");
+const jacketFront = document.getElementById("jacket-front");
+const jacketBack = document.getElementById("jacket-back");
+const dummyContainer = document.getElementById("dummy-container");
+const jacketBackSlider = document.getElementById("jacket-back-slider");
+const vinylBackSlider = document.getElementById("vinyl-back-slider")
 const sleevetext = Array.from(document.getElementsByClassName("sleevetext"));
-const singlelyrics_text = document.getElementById("singlelyrics_text");
-const goback_arrow = document.getElementById("goback_arrow");
-const bandcamp_player = document.getElementById("bandcamp_player");
+const singleLyricsText = document.getElementById("singlelyrics-text");
+const goBackArrow = document.getElementById("goback-arrow");
+const bandcampPlayer = document.getElementById("bandcamp-player");
 
 // Function for moving from outer album view to liner notes view
 function tolinernotes() {
-    dummy_container.classList.add("fadeout");
-    rotate_icon.classList.add("fadeout");
-    sleeve_box.classList.remove("fadeout");
-    vinyl_front.style.transform = "translateX(100vw)";
-    jacket_front.style.transform = "translateX(-100vw)";
-    jacket_thickness.style.transform = "translateX(-100vw)";
-    jacket_back_slider.style.transform = "translateX(100vw)";
-    vinyl_back_slider.style.transform = "translateX(-100vw)";
-    setTimeout(function() { dummy_container.style.display = "none"; rotate_icon.style.display = "none"; sleeve_box.style.display = "flex"; sleeve_box.classList.add("fadein"); }, 1000);
-    setTimeout(function() { dummy_container.classList.remove("fadeout"); rotate_icon.classList.remove("fadeout"); sleeve_box.classList.remove("fadein"); }, 2000);
+    dummyContainer.classList.add("fadeout");
+    rotateIcon.classList.add("fadeout");
+    sleeveBox.classList.remove("fadeout");
+    vinylFront.style.transform = "translateX(100vw)";
+    jacketFront.style.transform = "translateX(-100vw)";
+    jacketThickness.style.transform = "translateX(-100vw)";
+    jacketBackSlider.style.transform = "translateX(100vw)";
+    vinylBackSlider.style.transform = "translateX(-100vw)";
+    setTimeout(function() { dummyContainer.style.display = "none"; rotateIcon.style.display = "none"; sleeveBox.style.display = "flex"; sleeveBox.classList.add("fadein"); }, 1000);
+    setTimeout(function() { dummyContainer.classList.remove("fadeout"); rotateIcon.classList.remove("fadeout"); sleeveBox.classList.remove("fadein"); }, 2000);
 }
 
 // Hide vinyl on rotate icon hover
 function retractvinyl() {
-    vinyl_front.classList.add("translatevinyl");
-    jacket_front.classList.add("translatejacket");
-    jacket_back_slider.classList.add("translatejacket");
-    vinyl_back_slider.classList.add("translatevinyl_reverse");
+    vinylFront.classList.add("translatevinyl");
+    jacketFront.classList.add("translatejacket");
+    jacketBackSlider.classList.add("translatejacket");
+    vinylBackSlider.classList.add("translatevinyl_reverse");
 }
 
 // Show vinyl again
 function expandvinyl() {
-    vinyl_front.classList.remove("translatevinyl");
-    jacket_front.classList.remove("translatejacket");
-    jacket_back_slider.classList.remove("translatejacket");
-    vinyl_back_slider.classList.remove("translatevinyl_reverse");
+    vinylFront.classList.remove("translatevinyl");
+    jacketFront.classList.remove("translatejacket");
+    jacketBackSlider.classList.remove("translatejacket");
+    vinylBackSlider.classList.remove("translatevinyl_reverse");
 }
 
 // Rotate record jacket to see back/front
 function rotaterecord() {
-    if (record_container.classList.contains("isrotated")) {
-        record_container.style.transform = "rotateY(0deg)";
-        record_container.classList.remove("isrotated");
+    if (recordContainer.classList.contains("isrotated")) {
+        recordContainer.style.transform = "rotateY(0deg)";
+        recordContainer.classList.remove("isrotated");
         
     }
     else {
-        record_container.style.transform = "rotateY(180deg)";
-        record_container.classList.add("isrotated");
+        recordContainer.style.transform = "rotateY(180deg)";
+        recordContainer.classList.add("isrotated");
     }
 }
 
@@ -83,22 +83,22 @@ function resetlyrics(obj) {
 
 // Return to album jacket view
 function returntoalbumview() {
-    sleeve_box.classList.add("fadeout");
-    vinyl_front.style.transform = "";
-    jacket_front.style.transform = "";
-    jacket_thickness.style.transform = "";
-    jacket_back_slider.style.transform = "";
-    vinyl_back_slider.style.transform = "";
-    setTimeout(function() { sleeve_box.style.display = "none"; dummy_container.style.display = "grid"; dummy_container.classList.add("fadein"); rotate_icon.style.display = "block"; rotate_icon.classList.add("fadein"); }, 1000);
-    setTimeout(function() { dummy_container.classList.remove("fadein"); rotate_icon.classList.remove("fadein"); }, 2000);
+    sleeveBox.classList.add("fadeout");
+    vinylFront.style.transform = "";
+    jacketFront.style.transform = "";
+    jacketThickness.style.transform = "";
+    jacketBackSlider.style.transform = "";
+    vinylBackSlider.style.transform = "";
+    setTimeout(function() { sleeveBox.style.display = "none"; dummyContainer.style.display = "grid"; dummyContainer.classList.add("fadein"); rotateIcon.style.display = "block"; rotateIcon.classList.add("fadein"); }, 1000);
+    setTimeout(function() { dummyContainer.classList.remove("fadein"); rotateIcon.classList.remove("fadein"); }, 2000);
 }
 
 // Go back to full lyrics view 
 function goback() {
-    singlelyrics_text.classList.add("fadeout");
-    goback_arrow.classList.add("fadeout");
-    bandcamp_player.classList.add("fadeout");
-    setTimeout(function() { singlelyrics_text.style.display = "none"; singlelyrics_text.classList.remove("fadeout"); goback_arrow.style.display = "none"; goback_arrow.classList.remove("fadeout"); bandcamp_player.classList.remove("fadeout"); bandcamp_player.style.display = "none"; }, 1000);
+    singleLyricsText.classList.add("fadeout");
+    goBackArrow.classList.add("fadeout");
+    bandcampPlayer.classList.add("fadeout");
+    setTimeout(function() { singleLyricsText.style.display = "none"; singleLyricsText.classList.remove("fadeout"); goBackArrow.style.display = "none"; goBackArrow.classList.remove("fadeout"); bandcampPlayer.classList.remove("fadeout"); bandcampPlayer.style.display = "none"; }, 1000);
     sleevetext.forEach(text => {
         setTimeout(function() { text.style.display = "block"; text.classList.add("fadein"); }, 1000);
         setTimeout(function() { text.classList.remove("fadein"); }, 2000);
@@ -114,14 +114,14 @@ function singlelyrics(obj) {
     })
     divid = obj.id;
     if (obj.id == "text1") {
-        singlelyrics_text.innerHTML = `<span><h3>Intro</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Intro</h3><p style="font-size:min(1vh, 1vw)">
                                                                     [Instrumental]
                                                                     </p></span>`;
-        bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+        bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
     }
 
     else if (obj.id == "text2") {
-        singlelyrics_text.innerHTML = `<span><h3>Two Weeks</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Two Weeks</h3><p style="font-size:min(1vh, 1vw)">
                                                                     <br>
                                                                     When I go<br>
                                                                     They\’ll take me home<br>
@@ -162,11 +162,11 @@ function singlelyrics(obj) {
                                                                     <br>
                                                                     I hope I can still sing by then<br>
                                                                     </p></span>`;
-        bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=2654642781/transparent=true/"
+        bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=2654642781/transparent=true/"
     }
     
     else if (obj.id == "text3") {
-        singlelyrics_text.innerHTML = `<span><h3>Silver Arrow, Golden Bird</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Silver Arrow, Golden Bird</h3><p style="font-size:min(1vh, 1vw)">
                                                                     <br>
                                                                     State-owned coal mine<br>
                                                                     Glean from the land what\’s left behind<br>
@@ -178,11 +178,11 @@ function singlelyrics(obj) {
                                                                     Gold bird, white lie<br>
                                                                     Love is a thing to keep alive<br>
                                                                     </p></span>`;
-        bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+        bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
     }
 
     else if (obj.id == "text4") {
-        singlelyrics_text.innerHTML = `<span><h3>Marimba</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Marimba</h3><p style="font-size:min(1vh, 1vw)">
                                                                     <br>
                                                                     There is a bug that lives inside my room<br>
                                                                     Though pretty often mostly out of view<br>
@@ -206,16 +206,16 @@ function singlelyrics(obj) {
                                                                     Oh, I want to tell you everything<br>
                                                                     Anything<br>
                                                                     </p></span>`;
-    bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+    bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
     }
     else if (obj.id == "text5") {
-        singlelyrics_text.innerHTML = `<span><h3>Outro, Above</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Outro, Above</h3><p style="font-size:min(1vh, 1vw)">
                                                                     [Instrumental]
                                                                     </p></span>`;
-    bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+    bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
     }
     else if (obj.id == "text6") {
-        singlelyrics_text.innerHTML = `<span><h3>Two Steps Outside</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Two Steps Outside</h3><p style="font-size:min(1vh, 1vw)">
                                                                     <br>
                                                                     I\’ve got a hand to hold<br>
                                                                     Come, I\’ll let you hold it<br>
@@ -254,30 +254,30 @@ function singlelyrics(obj) {
                                                                     I cannot change what you\’ve been through<br>
                                                                     But I\’ll change you<br>
                                                                     </p></span>`
-    bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+    bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
     }
     else if (obj.id == "text7") {
-        singlelyrics_text.innerHTML = `<span><h3>Outro, Lullaby</h3><p style="font-size:min(1vh, 1vw)">
+        singleLyricsText.innerHTML = `<span><h3>Outro, Lullaby</h3><p style="font-size:min(1vh, 1vw)">
                                                                     [Guitar, Thunder]
                                                                     </p></span>`;
-    bandcamp_player.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
+    bandcampPlayer.src = "https://bandcamp.com/EmbeddedPlayer/album=390734231/size=small/bgcol=f7f6f2/linkcol=0687f5/artwork=none/track=1716247834/transparent=true/"
     }
-    setTimeout(function() { singlelyrics_text.style.display = "grid"; singlelyrics_text.classList.add("fadein"); goback_arrow.style.display = "block"; goback_arrow.classList.add("fadein"); bandcamp_player.style.display = "block"; bandcamp_player.classList.add("fadein"); }, 1000);
-    setTimeout(function() { goback_arrow.style.display = "default"; singlelyrics_text.classList.remove("fadein"); goback_arrow.classList.remove("fadein"); bandcamp_player.classList.remove("fadein"); }, 2000);
+    setTimeout(function() { singleLyricsText.style.display = "grid"; singleLyricsText.classList.add("fadein"); goBackArrow.style.display = "block"; goBackArrow.classList.add("fadein"); bandcampPlayer.style.display = "block"; bandcampPlayer.classList.add("fadein"); }, 1000);
+    setTimeout(function() { goBackArrow.style.display = "default"; singleLyricsText.classList.remove("fadein"); goBackArrow.classList.remove("fadein"); bandcampPlayer.classList.remove("fadein"); }, 2000);
 }
 
 function enable3D() {
-    var checkbox = document.getElementById("webglCheckbox")
-    var webglWindow = document.getElementById("webglRecord)")
+    var checkbox = document.getElementById("threeCheckbox")
+    var threeWindow = document.getElementById("threeRecord)")
 
     if (checkbox.checked == true) {
-        webglRecord.style.display = "block"
-        dummy_container.style.display = "none"
-        rotate_icon.style.display = "none"
+        threeRecord.style.display = "block"
+        dummyContainer.style.display = "none"
+        rotateIcon.style.display = "none"
     }
     else {
-        webglRecord.style.display = "none"
-        dummy_container.style.display = "block"
-        rotate_icon.style.display = "block"
+        threeRecord.style.display = "none"
+        dummyContainer.style.display = "block"
+        rotateIcon.style.display = "block"
     }
 }  

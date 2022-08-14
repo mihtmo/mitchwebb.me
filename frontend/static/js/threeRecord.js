@@ -1,5 +1,7 @@
+
+
 // Canvas
-const canvas = document.querySelector('canvas.webgl')
+const canvas = document.querySelector('canvas.three')
 
 // Texture Loader
 const texture = new THREE.TextureLoader()
@@ -9,8 +11,8 @@ const scene = new THREE.Scene()
 
 // Create Record Jacket Components
 // Textures
-const jacketface_texture = texture.load('../images/imaginarydeadlines_jacket_front.png');
-const jacketback_texture = texture.load('../images/imaginarydeadlines_jacket_back.png');
+const jacketface_texture = texture.load('../images/imaginarydeadlines-jacket-front.png');
+const jacketback_texture = texture.load('../images/imaginarydeadlines-jacket-back.png');
 // Geometry
 const jacketface_geo = new THREE.BoxGeometry(314.3, 314.3, 1)
 const jacketside_geo = new THREE.BoxGeometry(314.3, 1, 2)
@@ -38,8 +40,8 @@ jacket.add(jacketface, jacketback, jackettop, jacketside, jacketbot)
 scene.add(jacket)
 
 // Create Vinyl
-const vinylfront_texture = texture.load('../images/imaginarylp_side1.png')
-const vinyl_bump = texture.load('../images/vinyl_bump.png')
+const vinylfront_texture = texture.load('../images/imaginarylp-side1.png')
+const vinyl_bump = texture.load('../images/vinyl-bump.png')
 const vinyl_geo = new THREE.CylinderGeometry(150, 150, 2, 64, 3)
 const vinyl_mat = new THREE.MeshBasicMaterial({ map: vinylfront_texture })
 vinyl_mat.transparent = true
