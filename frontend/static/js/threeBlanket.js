@@ -1,5 +1,14 @@
+import * as THREE from './three.module.js'
+import { DragControls } from './DragControls.js'
+
 // Canvas
-const canvas = document.querySelector('canvas.three')
+const canvas = document.getElementById('threeBlanket')
+
+// Sizes
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
 
 // Texture Loader
 const texture = new THREE.TextureLoader()
@@ -15,18 +24,22 @@ const scene = new THREE.Scene()
 
 const weatherblanket = new THREE.Group()
 
+const barPairs = []
+
 for (let i = 0; i < dayNum; i++) {
-    const width = 14;
-    const low = fulltable[i][1];
-    const high= fulltable[i][2];
-    const precip = fulltable[i][3];
-    const lowColor = heatcolorScale(fulltable[i][1])
-    const highColor = heatcolorScale(fulltable[i][2])
-    const heatHeight = (high-low) * 10
-    const rainHeight = precip * 10 * 10
-    const positionX = ((-(dayNum * width) / 2) + (i * width));
+    barPairs.push('barPair' + i)
+    barPairs[i] = new THREE.Group()
+    const width = 14
+    const low = weatherData[i]['MIN']
+    const high = weatherData[i]['MAX']
+    const precip = weatherData[i]['PRCP']
+    const lowColor = heatcolorScale(low)
+    const highColor = heatcolorScale(high)
+    const heatHeight = high-low
+    const rainHeight = precip
+    const positionX = ((-(dayNum * ((sizes.width/dayNum) * 1.5)) / 2) + (i * ((sizes.width/dayNum) * 1.5)))
     const positionZ = 0;
-    const heatMidpoint = ((high - low) * 10) + 600
+    const heatMidpoint = 10000
     // const date = (props.weatherData[i][0]).toLocaleString('default', { month: 'long' })
 
     const heatBarGeo = new THREE.PlaneGeometry(width, heatHeight)
@@ -41,25 +54,46 @@ for (let i = 0; i < dayNum; i++) {
     const rainBar = new THREE.Mesh(rainBarGeo, rainBarMat)
 
     // Position Bars
-    heatBar.position.set(positionX, heatMidpoint - 200, positionZ)
+    heatBar.position.set(positionX, heatMidpoint, positionZ)
     heatBar.rotation.y += Math.PI
-    rainBar.position.set(positionX, (rainHeight - 500)/2 - 200, positionZ)
+    rainBar.position.set(positionX, ((rainHeight - 500)/2) - 800, positionZ)
 
-    // Group Bars
-    weatherblanket.add(heatBar)
+    // Group Bar Pairs
+    barPairs[i].add(heatBar)
     if (rainHeight > 0) {
-        weatherblanket.add(rainBar)
+        barPairs[i].add(rainBar)
     }
 
-    // Position Bars
-
-
+    // Group Bars
+    weatherblanket.add(barPairs[i])
 };
 
 // Add to Scene
 scene.add(weatherblanket)
 
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2(0, 0);
 
+
+console.log(window.innerHeight, window.innerWidth)
+console.log(weatherblanket.children)
+
+function onPointerMove( event ) {
+    pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
+
+    raycaster.setFromCamera(pointer, camera);
+
+    var intersects = raycaster.intersectObject(weatherblanket.children[0]);
+
+    if (intersects.length > 0) {
+        console.log(intersects)
+        var object = intersects[0].object;
+        object.material.color.set( Math.random() * 0xffffff );
+    }
+}
+
+    console.log(barPairs[1], barPairs[5])
 // // Create Vinyl
 // const vinylfront_texture = texture.load('../images/imaginarylp-side1.png')
 // const vinyl_bump = texture.load('../images/vinyl-bump.png')
@@ -74,16 +108,9 @@ scene.add(weatherblanket)
 
 // scene.add(vinyl)
 
-
-// Sizes
-const sizes = {
-    width: window.innerWidth * .9,
-    height: window.innerHeight * .9
-}
-
 // Camera
 const camera = new THREE.PerspectiveCamera(20, sizes.width / sizes.height, 1, 10000)
-camera.position.z = 3000
+camera.position.z = 10000
 scene.add(camera)
 
 /**
@@ -93,36 +120,43 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true
 })
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(2, window.devicePixelRatio))
 
 // Controls
-const controls = new DragControls(weatherblanket, camera, renderer.domElement)
-controls.enableDamping = true
+// const controls = new DragControls(weatherblanket, camera, renderer.domElement)
+// controls.enableDamping = true
 
-controls.addEventListener( 'dragstart', function ( event ) {
-	event.object.material.emissive.set( 0xaaaaaa );
-} )
+// controls.addEventListener( 'dragstart', function ( event ) {
+// 	event.object.material.emissive.set( 0xaaaaaa );
+// } )
 
-controls.addEventListener( 'dragend', function ( event ) {
-	event.object.material.emissive.set( 0x000000 );
-} )
+// controls.addEventListener( 'dragend', function ( event ) {
+// 	event.object.material.emissive.set( 0x000000 );
+// } )
 
 // Fit-Screen
 function resize() {
-    // Update Sizes
-    sizes.width = window.innerWidth * .8,
-    sizes.height = window.innerHeight * .8,
-    // Update Camera
-    camera.aspect = sizes.width/sizes.height
-    camera.updateProjectionMatrix()
-    // Update Renderer
-    renderer.setSize(sizes.width, sizes.height)
-    // Update pixel ratio
-    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio))
-}
+    // look up the size the canvas is being displayed
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+  
+    // you must pass false here or three.js sadly fights the browser
+    camera.aspect = width/height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
 
-window.onresize = resize
+    for (let i = 0; i < dayNum; i++) {
+        const barWidth = (width/dayNum)/3.2
+        barPairs[i].scale.set(barWidth, height*100)
+        barPairs[i].position.x = (-(dayNum * barWidth) / 2) + barWidth
+        barPairs[i].position.y = 200
+        if (barPairs[i][1]) {
+            barPairs[i][1].scale.y = (height * .3) / 5
+        }
+    }
+}
+  
+const resizeObserver = new ResizeObserver(resize);
+resizeObserver.observe(canvas, {box: 'content-box'});
 
 // Fullscreen support, including safari
 function fullscreen() {
@@ -148,28 +182,23 @@ function fullscreen() {
     }
 }
 
-window.addEventListener('dblclick', fullscreen)
+// window.addEventListener('dblclick', fullscreen)
 
-/**
- * Animate
- */
-const clock = new THREE.Clock()
-
-const tick = () =>
-{
-    const elapsedTime = clock.getElapsedTime()
-
-    // Update controls
-    // controls.update()
-
-    // Render
-    renderer.render(scene, camera)
-
-    // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+function render() {
+    if (resize(renderer)) {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.position.y = canvas.clientHeight * .5
+        camera.updateProjectionMatrix();
+    }
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
 }
 
-tick()
+window.addEventListener('pointermove', onPointerMove);
+window.requestAnimationFrame(render);
+
+    // Call tick again on the next frame
+    // window.requestAnimationFrame(tick)
 
 
 // "12 Inch Vinyl Record EP" (https://skfb.ly/6Z8zV) by finnddot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).

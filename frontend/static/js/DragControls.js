@@ -5,11 +5,10 @@ import {
 	Raycaster,
 	Vector2,
 	Vector3
-} from '../js/three.min.js';
+} from './three.module.js';
 
 const _plane = new Plane();
 const _raycaster = new Raycaster();
-
 const _pointer = new Vector2();
 const _offset = new Vector3();
 const _intersection = new Vector3();

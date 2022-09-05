@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 
+
 {% block title %}
     feeling warm
 {% endblock title %}
+
 
 {% block head %}
 
 <link href="./css/weatherblanket.css" rel="stylesheet">
 
+<script src="{{ url_for('static', filename='./js/weatherblanket.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='./js/three.module.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='./js/DragControls.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='./js/threeBlanket.js') }}" type="module"></script> -->
+
 {% endblock head %}
 
+
 {% block main %}
+
 <script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
 
 <canvas id="threeBlanket" class="three"></canvas>
@@ -20,31 +29,37 @@
     <div id="precip-key" class="blanket-key"></div>
     <div id="key-icon"></div>
     <div id="temp-degrees-box">
-        <p id="zerodeg" class="units">0</p>
-        <p id="twentydeg" class="units">20&deg;F</p>
-        <p id="fourtydeg" class="units">40&deg;F</p>
-        <p id="sixtydeg" class="units">60&deg;F</p>
-        <p id="eightydeg" class="units">80&deg;F</p>
-        <p id="hundreddeg" class="units">100&deg;F &plus;</p>
+        <p id="deg0" class="units">0</p>
+        <p id="deg1" class="units">28&deg;F</p>
+        <p id="deg2" class="units">54&deg;F</p>
+        <p id="deg3" class="units">70&deg;F</p>
+        <p id="deg4" class="units">77&deg;F</p>
+        <p id="deg5" class="units">85&deg;F</p>
+        <p id="deg6" class="units">97&deg;F</p>
+        <p id="deg7" class="units">110&deg;F &plus;</p>
     </div>
     <div id="precip-mm-box">
-        <p id="twentyfiveprecip" class="units"></p>
-        <p id="fiftyprecip" class="units"></p>
-        <p id="seventyfiveprecip" class="units"></p>
-        <p id="maxprecip" class="units"></p>
+        <p id="twentyfive-precip" class="units"></p>
+        <p id="fifty-precip" class="units"></p>
+        <p id="seventyfive-precip" class="units"></p>
+        <p id="max-precip" class="units"></p>
     </div>
     <div id="temp-tic-box">
-        <hr id="zerotic" class="temptics">
-        <hr id="tentic" class="temptics">
-        <hr id="twentytic" class="temptics">
-        <hr id="thirtytic" class="temptics">
-        <hr id="fourtytic" class="temptics">
-        <hr id="fiftytic" class="temptics">
-        <hr id="sixtytic" class="temptics">
-        <hr id="seventytic" class="temptics">
-        <hr id="eightytic" class="temptics">
-        <hr id="ninetytic" class="temptics">
-        <hr id="hundredtic" class="temptics">
+        <hr id="tic0" class="temptics">
+        <hr id="tic1" class="temptics">
+        <hr id="tic2" class="temptics">
+        <hr id="tic3" class="temptics">
+        <hr id="tic4" class="temptics">
+        <hr id="tic5" class="temptics">
+        <hr id="tic6" class="temptics">
+        <hr id="tic7" class="temptics">
+        <hr id="tic8" class="temptics">
+        <hr id="tic9" class="temptics">
+        <hr id="tic10" class="temptics">
+        <hr id="tic11" class="temptics">
+        <hr id="tic12" class="temptics">
+        <hr id="tic13" class="temptics">
+        <hr id="tic14" class="temptics">
     </div>
     <div id="precip-tic-box">
         <hr id="precip-tic25" class="preciptics">
@@ -63,7 +78,7 @@
             <script type="text/javascript">
 
                 var dayNum = '{{ daynum }}';
-                var fulltable = JSON.parse('{{ fulltable|tojson|safe }}');
+                var weatherData = JSON.parse('{{ weatherdata|tojson|safe }}');
                 
                 for(let i = 0; i < dayNum; i++){
 
@@ -73,8 +88,8 @@
                     heatBar.setAttribute('id', divIDName);
                     heatBar.setAttribute('class', 'blanket-column');
 
-                    highColor = heatcolorScale(fulltable[i][1]);
-                    lowColor = heatcolorScale(fulltable[i][2]);
+                    highColor = heatcolorScale(weatherData[i]['MAX']);
+                    lowColor = heatcolorScale(weatherData[i]['MIN']);
 
                     heatBar.style.backgroundImage = `linear-gradient(${highColor}, ${lowColor})`;
                     document.getElementById("texturebox").appendChild(heatBar);
@@ -109,8 +124,8 @@
                     rainBar.setAttribute('id', divIDName);
                     rainBar.setAttribute('class', 'blanket-column');
                     rainBar.setAttribute('align', 'left');
-                    rainCoef = raincolorScale(fulltable[i][3], maxRain);
-                    lowTemp = fulltable[i][2];
+                    rainCoef = raincolorScale(weatherData[i]['PRCP'], maxRain);
+                    lowTemp = weatherData[i]['MIN'];
                     lowColor = heatcolorScale(lowTemp);
                     rainBar.style.backgroundImage = `linear-gradient(${lowColor} 60%, #2c48b8)`;
 
@@ -132,16 +147,16 @@
                     document.getElementById("rainbox").appendChild(rainBar)
                 }
 
-                var precip25 = document.getElementById("twentyfiveprecip")
+                var precip25 = document.getElementById("twentyfive-precip")
                     precip25.style.top = '25%';
                     precip25.innerHTML = rainmmConvert(.25, maxRain);
-                var precip50 = document.getElementById("fiftyprecip")
+                var precip50 = document.getElementById("fifty-precip")
                     precip50.style.top = '50%';
                     precip50.innerHTML = rainmmConvert(.50, maxRain);
-                var precip75 = document.getElementById("seventyfiveprecip")
+                var precip75 = document.getElementById("seventyfive-precip")
                     precip75.style.top = '75%';
                     precip75.innerHTML = rainmmConvert(.75, maxRain);
-                var precip100 = document.getElementById("maxprecip")
+                var precip100 = document.getElementById("max-precip")
                     precip100.style.top = '100%';
                     precip100.innerHTML = rainmmConvert(1, maxRain);
                 
@@ -152,21 +167,11 @@
         <div id="blankettext"><p>This is an artistic representation of temperatures and precipitation levels in 
             Austin, TX during 2022. The color of the bars correspond to the maximum daily temperature (at the top)
             and the minimum daily temperature (at the bottom). The drips below the bars indicate precipitation levels
-            for that day. The visual will automatically add one column for each day of the year. Try hovering over the
-            key on the left side of the screen for more info!</p>
+            for that day. The data for this graphic is coming directly from the NCEI API for Camp Mabry.</p>
             <p>This visual is best viewed on desktop or in landscape-mode.</p>
         </div>
 
     </div>
-
-</div>
-
-    <script src="{{ url_for('static', filename='./js/weatherblanket.js') }}" type="module"></script>
-    <script src="{{ url_for('static', filename='./js/three.min.js') }}" type="module"></script>
-    <script src="{{ url_for('static', filename='./js/DragControls.js') }}" type="module">
-        import { DragControls } from '../static/js/DragControls.js'
-    </script>
-    <script src="{{ url_for('static', filename='./js/threeBlanket.js') }}" type="module"></script>
 
 </div>
 
@@ -177,10 +182,10 @@
 <!-- <div id="threeBtn">
 <input type="checkbox" id="threeCheckbox" name="threeCheckbox" onclick="enable3D()">
     <label for="threeBtn">Enable three.js</label>
-</div>
-<br /> -->
+</div> -->
+<!-- <br />
 <a href="https://three-vinyl.herokuapp.com/" target="_blank" rel="noopener noreferrer">Click Here for React-Three-Fiber Version</a>
-<br />
+<br /> -->
 <br />
 <a href="/">home</a>
 |

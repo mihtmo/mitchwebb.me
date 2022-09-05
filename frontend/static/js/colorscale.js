@@ -14,14 +14,23 @@ function heatcolorScale(t){
     else if (t > 45 && t <= 62){
         t = '#bddbd5'
     }
-    else if (t > 62 && t <= 73.5){
+    else if (t > 62 && t <= 67){
         t = '#fff2ce'
     }
-    else if (t > 73.5 && t <= 81){
+    else if (t > 67 && t <= 72){
         t = '#f3b938'
     }
-    else if (t > 81 && t <= 88){
+    else if (t > 72 && t <= 76.9){
+        t = '#ffa42e'
+    }
+    else if (t > 76.9 && t <= 78){
         t = '#fd9415'
+    }
+    else if (t > 78 && t <= 82){
+        t = '#eb6f02'
+    }
+    else if (t > 82 && t <= 88){
+        t = '#eb6702'
     }
     else if (t > 88 && t <= 94){
         t = '#d95700'
@@ -29,8 +38,11 @@ function heatcolorScale(t){
     else if (t > 94 && t <= 100){
         t = '#962101'
     }
-    else{
+    else if (t > 100 && t<= 109){
         t = '#480300'
+    }
+    else{
+        t = '#080000'
     }
     
     return t;

@@ -56,7 +56,7 @@
 
 #temp-key {
     height: 80vh;
-    background-image: linear-gradient(0deg, #2c48b8, #429bd6 17%, #6bbcd1 25%, #9ad0db 33%, #bddbd5 46%, #fff2ce 59%, #f3b938 67%, #fd9415 74%, #d95700 79%, #962101 84%, #480300);
+    background-image: linear-gradient(0deg, #2c48b8, #429bd6 6.67%, #6bbcd1 13.33%, #9ad0db 20%, #bddbd5 26.67%, #fff2ce 33.33%, #f3b938 40%, #ffa42e 46.67%, #fd9415 53.33%, #eb6f02 60%, #eb6702 66.67%, #d95700 73.33%, #962101 80%, #480300 86.67%, #080000);
 }
 
 #precip-key {
@@ -105,64 +105,78 @@
     width: 50px;
 }
 
-#zerodeg {
+#deg0 {
     bottom: 0%;
 }
-
-#twentydeg {
-    bottom: 20%
+#deg1 {
+    bottom: calc(100%/7)
 }
-
-#fourtydeg {
-    bottom: 40%
+#deg2 {
+    bottom: calc(200%/7)
 }
-
-#sixtydeg {
-    bottom: 60%
+#deg3 {
+    bottom: calc(300%/7)
 }
-
-#eightydeg {
-    bottom: 80%
+#deg4 {
+    bottom: calc(400%/7)
 }
-
-#hundreddeg {
+#deg5 {
+    bottom: calc(500%/7)
+}
+#deg6 {
+    bottom: calc(600%/7)
+}
+#deg7 {
     top:-16px;
 }
 
-#zerotic {
+#tic0 {
     bottom: 0;
 }
 
-#tentic {
-    bottom: 10%;
+#tic1 {
+    bottom: calc(100%/14)
 }
-#twentytic {
-    bottom: 20%;
+#tic2 {
+    bottom: calc(200%/14)
 }
-#thirtytic {
-    bottom: 30%;
+#tic3 {
+    bottom: calc(300%/14)
 }
-#fourtytic {
-    bottom: 40%;
+#tic4 {
+    bottom: calc(400%/14)
 }
-#fiftytic {
-    bottom: 50%;
+#tic5 {
+    bottom: calc(500%/14)
 }
-#sixtytic {
-    bottom: 60%;
+#tic6 {
+    bottom: calc(600%/14)
 }
-#seventytic {
-    bottom: 70%;
+#tic7 {
+    bottom: calc(700%/14)
 }
-#eightytic {
-    bottom: 80%;
+#tic8 {
+    bottom: calc(800%/14)
 }
-#ninetytic {
-    bottom: 90%;
+#tic9 {
+    bottom: calc(900%/14)
 }
-#hundredtic {
+#tic10 {
+    bottom: calc(1000%/14)
+}
+#tic11 {
+    bottom: calc(1100%/14)
+}
+#tic12 {
+    bottom: calc(1200%/14)
+}
+#tic13 {
+    bottom: calc(1300%/14)
+}
+#tic14 {
     top: 0%;
 }
+
 
 #precip-tic25 {
     top: calc(80vh + calc(40vh * .25));
@@ -277,8 +291,11 @@
 #threeBlanket {
     position: relative; 
     margin: auto;
+    margin-top: 5vh;
     outline: none;
     display: none;
+    width: 90vw;
+    height: 100vh;
 
 }
 
