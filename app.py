@@ -6,15 +6,15 @@ import os
 # import psycopg2
 import json
 
-mitchwebb = Flask(__name__, static_url_path='', static_folder='frontend/static', template_folder='frontend/templates')
+app = Flask(__name__, static_url_path='', static_folder='frontend/static', template_folder='frontend/templates')
 
-@mitchwebb.route("/")
+@app.route("/")
 def frontpage():
     # Show front page
     return render_template("index.html")
 
 
-@mitchwebb.route("/spottedlanternfly")
+@app.route("/spottedlanternfly")
 def slfly():
     
     ### Original Database Method Abandoned after Heroku Changed Pricing ###
@@ -76,19 +76,19 @@ def slfly():
     return render_template("lanternfly.html")
 
 
-@mitchwebb.route("/me")
+@app.route("/me")
 def aboutme():
     # Show about me page
     return render_template("me.html")
 
 
-@mitchwebb.route("/contact")
+@app.route("/contact")
 def contact():
     # Show contact page
     return render_template("contact.html")
 
 
-@mitchwebb.route("/weatherblanket", methods=['GET', 'POST'])
+@app.route("/weatherblanket", methods=['GET', 'POST'])
 def wblanket():
     
     today = date.today()
@@ -117,7 +117,7 @@ def wblanket():
     return render_template("weatherblanket.html", weatherdata=weatherdata, daynum=daynum, max_rain=max_rain)
 
 
-@mitchwebb.route("/discography", methods=['GET', 'POST'])
+@app.route("/discography", methods=['GET', 'POST'])
 def discography():
 
     # Open select_discography.csv and read into variable
@@ -129,20 +129,20 @@ def discography():
     return render_template("discography.html", discographydata = discographydata, disccount = disccount)
 
 
-@mitchwebb.route("/projects")
+@app.route("/projects")
 def projects():
     
     # Show projects page
     return render_template("projects.html")
 
 
-@mitchwebb.route("/touchgrass")
+@app.route("/touchgrass")
 def touchgrass():
     
     # Show touch grass page
     return render_template("touchgrass.html")
 
-@mitchwebb.route("/presentation")
+@app.route("/presentation")
 def presentation():
     
     # Show touch grass page
