@@ -11,7 +11,8 @@ def spottedlanternfly():
     
     with open('frontend/static/js/observations.js', 'a') as file:
         
-        # Delete all observations leaving geojson starter text and variable name
+        # Delete all observations starting at the first 2022 result (manually determined)
+        # Then pull rest of year. This is a temporary solution.
         file.seek(0)
         file.seek(file.tell() + 3663255, os.SEEK_SET)
         file.truncate()
