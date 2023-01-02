@@ -11,19 +11,19 @@ def spottedlanternfly():
     
     with open('frontend/static/js/observations.js', 'a') as file:
         
-        # Delete all observations starting at the first 2022 result (manually determined)
-        # Then pull rest of year. This is a temporary solution.
+        # Delete all observations starting at the first 2023 result (manually determined)
+        # Then pull rest of year. This is a temporary solution and will not work forever.
         file.seek(0)
-        file.seek(file.tell() + 3663255, os.SEEK_SET)
+        file.seek(file.tell() + 6478420, os.SEEK_SET)
         file.truncate()
         
         # Sidestep pull restrictions
-        for i in range(1, 50):
+        for i in range(1, 60):
             
             try:
                 # Connect to inaturalist API
                 site = "https://api.inaturalist.org/v1"
-                endpoint = "/observations?place_id=1&taxon_id=324726&quality_grade=research&year=2022&page={}&per_page=200&order=desc&order_by=created_at".format(i)
+                endpoint = "/observations?place_id=1&taxon_id=324726&quality_grade=research&year=2023&page={}&per_page=200&order=desc&order_by=created_at".format(i)
                 
                 response = get("{}{}".format(site, endpoint))
                 response.raise_for_status()
