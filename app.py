@@ -92,7 +92,7 @@ def contact():
 def wblanket():
     
     today = date.today()
-    delta = date.timedelta(days = 365)
+    delta = timedelta(days = 365)
     first_day = today - delta
     
     # Connect to NCEI API for 2022
