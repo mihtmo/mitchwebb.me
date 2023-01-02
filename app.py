@@ -92,11 +92,13 @@ def contact():
 def wblanket():
     
     today = date.today()
+    delta = date.timedelta(days = 365)
+    first_day = today - delta
     
     # Connect to NCEI API for 2022
     site = "https://www.ncei.noaa.gov/access"
     endpoint = "/services/data/v1?dataset=global-summary-of-the-day&stations=72254413958&" \
-               "startDate=2022-01-01&endDate={}&dataTypes=MAX,MIN,PRCP&format=json".format(today)
+               "startDate={}&endDate={}&dataTypes=MAX,MIN,PRCP&format=json".format(first_day, today)
 
     response = get("{}{}".format(site, endpoint))
     weatherdata = response.json()
