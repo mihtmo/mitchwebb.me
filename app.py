@@ -6,7 +6,7 @@ import os
 # import psycopg2
 import json
 
-app = Flask(__name__, static_url_path='', static_folder='../frontend/static', template_folder='../frontend/templates')
+app = Flask(__name__, static_url_path='', static_folder='./frontend/static', template_folder='./frontend/templates')
 
 @app.route("/")
 def frontpage():
