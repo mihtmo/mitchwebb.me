@@ -6,59 +6,45 @@
 
 {% endblock title %}
 
-{% block main %}
+{% block head %}
+
+    <script src="{{ url_for('static', filename='js/discog.js') }}"></script>
+
+{% endblock head %}
+
+{% block body %}
 
     <div class="centered">
-
-        <div id="titlebox" style="padding-bottom: 0px;">Select Discography</div>
-        <div id="textbox">Producer (P) <br>
-                          Engineer (E) <br>
-                          Mixer (M) <br>
-                          Composer (C) <br>
-                          Performer (PE) <br>
-                          <p>Here are a few of the musical projects I've been a part of:</p></div>
-
-        <div id="discography">
-            
-            <script>
-
-                var discographydata = {{ discographydata|tojson|safe }};
-                var disccount = {{ disccount }};
-
-                for(let i = 1; i < disccount; i++){
-                    newdiv = document.createElement('a');
-                    // Give newdiv link
-                    newdiv.setAttribute('href', `${discographydata[i][5]}`);
-                    newdiv.setAttribute('target', '_blank');
-                    newdiv.setAttribute('rel', 'noopener noreferrer');
-                    // Name newdivs in order for css needs
-                    divIDName = 'album'+i;
-                    newdiv.setAttribute('id', divIDName);
-                    newdiv.setAttribute('class', 'album');
-                    // Include album image
-                    const albumart = document.createElement('img');
-                    albumart.setAttribute('class', 'albumart');
-                    albumart.setAttribute('name', `${discographydata[i][3]}`);
-                    albumart.src  = `./images/${discographydata[i][3]}`;
-                    albumart.style.height = '15vw';
-                    // Attach descriptions in hover object
-                    const albumdescription = document.createElement('p');
-                    albumdescription.setAttribute('class', 'albumdescription');
-                    albumdescription.innerHTML = `${discographydata[i][1]}</br>${discographydata[i][2]}</br>${discographydata[i][4]}`;
-                    newdiv.appendChild(albumart);
-                    newdiv.appendChild(albumdescription);
-                    document.getElementById("discography").appendChild(newdiv);
-                }
-
-            </script>
-
+        <div class="titlebox">
+            <h3 class="section-title">Select Discography</h3>
+            <ul id="role-titles">
+                <li>Producer (P)</li>
+                <li>Engineer (E)</li>
+                <li>Mixer (M)</li>
+                <li>Composer (C)</li>
+                <li>Performer (PE)</li>
+            </ul>
+            <p id="discog-description">
+                Here are a few of the musical projects I've been a part of.
+                Give 'em a hover to see more info, or give 'em a click to go to
+                the artist's page!
+            </p>
         </div>
 
+        <div id="discography">
+           <script>
+                discogData = JSON.parse('{{ discographyData|tojson|safe }}');
+                discCount = '{{ discCount }}';
+                createDiscogGallery(discogData, discCount)
+            </script>
+        </div>
     </div>
 
-{% endblock main %}
+{% endblock body %}
 
 {% block footer %}
+
     <a href="/">home</a>
     |
+
 {% endblock footer %}

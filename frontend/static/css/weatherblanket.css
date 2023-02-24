@@ -8,42 +8,65 @@
     position: relative;
 }
 
-#temp-key:after {
+#weatherblanket-wrapper:after {
     content:'';
     display:block;
     position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    width: 80vw;
+    height: 80vh;
     background-image: url("../images/simple-texture.png");
     background-size: auto;
+    pointer-events: none;
 }
 
-#texturebox {
-    width: 100%;
-    height: 100%;
-    background-image: url("../images/simple-texture.png");
-    background-size: contain;
-    position: relative;
+#weatherblanket-wrapper {
     transition: 1s;
-    display: flex;
-}
-
-#blankets {
-    transition: 1s ease;
     width: 80vw;
-    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+    
 }
 
-.blanket-column {
-    height: 100%;
-    float: left;
-    z-index:-1;
-    position: relative;
-    min-height: 1px;
-    display: flex;
+.heat-column {
     flex: 1;
+    max-height: 80vh;
+    z-index: -1;
+}
+
+.rain-column {
+    z-index: -1;
+}
+
+.day-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.weather-tooltip {
+    display: none;
+    position: absolute;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    pointer-events: none;
+    text-align: left;
+    padding: 1em 1em;
+    box-sizing: border-box;
+    width: 250px;
+    z-index: 3;
+}
+
+.tooltip-header {
+    margin: .5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tooltip-data {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .blanket-key {
@@ -54,20 +77,23 @@
     left: 0;
 }
 
-#temp-key {
+#heat-key {
     height: 80vh;
     background-image: linear-gradient(0deg, #2c48b8, #429bd6 6.67%, #6bbcd1 13.33%, #9ad0db 20%, #bddbd5 26.67%, #fff2ce 33.33%, #f3b938 40%, #ffa42e 46.67%, #fd9415 53.33%, #eb6f02 60%, #eb6702 66.67%, #d95700 73.33%, #962101 80%, #480300 86.67%, #080000);
+}
+
+#degrees-wrapper {
+    margin-left: 2vw;
 }
 
 #precip-key {
     height: 40vh;
     background-color: #2c48b8;
     top: 80vh;
-    border-bottom-left-radius: 2.5vw;
-    border-bottom-right-radius: 2.5vw;
+    border-radius: 0 0 2.5vw 2.5vw;
 }
 
-.temptics, .preciptics {
+.heat-tic, .precip-tic {
     position: absolute;
     width: 1vw;
     left: 0;
@@ -75,26 +101,34 @@
     margin-top: 0;
     margin-bottom: 0;
     opacity: 20%;
-    transition: 1s;
 }
 
-#temp-degrees-box{
-    position: absolute;
+#heat-key-wrapper{
     opacity: 0%;
     transition: 1s;
-    height: 100%;
+    height: 80vh;
     text-align: right;
-    margin-top: 8px;
+    position: relative;
+    margin-top: 2px;
 }
 
-#precip-mm-box{
+#precip-key-wrapper {
     position: absolute;
     opacity: 0%;
     transition: 1s;
     top: 80vh;
     height: 40vh;
     text-align: right;
-    margin-top: -24px;
+}
+
+#precip-tic-wrapper{
+    width: 5vw;
+    height: 100%;
+    position: absolute;
+}
+
+#inch-wrapper {
+    margin-left: 2vw;
 }
 
 .units {
@@ -105,97 +139,12 @@
     width: 50px;
 }
 
-#deg0 {
-    bottom: 0%;
-}
-#deg1 {
-    bottom: calc(100%/7)
-}
-#deg2 {
-    bottom: calc(200%/7)
-}
-#deg3 {
-    bottom: calc(300%/7)
-}
-#deg4 {
-    bottom: calc(400%/7)
-}
-#deg5 {
-    bottom: calc(500%/7)
-}
-#deg6 {
-    bottom: calc(600%/7)
-}
-#deg7 {
-    top:-16px;
-}
-
-#tic0 {
-    bottom: 0;
-}
-
-#tic1 {
-    bottom: calc(100%/14)
-}
-#tic2 {
-    bottom: calc(200%/14)
-}
-#tic3 {
-    bottom: calc(300%/14)
-}
-#tic4 {
-    bottom: calc(400%/14)
-}
-#tic5 {
-    bottom: calc(500%/14)
-}
-#tic6 {
-    bottom: calc(600%/14)
-}
-#tic7 {
-    bottom: calc(700%/14)
-}
-#tic8 {
-    bottom: calc(800%/14)
-}
-#tic9 {
-    bottom: calc(900%/14)
-}
-#tic10 {
-    bottom: calc(1000%/14)
-}
-#tic11 {
-    bottom: calc(1100%/14)
-}
-#tic12 {
-    bottom: calc(1200%/14)
-}
-#tic13 {
-    bottom: calc(1300%/14)
-}
-#tic14 {
-    top: 0%;
-}
-
-
-#precip-tic25 {
-    top: calc(80vh + calc(40vh * .25));
-}
-#precip-tic50 {
-    top: calc(80vh + calc(40vh * .5));
-}
-#precip-tic75 {
-    top: calc(80vh + calc(40vh * .75));
-}
-#precip-tic100 {
-    top: 120vh;
-}
-
-#keybox {
-    position: absolute;
+#key-wrapper {
+    position: relative;
+    display: flex;
+    height: 125vh;
     width: 10vw;
-    height: 80vh;
-    left: 0;
+    transition: 1s;
 }
 
 #key-icon {
@@ -214,35 +163,53 @@
     transition: 1s;
 }
 
-#keybox:hover > .blanket-key{
+#weather-page-wrapper {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5vh;
+}
+
+#weather-bars {
+    display: flex;
+    height: 100%;
+    width: 80vw;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#key-wrapper:hover {
+    width: 18vw;
+}
+
+#key-wrapper:hover > .blanket-key{
     width: 5vw;
     opacity: 100%;
 }
 
-#keybox:hover .preciptics {
+#key-wrapper:hover .precip-tic {
     width: 95vw;
 }
 
-#temp-tic-box {
+#heat-tic-wrapper {
     width: 5vw;
-    height: 100%;
+    height: 80vh;
     position: absolute;
 }
 
-#keybox:hover #key-icon {
+#key-wrapper:hover #key-icon {
     opacity: 0%;
 }
 
-#keybox:hover ~ #blankets {
+#key-wrapper:hover ~ #blankets {
     transform: translateX(9vw);
 }
 
-#keybox:hover #temp-degrees-box, #keybox:hover #precip-mm-box {
-    transform: translateX(calc(6.5vw + 5px));
+#key-wrapper:hover #heat-key-wrapper, #key-wrapper:hover #precip-key-wrapper {
+    transform: translateX(calc(5vw));
     opacity: 100%;
 }
 
-#keybox:hover .temptics, #keybox:hover .preciptics {
+#key-wrapper:hover #key-wrapper:hover {
     transform: translateX(5vw);
 }
 
@@ -261,16 +228,21 @@
     display: flex;
 }
 
-#blankettext {
-    position: absolute;
-    z-index: -2;
-    width: 80%;
+#blanket-text {
+    background-color: var(--background);
+    font-weight: bold;
+    opacity: 60%;
+    z-index: 1;
+    max-width: 80%;
     margin: auto;
-    padding-top: 3%;
-    font-size: min(2vh, 3vw);
-    height: 35vh;
+    margin-top: 82vh;
+    font-size: 16px;
+    top: calc(80vh + 50px);
     left: 10%;
     transition: 1s;
+    grid-column: 1;
+    grid-row: 1;
+    box-shadow: 0 0 5px 5px var(--background);
   }
 
 .tooltip {
@@ -299,7 +271,7 @@
 
 }
 
-#threeBtn {
+#three-button {
     margin-top: 50px;
     margin-bottom: 50px;
 }

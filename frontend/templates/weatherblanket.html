@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
 
 {% block title %}
@@ -8,185 +8,71 @@
 
 {% block head %}
 
-<link href="./css/weatherblanket.css" rel="stylesheet">
-
-<script src="{{ url_for('static', filename='./js/weatherblanket.js') }}"></script>
-<!-- <script src="{{ url_for('static', filename='./js/three.module.js') }}" type="module"></script>
-<script src="{{ url_for('static', filename='./js/DragControls.js') }}" type="module"></script>
-<script src="{{ url_for('static', filename='./js/threeBlanket.js') }}" type="module"></script> -->
+<link href='./css/weatherblanket.css' rel='stylesheet'>
+<script 
+    src='{{ url_for('static', filename='./js/weatherblanket/weatherblanket.js') }}'>
+</script>
 
 {% endblock head %}
 
 
-{% block main %}
+{% block body %}
 
-<script src="{{ url_for('static', filename='js/colorscale.js') }}"></script>
+<script 
+    src='{{ url_for('static', filename='js/weatherblanket/colorScale.js') }}'>
+</script>
 
-<canvas id="threeBlanket" class="three"></canvas>
+<div id='weather-page-wrapper'>
+    <div id='key-wrapper'>
+        <div id='heat-key' class='blanket-key'></div>
+        <div id='precip-key' class='blanket-key'></div>
+        <div id='key-icon'></div>
+        <div id='heat-key-wrapper'>
+            <div id='heat-tic-wrapper'></div>
+            <div id='degrees-wrapper'></div>
+        </div>
+        <div id='precip-key-wrapper'></div>
+            <div id='inch-wrapper'>
+            </div>
+            <div id='precip-tic-wrapper'>
+            </div>
+    </div>
 
-<div id="keybox" onmouseover="hideText()" onmouseout="showText()">
-    <div id="temp-key" class="blanket-key"></div>
-    <div id="precip-key" class="blanket-key"></div>
-    <div id="key-icon"></div>
-    <div id="temp-degrees-box">
-        <p id="deg0" class="units">0</p>
-        <p id="deg1" class="units">28&deg;F</p>
-        <p id="deg2" class="units">54&deg;F</p>
-        <p id="deg3" class="units">70&deg;F</p>
-        <p id="deg4" class="units">77&deg;F</p>
-        <p id="deg5" class="units">85&deg;F</p>
-        <p id="deg6" class="units">97&deg;F</p>
-        <p id="deg7" class="units">110&deg;F &plus;</p>
-    </div>
-    <div id="precip-mm-box">
-        <p id="twentyfive-precip" class="units"></p>
-        <p id="fifty-precip" class="units"></p>
-        <p id="seventyfive-precip" class="units"></p>
-        <p id="max-precip" class="units"></p>
-    </div>
-    <div id="temp-tic-box">
-        <hr id="tic0" class="temptics">
-        <!-- <hr id="tic1" class="temptics"> -->
-        <hr id="tic2" class="temptics">
-        <!-- <hr id="tic3" class="temptics"> -->
-        <hr id="tic4" class="temptics">
-        <!-- <hr id="tic5" class="temptics"> -->
-        <hr id="tic6" class="temptics">
-        <!-- <hr id="tic7" class="temptics"> -->
-        <hr id="tic8" class="temptics">
-        <!-- <hr id="tic9" class="temptics"> -->
-        <hr id="tic10" class="temptics">
-        <!-- <hr id="tic11" class="temptics"> -->
-        <hr id="tic12" class="temptics">
-        <!-- <hr id="tic13" class="temptics"> -->
-        <hr id="tic14" class="temptics">
-    </div>
-    <div id="precip-tic-box">
-        <hr id="precip-tic25" class="preciptics">
-        <hr id="precip-tic50" class="preciptics">
-        <hr id="precip-tic75" class="preciptics">
-        <hr id="precip-tic100" class="preciptics">
+    <div id='weatherblanket-wrapper'>
+        <div id='weather-bars'>
+            <script type='text/javascript'>
+                let dayNum = '{{ daynum }}';
+                let weatherData = JSON.parse('{{ weatherdata|tojson|safe }}');
+                let maxRain = '{{ max_rain }}'
+                createWeatherblanket(dayNum, weatherData, maxRain);
+            </script>
+        </div>
+        <div id='blanket-text'>
+            <p>
+                This is an artistic representation of temperatures and precipitation 
+                levels in Austin, TX for the past 365 days. The color of the bars 
+                correspond to the maximum daily temperature (at the top) and the 
+                minimum daily temperature (at the bottom). The drips below the bars 
+                indicate precipitation levels for that day. The data for this graphic 
+                is coming directly from the NCEI API for Camp Mabry.
+            </p>
+            <p>
+                Try hovering over the main graphic or the key on the left for more 
+                information!
+            </p>
+            <p>
+                This visual is best viewed on desktop or in landscape-mode.
+            </p>
+        </div>
     </div>
 </div>
 
-<div id="blankets">
+{% endblock body %}
 
-    <div id="heatblanket">
-    
-        <div id="texturebox">
-
-            <script type="text/javascript">
-
-                var dayNum = '{{ daynum }}';
-                var weatherData = JSON.parse('{{ weatherdata|tojson|safe }}');
-                
-                for(let i = 0; i < dayNum; i++){
-
-                    heatBar = document.createElement('div');
-                    divIDName = 'day'+i;
-
-                    heatBar.setAttribute('id', divIDName);
-                    heatBar.setAttribute('class', 'blanket-column');
-
-                    highColor = heatcolorScale(weatherData[i]['MAX']);
-                    lowColor = heatcolorScale(weatherData[i]['MIN']);
-
-                    heatBar.style.backgroundImage = `linear-gradient(${highColor}, ${lowColor})`;
-                    document.getElementById("texturebox").appendChild(heatBar);
-                }
-
-            </script>
-
-        </div>
-
-    </div>
-
-    <div id="rainblanket">
-        
-        <div id="rainbox">
-
-            <script type="text/javascript">
-
-                function hideText(){
-                    document.getElementById("blankettext").style.opacity = '0%'
-                }
-                function showText(){
-                    document.getElementById("blankettext").style.opacity = '100%'
-                }
-
-                // Variable of the half-width of each column, used for rounding corners
-                var halfwidth = ((.8*(window.innerWidth))/(dayNum * 2)) + 'px'
-                var maxRain = '{{ max_rain }}'
-
-                for(let i = 0; i < dayNum; i++){
-                    rainBar = document.createElement('div');
-                    divIDName = 'day'+i;
-                    rainBar.setAttribute('id', divIDName);
-                    rainBar.setAttribute('class', 'blanket-column');
-                    rainBar.setAttribute('align', 'left');
-                    rainCoef = raincolorScale(weatherData[i]['PRCP'], maxRain);
-                    lowTemp = weatherData[i]['MIN'];
-                    lowColor = heatcolorScale(lowTemp);
-                    rainBar.style.backgroundImage = `linear-gradient(${lowColor} 60%, #2c48b8)`;
-
-                    // Create invisible placeholder divs or drips of representative length
-                    if (rainCoef == 0){
-                        rainBar.style.height = '1px'
-                        rainBar.style.opacity = '0%'
-                    }
-                    else {
-                        rainBar.style.height = (rainCoef * 100) + '%'
-                    }
-
-                    // Round bottom ends of drips
-                    if (rainCoef !== 0){
-                        rainBar.style.borderBottomLeftRadius = halfwidth
-                        rainBar.style.borderBottomRightRadius = halfwidth
-                    }
-
-                    document.getElementById("rainbox").appendChild(rainBar)
-                }
-
-                var precip25 = document.getElementById("twentyfive-precip")
-                    precip25.style.top = '25%';
-                    precip25.innerHTML = rainmmConvert(.25, maxRain);
-                var precip50 = document.getElementById("fifty-precip")
-                    precip50.style.top = '50%';
-                    precip50.innerHTML = rainmmConvert(.50, maxRain);
-                var precip75 = document.getElementById("seventyfive-precip")
-                    precip75.style.top = '75%';
-                    precip75.innerHTML = rainmmConvert(.75, maxRain);
-                var precip100 = document.getElementById("max-precip")
-                    precip100.style.top = '100%';
-                    precip100.innerHTML = rainmmConvert(1, maxRain);
-                
-            </script>
-
-        </div>
-        
-        <div id="blankettext"><p>This is an artistic representation of temperatures and precipitation levels in 
-            Austin, TX for the past 365 days. The color of the bars correspond to the maximum daily temperature (at the top)
-            and the minimum daily temperature (at the bottom). The drips below the bars indicate precipitation levels
-            for that day. The data for this graphic is coming directly from the NCEI API for Camp Mabry.</p>
-            <p>This visual is best viewed on desktop or in landscape-mode.</p>
-        </div>
-
-    </div>
-
-</div>
-
-{% endblock main %}
 
 {% block footer %}
 
-<!-- <div id="threeBtn">
-<input type="checkbox" id="threeCheckbox" name="threeCheckbox" onclick="enable3D()">
-    <label for="threeBtn">Enable three.js</label>
-</div> -->
-<!-- <br />
-<a href="https://three-vinyl.herokuapp.com/" target="_blank" rel="noopener noreferrer">Click Here for React-Three-Fiber Version</a>
-<br /> -->
-<br />
-<a href="/">home</a>
+<a href='/'>home</a>
 |
+
 {% endblock footer %}

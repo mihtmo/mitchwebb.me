@@ -1,0 +1,55 @@
+/* noUi Slider Overrides */
+
+.noUi-value, .noUi-value-horizontal, .noUi-value-large {
+    margin-top: 5px;
+    width: 90%;
+}
+
+.noUi-horizontal {
+    width: 75% !important;
+}
+
+.noUi-pips-horizontal {
+    overflow: hidden;
+}
+
+.noUi-target {
+    width: 85%;
+    margin: auto;
+}
+
+.noUi-connects {
+    background: #fffcf2;
+}
+
+.noUi-connect {
+    background: #f2dc83 !important;
+}
+
+#timeline_info {
+    margin: 10px 0;
+}
+
+/* Slider disabled state */
+
+ [disabled = "true"] .noUi-connect {
+    background: #eaeaea !important;
+ }
+ [disabled = "true"] .noUi-connects {
+    background: #f7f7f7 !important;
+ }
+ [disabled = "true"] .noUi-target,
+ [disabled = "true"] .noUi-handle,
+ [disabled = "true"] .noUi-handle {
+    cursor: not-allowed;
+ }
+
+ [disabled = "true"] .noUi-pips,
+ [disabled = "true"] .noUi-pips-horizontal {
+    opacity: 50%;
+ }
+
+/* Leaflet Overrides */
+.leaflet-container {
+    font-family: 'Montserrat', sans-serif !important;
+}

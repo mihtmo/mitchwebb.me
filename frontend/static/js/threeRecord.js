@@ -11,21 +11,21 @@ const scene = new THREE.Scene()
 
 // Create Record Jacket Components
 // Textures
-const jacketface_texture = texture.load('../images/imaginarydeadlines-jacket-front.png');
-const jacketback_texture = texture.load('../images/imaginarydeadlines-jacket-back.png');
+const jacketfaceTexture = texture.load('../images/imaginarydeadlines-jacket-front.png');
+const jacketbackTexture = texture.load('../images/imaginarydeadlines-jacket-back.png');
 // Geometry
-const jacketface_geo = new THREE.BoxGeometry(314.3, 314.3, 1)
-const jacketside_geo = new THREE.BoxGeometry(314.3, 1, 2)
+const jacketfaceGeo = new THREE.BoxGeometry(314.3, 314.3, 1)
+const jacketsideGeo = new THREE.BoxGeometry(314.3, 1, 2)
 // Materials
-const jacketface_mat = new THREE.MeshBasicMaterial({ map: jacketface_texture })
-const jacketback_mat = new THREE.MeshBasicMaterial({ map: jacketback_texture })
-const jacketside_mat = new THREE.MeshBasicMaterial({ color: '#b9805d' })
+const jacketfaceMat = new THREE.MeshBasicMaterial({ map: jacketfaceTexture })
+const jacketbackMat = new THREE.MeshBasicMaterial({ map: jacketbackTexture })
+const jacketsideMat = new THREE.MeshBasicMaterial({ color: '#b9805d' })
 // Meshes
-const jacketface = new THREE.Mesh(jacketface_geo, jacketface_mat)
-const jacketback = new THREE.Mesh(jacketface_geo, jacketback_mat)
-const jackettop = new THREE.Mesh(jacketside_geo, jacketside_mat)
-const jacketside = new THREE.Mesh(jacketside_geo, jacketside_mat)
-const jacketbot = new THREE.Mesh(jacketside_geo, jacketside_mat)
+const jacketface = new THREE.Mesh(jacketfaceGeo, jacketfaceMat)
+const jacketback = new THREE.Mesh(jacketfaceGeo, jacketbackMat)
+const jackettop = new THREE.Mesh(jacketsideGeo, jacketsideMat)
+const jacketside = new THREE.Mesh(jacketsideGeo, jacketsideMat)
+const jacketbot = new THREE.Mesh(jacketsideGeo, jacketsideMat)
 
 // Jacket elements repositioning
 jacketback.position.z = -3
@@ -40,13 +40,13 @@ jacket.add(jacketface, jacketback, jackettop, jacketside, jacketbot)
 scene.add(jacket)
 
 // Create Vinyl
-const vinylfront_texture = texture.load('../images/imaginarylp-side1.png')
-const vinyl_bump = texture.load('../images/vinyl-bump.png')
-const vinyl_geo = new THREE.CylinderGeometry(150, 150, 2, 64, 3)
-const vinyl_mat = new THREE.MeshBasicMaterial({ map: vinylfront_texture })
-vinyl_mat.transparent = true
-const vinyl_matb = new THREE.MeshPhongMaterial({ bumpMap: vinyl_bump })
-const vinyl = new THREE.Mesh(vinyl_geo, vinyl_mat, vinyl_matb)
+const vinylfrontTexture = texture.load('../images/imaginarylp-side1.png')
+const vinylBump = texture.load('../images/vinyl-bump.png')
+const vinylGeo = new THREE.CylinderGeometry(150, 150, 2, 64, 3)
+const vinylMat = new THREE.MeshBasicMaterial({ map: vinylfrontTexture })
+vinylMat.transparent = true
+const vinylMatB = new THREE.MeshPhongMaterial({ bumpMap: vinylBump })
+const vinyl = new THREE.Mesh(vinylGeo, vinylMat, vinylMatB)
 
 vinyl.position.set(100, 0, -1.5)
 vinyl.rotation.x = Math.PI / 2
@@ -127,20 +127,15 @@ window.addEventListener('dblclick', fullscreen)
  */
 const clock = new THREE.Clock()
 
-const tick = () =>
-{
+function tick() {
     const elapsedTime = clock.getElapsedTime()
-
     // Update controls
     controls.update()
-
     // Render
     renderer.render(scene, camera)
-
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
-
 tick()
 
 

@@ -3,6 +3,7 @@
 {% block head %}
 
     <link href="./css/record-viewer.css" rel="stylesheet">
+    <script src="https://threejs.org/build/three.js"></script> 
 
 {% endblock head %}
 
@@ -13,64 +14,157 @@
 {% endblock title %}
 
 
-{% block main %}
+{% block body %}
 
         <div class="centered">
-        <div id="inprogress"><h5>This page is in progress. Assets are temporary/borrowed and do not represent a real album.</h5></div>
+        <div id="in-progress">
+            <h5>
+                This page is in progress. Assets are temporary/borrowed and do 
+                not represent a real album.
+            </h5>
+        </div>
         <canvas id="threeRecord" class="three"></canvas>
         <div id="dummy-container">
-            <div id="record-container" onclick="">
-                <div id="jacket-front" onclick=""></div>
-                <div id="jacket-thickness" onclick=""></div>
-                <div id="jacket-back" onclick="">
-                    <div id="jacket-back-slider" class="back-slider" onclick=""></div>
+            <div id="record-container">
+                <div id="jacket-front"></div>
+                <div id="jacket-thickness"></div>
+                <div id="jacket-back">
+                    <div id="jacket-back-slider" class="back-slider"></div>
                 </div>
-                <div id="vinyl-front" onclick=""></div>
-                <div id="vinyl-back" onclick="">
-                    <div id="vinyl-back-slider" class="back-slider" onclick=""></div>
+                <div id="vinyl-front"></div>
+                <div id="vinyl-back">
+                    <div id="vinyl-back-slider" class="back-slider"></div>
                 </div>
-                <div id="vinyl-arrow" class="icon" onclick="tolinernotes()"></div>
+                <div id="vinyl-arrow" class="icon" onclick=toLinerNotes()></div>
             </div>
         
         </div>
 
-        <div id="rotate-icon" class="icon" onclick="rotaterecord()" onmouseover="retractvinyl()" onmouseout="expandvinyl()"></div>
+        <div 
+            id="rotate-icon" 
+            class="icon" 
+            onclick=rotaterecord() 
+            onmouseover=retractvinyl()
+            onmouseout=expandvinyl()>
+        </div>
 
+        <!-- TODO: Could shorten this by adding some attributes via JS -->
         <div id="sleeve-box">
             <div id="spacer"></div>
             <div id="sleeve">
-                <img id="critterscan" src="{{ url_for('static', filename='./images/critterscan.png') }}" alt="critter">
-                <img id="rockscan" src="{{ url_for('static', filename='./images/rockscan.png') }}" alt="rock">
+                <img 
+                    id="critterscan" 
+                    src="{{ url_for('static', filename='./images/critterscan.png') }}" 
+                    alt="critter"
+                >
+                <img 
+                    id="rockscan" 
+                    src="{{ url_for('static', filename='./images/rockscan.png') }}"
+                    alt="rock"
+                >
                 <div id="goback-arrow" class="icon" onclick="goback()"></div>
-                <img id="text1" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-1intro.png') }}" alt="intro" class="textpng">
-                <img id="text2" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-2twoweeks.png') }}" alt="two weeks" class="textpng">
-                <img id="text3" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-3silverbowgoldenbird.png') }}" alt="silver bow, golden bird" class="textpng">
-                <img id="text4" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-4marimba.png') }}" alt="marimba" class="textpng">
-                <img id="text5" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-5outroabove.png') }}" alt="outro, above" class="textpng">
-                <img id="text6" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-6twostepsoutside.png') }}" alt="two steps outside" class="textpng">
-                <img id="text7" class="sleevetext" onmouseover="boldlyrics(this)" onmouseout="resetlyrics(this)" onclick="singlelyrics(this)" src="{{ url_for('static', filename='./images/sleeve/sleeve-7outrolullaby.png') }}" alt="outro, lullaby" class="textpng">
+                <img 
+                    id="text1" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-1intro.png') }}" 
+                    alt="intro" 
+                    class="textpng"
+                >
+                <img 
+                    id="text2" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-2twoweeks.png') }}" 
+                    alt="two weeks" 
+                    class="textpng">
+                <img 
+                    id="text3" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-3silverbowgoldenbird.png') }}" 
+                    alt="silver bow, golden bird" 
+                    class="textpng"
+                >
+                <img 
+                    id="text4" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-4marimba.png') }}" 
+                    alt="marimba" 
+                    class="textpng"
+                >
+                <img 
+                    id="text5" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-5outroabove.png') }}" 
+                    alt="outro, above" 
+                    class="textpng"
+                >
+                <img 
+                    id="text6" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-6twostepsoutside.png') }}" 
+                    alt="two steps outside" 
+                    class="textpng"
+                >
+                <img 
+                    id="text7" 
+                    class="sleevetext" 
+                    onmouseover="boldlyrics(this)" 
+                    onmouseout="resetlyrics(this)" 
+                    onclick="singlelyrics(this)" 
+                    src="{{ url_for('static', filename='./images/sleeve/sleeve-7outrolullaby.png') }}" 
+                    alt="outro, lullaby" 
+                    class="textpng"
+                >
                 <div id="singlelyrics-text"></div>
-                <iframe id="bandcamp-player" seamless><a href="https://fuvk.bandcamp.com/album/split-death">Touch Grass by Mihtmo</a></iframe>
+                <iframe id="bandcamp-player" seamless>
+                    <a href="https://fuvk.bandcamp.com/album/split-death">
+                        Touch Grass by Mihtmo
+                    </a>
+                </iframe>
             </div>
             <div id="vinyl-arrow-reverse" class="icon" onclick="returntoalbumview()"></div>
             <div id="big-vinyl" class="rotating"></div>
             <div id="jacket-front-large"></div>
         </div>
 
-        <script src="{{ url_for('static', filename='./js/recordViewer.js') }}"></script>
-        <script src="{{ url_for('static', filename='./js/three.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='./js/OrbitControls.js') }}"></script>
-        <script src="{{ url_for('static', filename='./js/threeRecord.js') }}"></script>
+        <script 
+            src="{{ url_for('static', filename='./js/recordViewer.js') }}">
+        </script>
+        <script 
+            type="module" 
+            src="{{ url_for('static', filename='./js/threejs/OrbitControls.js') }}">
+        </script>
+        <script 
+            type="module" 
+            src="{{ url_for('static', filename='./js/threeRecord.js') }}">
+        </script>
 
     </div>
     
-{% endblock main %}
+{% endblock body %}
 
 {% block footer %}
 
-    <div id="threeBtn">
-        <input type="checkbox" id="threeCheckbox" name="threeCheckbox" onclick="enable3D()">
-            <label for="threeBtn">Enable 3D</label>
+    <div id="three-button">
+        <input type="checkbox" id="three-checkbox" name="three-checkbox" onclick="enable3D()">
+        <label for="three-button">Enable Three.js Version (drag to rotate)</label>
     </div>
 
     <a href="/">home</a>

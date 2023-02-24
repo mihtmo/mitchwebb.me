@@ -1,0 +1,1 @@
+flask --app ./backend/app.py --debug run

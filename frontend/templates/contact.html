@@ -7,25 +7,46 @@
 {% block head %}
 {% endblock head %}
 
-{% block main %}
+{% block body %}
  
     <div class="centered">
-
-        <div id="titlebox" style="margin-bottom: 20px;"">thanks for visiting, send me a note!</div>
-
-        <div id="contactform">
-            <form action="https://formspree.io/f/mnqwbdwo" method="POST" style="text-align: left">
-                <label for="email_address" style="text-align: left !important;">your email address *</label><br>
-                    <input type="text" id="email_address" placeholder="so I can get back to you" name="email_address" required><br>
-                <label for="message">your message *</label><br>
-                    <textarea id="message" placeholder="so I know what you're thinking" name="message" required></textarea><br>
-                <input type="submit" id="mybutton" class="g-recaptcha" value="submit" style="float: right;">
+        <h3>
+            Thanks for visiting, 
+            <br/> 
+            feel free to send me a message!
+        </h3>
+        <div id="contact-form">
+            <form 
+                action="https://formspree.io/f/mnqwbdwo" 
+                method="POST" 
+                style="text-align: left"
+            >
+                <label for="email-address"> Your email address * </label>
+                    <br/>
+                <input 
+                    type="text" 
+                    id="email-address" 
+                    placeholder="so I know how to reach out" 
+                    name="email-address" 
+                    required
+                >
+                <br/>
+                <label for="message"> Your message * </label>
+                <br>
+                <textarea 
+                    id="message" 
+                    placeholder="so I know why to reach out" 
+                    name="message" 
+                    required
+                >
+                </textarea>
+                <br>
+                <input type="submit" class="g-recaptcha button" value="submit">
             </form>
         </div>
-
     </div>
 
-{% endblock main %}
+{% endblock body %}
 
 {% block footer %}
 <a href="/">home</a>

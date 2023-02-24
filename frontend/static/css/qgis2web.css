@@ -124,7 +124,7 @@
         background-color: #f8f8f8 !important;
     }
 
-    #observation_map {
+    #observation-map {
         height: 65vh;
         width: 75vw;
         margin: auto;
@@ -154,7 +154,7 @@
         opacity: var(--hex-opacity);
     }
 
-    #maptext {
+    #map-text {
         padding-top: 2px;
         padding-bottom: 2px;
         padding-left: 7px;

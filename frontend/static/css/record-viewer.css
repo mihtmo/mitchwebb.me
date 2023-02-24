@@ -1,6 +1,6 @@
 /* Front Screen */
 
-#inprogress {
+#in-progress {
     margin: auto;
     margin-top: 1vh;
     position: absolute;
@@ -514,7 +514,7 @@
 
 }
 
-#threeBtn {
+#three-button {
     margin-top: 50px;
     margin-bottom: 50px;
 }
