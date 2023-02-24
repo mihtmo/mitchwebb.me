@@ -79,7 +79,6 @@ html[data-theme='forest'] {
         -webkit-filter: drop-shadow(2px 2px 2px var(--background));
         filter: drop-shadow(2px 2px 2px var(--background));
         width:325px; 
-        margin-bottom:-25px;
     }
 
     #critter-backdrop {
