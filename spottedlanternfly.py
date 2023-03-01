@@ -9,7 +9,7 @@ def spottedlanternfly():
 
     # DATABASE_URL = os.environ.get('HEROKU_POSTGRESQL_COPPER_URL')
     
-    with open('../frontend/static/js/lanternfly/observations.js', 'a') as file:
+    with open('./frontend/static/js/lanternfly/observations.js', 'a') as file:
         
         # Delete all observations starting at the first 2023 result (manually determined)
         # Then pull rest of year. This is a temporary solution and will not work forever.
