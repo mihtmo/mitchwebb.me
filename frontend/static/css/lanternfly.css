@@ -7,10 +7,12 @@
 
 .noUi-horizontal {
     width: 75% !important;
+    border: 1px solid var(--border);
 }
 
 .noUi-pips-horizontal {
     overflow: hidden;
+    color: var(--border);
 }
 
 .noUi-target {
@@ -19,11 +21,16 @@
 }
 
 .noUi-connects {
-    background: #fffcf2;
+    background: var(--container-fore);
 }
 
 .noUi-connect {
     background: #f2dc83 !important;
+}
+
+.noUi-handle {
+    background: var(--container-highlight);
+    border: 1px solid var(--border);
 }
 
 #timeline_info {
@@ -33,10 +40,10 @@
 /* Slider disabled state */
 
  [disabled = "true"] .noUi-connect {
-    background: #eaeaea !important;
+    background: var(--container-disabled) !important;
  }
  [disabled = "true"] .noUi-connects {
-    background: #f7f7f7 !important;
+    background: var(--container-shadow) !important;
  }
  [disabled = "true"] .noUi-target,
  [disabled = "true"] .noUi-handle,

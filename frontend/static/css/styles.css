@@ -7,6 +7,10 @@
 html[data-theme='light'] {
     --background: #f7f6f2;
     --background-highlight: #f7f6f2;
+    --container-fore: #eaeaea;
+    --container-highlight: #eeeeee;
+    --container-shadow: #e1e0d6;
+    --container-disabled: #eaeaea;
     --text-primary: #363739;
     --link-hover: #868789;
     --link-active: #161719;
@@ -15,15 +19,13 @@ html[data-theme='light'] {
 html[data-theme='dark'] {
     --background: #292929;
     --background-highlight: #fcfd99;
-    --container-fore: #383838;
-    --text-primary: #c6c6c6;
+    --container-fore: #494949;
+    --container-highlight: #a9a9a9;
+    --container-shadow: #181818;
+    --container-disabled: #676767;
+    --text-primary: #e6e6e6;
     --link-hover: #868686;
     --link-active: #464646;
-}
-
-html[data-theme='forest'] {
-    --background: #212a2e;
-    --text-primary: #F7F8F8;
 }
 
 /* main css for website */
@@ -76,9 +78,15 @@ html[data-theme='forest'] {
     }
 
     #little-critter {
-        -webkit-filter: drop-shadow(2px 2px 2px var(--background));
-        filter: drop-shadow(2px 2px 2px var(--background));
+        transition: all 1s ease-in-out;
         width:325px; 
+    }
+
+    #little-critter:hover {
+        cursor: pointer;
+        transition: all 2s ease-in-out;
+        -webkit-filter: drop-shadow(0px 0px 30px #fe513f);
+        filter: drop-shadow(0px 0px 30px #fe513f);
     }
 
     #critter-backdrop {
@@ -131,12 +139,15 @@ html[data-theme='forest'] {
         display: block;
         margin: 10px 0px 50px auto;
         font-family: 'Montserrat', sans-serif;
-        background-color: #f1f0ec;
+        background-color: var(--container-fore);
         border-radius: 5px;
     }
 
     #read-more-button {
         margin: auto;
+        background-color: var(--container-fore);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
     }
 
     #more-text {
@@ -180,9 +191,20 @@ html[data-theme='forest'] {
     #message {
         height: 40vh;
         max-height: 900px;
-        margin-top:10px;
-        margin-bottom:10px;
-        width: 98.5%;
+        margin: 10px 0px;
+        width: 100%;
+    }
+
+    #submit-button {
+        float: right;
+        border: 1px solid var(--border);
+    }
+
+    .contact-container {
+        background-color: var(--container-fore);
+        border: none;
+        /* padding: 5px 10px; */
+        color: var(--text-primary);
     }
 
       
@@ -205,7 +227,7 @@ html[data-theme='forest'] {
 
     .album {
         position: relative;
-        box-shadow: 0px 6px 6px 0px #e1e0d6;
+        box-shadow: 0px 6px 6px 0px var(--container-shadow);
         margin: auto;
         min-height: 200px;
         max-height: 15vw;
@@ -225,8 +247,8 @@ html[data-theme='forest'] {
         min-height: 200px;
         min-width: 200px;
         top: 0;
-        background: #e1e0d6;
-        color: black;
+        background: var(--container-fore);
+        color: var(--text-primary);
         visibility: hidden;
         opacity: 0;
         margin: auto;
@@ -250,7 +272,7 @@ html[data-theme='forest'] {
 /* Projects Page */
 
     .project-photo {
-        box-shadow: 0px 6px 6px 0px #e1e0d6;
+        box-shadow: 0px 6px 6px 0px var(--container-shadow);
         -webkit-appearance: none;
     }
 

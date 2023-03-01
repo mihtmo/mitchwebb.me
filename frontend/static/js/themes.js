@@ -1,5 +1,5 @@
 // Available Themes
-const themes = ['light', 'dark', 'forest'];
+const themes = ['light', 'dark'];
 
 function nextTheme() {
     // Get current theme
@@ -13,6 +13,8 @@ function nextTheme() {
         themeIndex++;
     }
     const newTheme = themes[themeIndex];
+
+    window.localStorage.setItem('theme', newTheme);
 
     // Set theme
     document.documentElement.setAttribute('data-theme', newTheme);

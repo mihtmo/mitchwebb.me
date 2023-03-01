@@ -22,26 +22,30 @@
                 style="text-align: left"
             >
                 <label for="email-address"> Your email address * </label>
-                    <br/>
+                <br/>
                 <input 
                     type="text" 
                     id="email-address" 
+                    class="contact-container"
                     placeholder="so I know how to reach out" 
                     name="email-address" 
-                    required
-                >
+                    required>
                 <br/>
                 <label for="message"> Your message * </label>
                 <br>
                 <textarea 
                     id="message" 
+                    class="contact-container"
                     placeholder="so I know why to reach out" 
                     name="message" 
-                    required
-                >
-                </textarea>
+                    required></textarea>
                 <br>
-                <input type="submit" class="g-recaptcha button" value="submit">
+                <input 
+                    id="submit-button"
+                    class="contact-container" 
+                    type="submit" 
+                    class="g-recaptcha button" 
+                    value="submit">
             </form>
         </div>
     </div>
