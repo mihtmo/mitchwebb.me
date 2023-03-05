@@ -180,7 +180,7 @@ function createWeatherblanket(dayNum, weatherData, maxRain) {
         document.querySelector('#blanket-text').style.opacity = '0%'
     }
     function showText(){
-        document.querySelector('#blanket-text').style.opacity = '100%'
+        document.querySelector('#blanket-text').style.opacity = '60%'
     }
 
     // Create visuals and datapoints for key

@@ -229,9 +229,7 @@
 }
 
 #blanket-text {
-    background-color: var(--background);
     font-weight: bold;
-    opacity: 60%;
     z-index: 1;
     max-width: 80%;
     margin: auto;
@@ -242,7 +240,13 @@
     transition: 1s;
     grid-column: 1;
     grid-row: 1;
+    opacity: 60%;
+    background-color: var(--background);
     box-shadow: 0 0 5px 5px var(--background);
+  }
+
+  #blanket-text:hover {
+    opacity: 100% !important;
   }
 
 .tooltip {

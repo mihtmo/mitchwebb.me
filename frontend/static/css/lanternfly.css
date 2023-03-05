@@ -33,6 +33,10 @@
     border: 1px solid var(--border);
 }
 
+.noUi-handle::after, .noUi-handle::before {
+    background: var(--border);
+}
+
 #timeline_info {
     margin: 10px 0;
 }
@@ -59,4 +63,13 @@
 /* Leaflet Overrides */
 .leaflet-container {
     font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Other */
+#lanternfly-text {
+    margin-top: 65px;
+    margin-bottom: 2em;
+}
+#observation-map {
+    border: 1px solid var(--border);
 }
