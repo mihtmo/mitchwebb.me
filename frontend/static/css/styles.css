@@ -348,13 +348,13 @@ html[data-theme='dark'] {
     .project-header {
         /* Make the caption a block so it occupies its own line. */
         display: block;
+    
         /* border: 1px dotted var(--border);
         background-color: var(--container-fore); */
     }
 
     .project-header h3 {
         margin: .5em auto;
-        white-space: nowrap;
     }
 
     .project-description {
