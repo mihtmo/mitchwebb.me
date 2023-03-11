@@ -31,15 +31,12 @@
 
 {% block body %}
 
-    <div class="centered">
-        <h3>Mitch Webb</h3>
+    <div id="landing-page-wrapper" class="centered">
+        <h3 id="main-title"> Mitch Webb </h3>
         <img 
             id="little-critter" 
             src="{{ url_for('static', filename='./images/marimba.png') }}" 
             alt="african giant black millipede named marimba in hand"
             onClick=nextTheme()>
     </div>
-
 {% endblock body %}
-
-{% block footer %}{% endblock footer %}

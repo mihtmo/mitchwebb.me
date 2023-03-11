@@ -10,72 +10,85 @@
 
     <div class="centered">
 
-        <div class="textbox"><p style="font-size: 20px; margin-bottom: 30px;"">Here are some coding projects I've been working on:</p></div>
+        <div id="projects-header" class="textbox">
+            <p>Here are some coding projects I've been working on:</p>
+        </div>
 
         <div id="projects-container">
             <a href="/spottedlanternfly"> 
                 <figure id="lanternfly-project" class="project">
-                    <img 
-                        class="project-photo" 
-                        src="{{ url_for('static', filename='./images/lanternfly-screenshot.jpg') }}" 
-                        alt="lanternfly project page" 
-                        width="100%"
-                    > 
-                    <figcaption class="project-text">
-                        <h3>Spotted Lanternfly</h3>
-                        <p style="text-decoration: none;">
-                            An interactive map showing the spread of the spotted 
-                            lanternfly across the continental US 
-                            (Updated every month)
+                    <div class="project-wrapper">
+                        <figcaption class="project-header">
+                            <h3>Spotted Lanternfly</h3>
+                        </figcaption>
+                        <img 
+                            class="project-photo" 
+                            src="{{ url_for('static', filename='./images/lanternfly-screenshot.jpg') }}" 
+                            alt="lanternfly project page" 
+                            width="100%"
+                        > 
+                        <p class="project-description">
+                            an interactive map showing the spread of the spotted 
+                            lanternfly across the U.S.
                         </p>
-                    </figcaption>
-                </figure></a>
+                    </div>
+                </figure>
+            </a>
             <a href="/weatherblanket">
                 <figure id="weatherblanket-project" class="project">
-                    <img 
-                        class="project-photo" 
-                        src="{{ url_for('static', filename='./images/weatherblanket-screenshot.jpg') }}" 
-                        alt="weatherblanket project page" 
-                        width="100%"
-                    > 
-                    <figcaption class="project-text"> 
-                        <h3>Weatherblanket</h3>
-                        <p style="text-decoration: none;">
-                            A colorful visual showing the relative daily 
-                            temperature and precipitation in Austin, TX
+                    <div class="project-wrapper">
+                        <figcaption class="project-header"> 
+                            <h3>Weatherblanket</h3>
+                        </figcaption>
+                        <img 
+                            class="project-photo" 
+                            src="{{ url_for('static', filename='./images/weatherblanket-screenshot.jpg') }}" 
+                            alt="weatherblanket project page" 
+                            width="100%"
+                        > 
+                        <p class="project-description">
+                            a colorful visual showing daily temperature and 
+                            precipitation levels for the past year in Austin, TX 
                         </p>
-                    </figcaption>
-                </figure></a>
+                    </div>
+                </figure>
+            </a>
             <a href="/touchgrass">
                 <figure id="recordviewer-project" class="project">
-                    <img 
-                        class="project-photo" 
-                        src="{{ url_for('static', filename='./images/record-viewer-screenshot.png') }}" 
-                        alt="record viewer project page" 
-                        width="100%"
-                    > 
-                    <figcaption class="project-text"> 
-                        <h3>Record Viewer</h3>
-                        <p style="text-decoration: none;">
-                            An in-progress music-listening space which virtually 
-                            showcases vinyl-themed album design and liner notes
+                    <div class="project-wrapper">
+                        <figcaption class="project-header"> 
+                            <h3>Record Viewer</h3>
+                        </figcaption>
+                        <img 
+                            class="project-photo" 
+                            src="{{ url_for('static', filename='./images/record-viewer-screenshot.png') }}" 
+                            alt="record viewer project page" 
+                            width="100%"
+                        > 
+                        <p class="project-description">
+                            an in-progress music-listening space which showcases 
+                            album design and liner notes
                         </p>
-                    </figcaption>
-                </figure></a>    
+                    </div>
+                </figure>
+            </a>    
             <a href="/discography">
                 <figure id="discography-project" class="project">
-                    <img 
-                        class="project-photo" 
-                        src="{{ url_for('static', filename='./images/discography-project.png') }}" 
-                        alt="discography project page" 
-                        width="100%"
-                    > 
-                    <figcaption class="project_text"> 
-                        <h3>Discography</h3>
-                        <p style="text-decoration: none;">
-                            A page for albums I've worked on, coded to pull its 
-                            content from a CSV
+                    <div class="project-wrapper">
+                        <figcaption class="project-header"> 
+                            <h3>Discography</h3>
+                        <figcaption/>
+                        <img 
+                            class="project-photo" 
+                            src="{{ url_for('static', filename='./images/discography-project.png') }}" 
+                            alt="discography project page" 
+                            width="100%"
+                        > 
+                        <p class="project-description">
+                            a display for studio albums I've worked on, coded to 
+                            pull its contents from a CSV
                         </p>
+                    </div>
                 </figure>
             </a>
         </div>

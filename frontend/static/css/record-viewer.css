@@ -132,6 +132,7 @@
 
     #rotate-icon {
     background-image: url("../images/rotateicon.png");
+    filter: drop-shadow(0px 0px 10px var(--container-shadow));
     background-size: cover;
     height: 12vh;
     max-height: 12vw;
@@ -319,6 +320,7 @@
 
 #vinyl-arrow, #vinyl-arrow-reverse {
     background-image: url("../images/trianglearrow-right.png");
+    filter: drop-shadow(1px 1px 10px var(--container-shadow));
     background-size: cover;
     height: 10vh;
     max-height: 10vw;
@@ -347,6 +349,7 @@
 #goback-arrow {
     cursor: pointer;
     background-image: url("../images/rotateicon.png");
+    filter: drop-shadow(0px 0px 10px var(--container-shadow));
     background-size: cover;
     height: 8vh;
     max-height: 8vw;
