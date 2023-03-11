@@ -37,6 +37,7 @@
             id="little-critter" 
             src="{{ url_for('static', filename='./images/marimba.png') }}" 
             alt="african giant black millipede named marimba in hand"
-            onClick=nextTheme()>
+            contextmenu="event.preventDefault"
+        >
     </div>
 {% endblock body %}
