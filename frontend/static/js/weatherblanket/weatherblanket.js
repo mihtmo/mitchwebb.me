@@ -19,7 +19,7 @@
 
 function createHeatTics() {
 
-    const degreeCount = 12;
+    const degreeCount = 10;
 
     const heatKeyWrapper = document.querySelector('#heat-key-wrapper')
     const degWrapper = document.querySelector('#degrees-wrapper')
@@ -29,10 +29,11 @@ function createHeatTics() {
         let degText = document.createElement('p');
         degText.setAttribute('id', `deg${i}`);
         degText.setAttribute('class', 'units');
+        const tempBreaks = []
         if (i === 0) {
             degText.innerText = '0';
         } else {
-            degText.innerText = `${i * 10}°F`;
+            degText.innerText = `${(i * 10.6).toFixed(1)}°F`;
         }
         degText.style.bottom = `calc(${((100 / degreeCount) * i)}% - .5em)`
         degWrapper.appendChild(degText)

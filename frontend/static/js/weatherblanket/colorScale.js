@@ -18,15 +18,15 @@ function heatColorScale(temp){
         temp = '#ffa42e';
     } else if (temp > 76.9 && temp <= 78){
         temp = '#fd9415';
-    } else if (temp > 78 && temp <= 82){
+    } else if (temp > 78 && temp <= 80){
         temp = '#eb6f02';
-    } else if (temp > 82 && temp <= 88){
+    } else if (temp > 80 && temp <= 88){
         temp = '#eb6702';
     } else if (temp > 88 && temp <= 94){
         temp = '#d95700';
     } else if (temp > 94 && temp <= 100){
         temp = '#962101';
-    } else if (temp > 100 && temp<= 109){
+    } else if (temp > 100 && temp<= 106){
         temp = '#480300';
     } else {
         temp = '#080000';
