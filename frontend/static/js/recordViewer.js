@@ -104,7 +104,7 @@ function returntoalbumview() {
     threeButton.style.display = 'block';
     setTimeout(function() { 
         sleeveBox.style.display = "none"; 
-        dummyContainer.style.display = "grid"; 
+        dummyContainer.style.display = "flex"; 
         dummyContainer.classList.add("fadein"); 
         rotateIcon.style.display = "block"; 
         rotateIcon.classList.add("fadein"); 

@@ -19,8 +19,7 @@
         <div class="centered">
         <div id="in-progress">
             <h5>
-                This page is in progress. Assets are temporary/borrowed and do 
-                not represent a real album.
+                This album is not yet released. As a result, this page is not yet finished.
             </h5>
         </div>
         <canvas id="threeRecord" class="three"></canvas>
@@ -37,15 +36,13 @@
                 </div>
                 <div id="vinyl-arrow" class="icon" onclick=toLinerNotes()></div>
             </div>
-        
-        </div>
-
-        <div 
-            id="rotate-icon" 
-            class="icon" 
-            onclick=rotaterecord() 
-            onmouseover=retractvinyl()
-            onmouseout=expandvinyl()>
+            <div 
+                id="rotate-icon" 
+                class="icon" 
+                onclick=rotaterecord() 
+                onmouseover=retractvinyl()
+                onmouseout=expandvinyl()>
+            </div>
         </div>
 
         <!-- TODO: Could shorten this by adding some attributes via JS -->
@@ -135,7 +132,7 @@
                 <div id="singlelyrics-text"></div>
                 <iframe id="bandcamp-player" seamless>
                     <a href="https://fuvk.bandcamp.com/album/split-death">
-                        Touch Grass by Mihtmo
+                        Touch Grass by mihtmo
                     </a>
                 </iframe>
             </div>
@@ -162,10 +159,10 @@
 
 {% block footer %}
 
-    <div id="three-button">
+    <!-- <div id="three-button">
         <input type="checkbox" id="three-checkbox" name="three-checkbox" onclick="enable3D()">
         <label for="three-button">Enable Three.js Version (drag to rotate)</label>
-    </div>
+    </div> -->
 
     <a href="/">home</a>
     |
