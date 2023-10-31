@@ -24,8 +24,8 @@ function toLinerNotes() {
     jacketThickness.style.transform = "translateX(-100vw)";
     jacketBackSlider.style.transform = "translateX(100vw)";
     vinylBackSlider.style.transform = "translateX(-100vw)";
-    let threeButton = document.querySelector("#three-button");
-    threeButton.style.display = 'none';
+    // let threeButton = document.querySelector("#three-button");
+    // threeButton.style.display = 'none';
     setTimeout(function() { 
         dummyContainer.style.display = "none"; 
         rotateIcon.style.display = "none"; 
@@ -100,8 +100,8 @@ function returntoalbumview() {
     jacketThickness.style.transform = "";
     jacketBackSlider.style.transform = "";
     vinylBackSlider.style.transform = "";
-    let threeButton = document.querySelector("#three-button");
-    threeButton.style.display = 'block';
+    // let threeButton = document.querySelector("#three-button");
+    // threeButton.style.display = 'block';
     setTimeout(function() { 
         sleeveBox.style.display = "none"; 
         dummyContainer.style.display = "flex"; 

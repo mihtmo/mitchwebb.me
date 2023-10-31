@@ -119,6 +119,10 @@ html[data-theme='dark'] {
         border-radius: 50%;
     }
 
+    .section-title {
+        font-size: 3em;
+    }
+
     [data-theme='dark'] #critter-backdrop {
         opacity: 75%;
     }
