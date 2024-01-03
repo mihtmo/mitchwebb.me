@@ -84,6 +84,11 @@ def touchgrass():
     # Show touch grass page
     return render_template("touchgrass.html")
 
+@app.route("/sound-explorer")
+def sound_explorer():
+    # Show sound explorer page
+    return render_template("sound-explorer.html")
+
 # Presentation for weatherblanket versions
 # @app.route("/presentation")
 # def presentation():
