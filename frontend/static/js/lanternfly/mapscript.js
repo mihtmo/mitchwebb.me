@@ -34,7 +34,7 @@ const satFilter = ['saturate:80%', 'opacity:85%'];
 map.createPane('pane-stamen');
 map.getPane('pane-stamen').style.zIndex = 1;
 const layerStamen = L.tileLayer.colorFilter(
-    'https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', 
+    'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.jpg', 
     {
         pane: 'pane-stamen',
         opacity: 1,
