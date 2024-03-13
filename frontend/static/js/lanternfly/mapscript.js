@@ -228,10 +228,10 @@ function addDataToHexMap(obj, firstDate, lastDate){
     layerHexgrid.data(geoPoints);
 
     // Calculate total number of sightings from ALL data
-    const totalPoints = mapData.map(feature => 
-        ([feature.geometry.coordinates[0],feature.geometry.coordinates[1]])
-    );
-    totalSightings = totalPoints.length;
+    // const totalPoints = mapData.map(feature => 
+    //     ([feature.geometry.coordinates[0],feature.geometry.coordinates[1]])
+    // );
+    totalSightings = observationTimes.length;
 
     const pointsIncluded = geoPoints.length;
     return pointsIncluded;
