@@ -49,8 +49,8 @@
                 This map shows sightings of the spotted lanternfly in the continental
                 US using data from iNaturalist's API. Drag the sliders to adjust 
                 the dates included, or click on the layers button in the top right 
-                of the map to view all of the data at once! Data updates are
-                currently paused due to iNaturalist's API restrictions.
+                of the map to view all of the data at once! Due to API restrictions,
+                data is updated manually (last updated March 11th, 2024).
                 </br> 
                 </br>
                 </p>
@@ -121,7 +121,9 @@
             document.querySelector("#more-text").style.display = "block";
         }
     </script>
-
+    <script>
+        let lanternflyData = JSON.parse('{{ lanternflyData|tojson|safe }}');
+    </script>
     <script src="{{ url_for('static', filename='js/lanternfly/timeArrays.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" 
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" 

@@ -2,9 +2,9 @@ from flask import Flask, render_template
 from datetime import date, timedelta
 from requests import get
 import csv
-import os
-# import psycopg2
+import pandas as pd
 import json
+# import psycopg2
 
 app = Flask(__name__, static_url_path='', static_folder='./frontend/static', template_folder='./frontend/templates')
 
@@ -16,7 +16,28 @@ def frontpage():
 
 @app.route("/spottedlanternfly")
 def slfly():
-    return render_template("lanternfly.html")
+    # Open observations CSV (from iNaturalist export tool)
+    df = pd.read_csv('./frontend/static/js/lanternfly/observations.csv')
+    observation_dict = df.to_dict(orient='records')
+    # Convert to geoJSON
+    geoJSON = {"type": "FeatureCollection", "features":[]}
+    for observation in observation_dict:
+        geoJSON["features"].append({
+            "type":"Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [observation['longitude'], observation['latitude']]
+            },
+            "properties": {
+                "observationTime": observation['created_at'],
+                "url": observation['url'],
+                "place": observation['place_guess'],
+                "id": observation['id']
+            }
+        })
+    
+    # Show lanternfly page
+    return render_template("lanternfly.html", lanternflyData=geoJSON)
 
 
 @app.route("/me")
@@ -88,6 +109,10 @@ def touchgrass():
 def sound_explorer():
     # Show sound explorer page
     return render_template("sound-explorer.html")
+
+# @app.route("/entomology-entries")
+# def entomology_entries():
+#     # Get CSV for 
 
 # Presentation for weatherblanket versions
 # @app.route("/presentation")

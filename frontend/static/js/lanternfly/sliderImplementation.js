@@ -87,7 +87,7 @@ slider.noUiSlider.on('update', function(values, handleIndex) {
     dateValues[handleIndex].innerText = formatDate(new Date(+values[handleIndex]));
     const newTimes = slider.noUiSlider.get();
     // Add new range to map data while collecting Sightings Included value
-    dateValues[2] = addDataToHexMap(observationData, newTimes[0], newTimes[1]);
+    dateValues[2] = addDataToHexMap(lanternflyData, newTimes[0], newTimes[1]);
     mapText = document.querySelector('#map-text')
     mapText.innerText = "Sightings Included: " + dateValues[2] + " / " + totalSightings
 });

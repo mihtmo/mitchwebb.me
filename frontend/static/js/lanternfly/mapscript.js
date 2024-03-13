@@ -87,9 +87,9 @@ function popObservations(feature, layer) {
         mouseover: highlightFeature,
     });
 
-    const dateTime = new Date(feature.properties['time']);
+    const dateTime = new Date(feature.properties['observationTime'].slice(0, -4));
     const dateOnly = dateTime.toLocaleDateString('en-US');
-    const inatUrl = (feature.properties['inaturl']);
+    const inatUrl = (feature.properties['url']);
 
     // Popup for individual iNaturalist sightings
     const popupContent =
@@ -117,17 +117,16 @@ function popObservations(feature, layer) {
     layer.bindPopup(popupContent, {maxHeight: 400});
 }
 
-// Flatten observation data for use in slider
-const observationData = jsonObservations['features'].flat();
-
 // Sort for first and last data points for slider range
 const observationTimes = [];
 
-for (let observation in observationData) {
-    observationTimes.push(observationData[observation]["properties"]["time"]);
+// TODO: Fix formatting of dates on backend.
+for (let observation in lanternflyData['features']) {
+    observationTimes.push(lanternflyData['features'][observation]["properties"]["observationTime"].slice(0, -4));
 }
+
 const sortedTimes = observationTimes.sort(function(a,b){
-    return (new Date(a) - new Date(b));
+    return (a - b);
 });
 
 let totalSightings = sortedTimes.length;
@@ -142,10 +141,10 @@ map.getPane('pane-observations').style.zIndex = 2;
 map.getPane('pane-observations').style['mix-blend-mode'] = 'normal';
 
 // Create observations layer and assign to Leaflet pane
-const layerObservations = new L.geoJson(jsonObservations, {
+const layerObservations = new L.geoJson(lanternflyData, {
     attribution: '',
     interactive: true,
-    dataVar: 'jsonObservations',
+    dataVar: 'lanternflyData',
     layerName: 'layer-observations',
     pane: 'pane-observations',
     pointToLayer: function(feature, latlng) {
@@ -210,17 +209,18 @@ function addDataToHexMap(obj, firstDate, lastDate){
     let mapData;
     // TODO: Why would start date ever be defined in this case?
     if (firstDate !== undefined){
-        const filteredObj = obj.filter(data => 
-            timestamp(data.properties['time']) >= firstDate 
+        const filteredObj = obj['features'].filter(data => 
+            timestamp(data.properties['observationTime'].slice(0, -4)) >= firstDate 
             && 
-            timestamp(data.properties['time']) <= lastDate
+            timestamp(data.properties['observationTime'].slice(0, -4)) <= lastDate
         );
         mapData = filteredObj;
     console.log('date provided')
     } else {
         console.log('date not provided, so adding all data')
-        mapData = obj;
+        mapData = obj['features'];
     }
+
     // Get lat/lng for hexgrid data
     const geoPoints = mapData.map(feature => 
         ([feature.geometry.coordinates[0],feature.geometry.coordinates[1]])
@@ -228,7 +228,7 @@ function addDataToHexMap(obj, firstDate, lastDate){
     layerHexgrid.data(geoPoints);
 
     // Calculate total number of sightings from ALL data
-    const totalPoints = obj.map(feature => 
+    const totalPoints = mapData.map(feature => 
         ([feature.geometry.coordinates[0],feature.geometry.coordinates[1]])
     );
     totalSightings = totalPoints.length;
@@ -238,7 +238,7 @@ function addDataToHexMap(obj, firstDate, lastDate){
 }
 
 // Add data to hexgrid
-addDataToHexMap(observationData);
+addDataToHexMap(lanternflyData);
 
 // Add hexgrid to map
 map.addLayer(layerHexgrid);
