@@ -18,9 +18,12 @@
     justify-content: center;
     flex-basis: space-around;
     /* margin: auto;
-    margin-top: max(calc(50vh - 25vh), calc(50vh - 25vw)); */
-    height: 100vh;
+    margin-top: max(calc(70vh - 25vh), calc(70vh - 25vw)); */
+    /* height: 100vh; */
     perspective: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 #record-container {
@@ -29,9 +32,10 @@
     width: fit-content;
     margin: 0;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 1.8fr min(50vh, 50vw) 1.8fr minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 1.8fr min(70vh, 70vw) 1.8fr minmax(0, 1fr);
     transition: transform 1s;
     transform-style: preserve-3d;
+    cursor: pointer;
     /* margin-bottom: 5%; */
     /* grid-row-start: 2;
     grid-column-start: 1; */
@@ -40,8 +44,8 @@
 
 #jacket-front, #jacket-back {
     aspect-ratio: 1/1;
-    height: 50vh;
-    max-height: 50vw;
+    height: 70vh;
+    max-height: 70vw;
     background-size: cover;
     border-radius: 3px;
     transition: transform 1s;
@@ -82,8 +86,8 @@
 
 #vinyl-front, #vinyl-back {
     aspect-ratio: 1/1;
-    height: 50vh;
-    max-height: 50vw;
+    height: 70vh;
+    max-height: 70vw;
     background-size: cover;
     z-index: -2;
     transition: transform 1s;
@@ -104,11 +108,11 @@
 }
 
 #vinyl-back-slider {
-    background-image: url("../images/imaginarylp-side2.png");
+    background-image: url("../images/touchgrass-vinyl-side2.png");
 }
 
 #vinyl-front {
-    background-image: url("../images/imaginarylp-side1.png");
+    background-image: url("../images/touchgrass-vinyl-side1.png");
     color: black;
 }
 
@@ -150,41 +154,41 @@
 
     /* Front Screen Animations and Transitions */
 
-    #record-container:hover #vinyl-front {
+    #record-container:hover #vinyl-front, #record-container.hovering #vinyl-front {
         transform: translateX(18%);
         -webkit-transform: translateX(18%);
     }
 
-    #record-container:hover #jacket-front {
+    #record-container:hover #jacket-front, #record-container.hovering #jacket-front {
         transform: translateX(-25%);
         -webkit-transform: translateX(-25%)
     }
 
-    #record-container:hover #jacket-back-slider{
+    #record-container:hover #jacket-back-slider, #record-container.hovering #jacket-back-slider {
         transform: translateX(25%);
         -webkit-transform: translateX(25%);
     }
 
-    #record-container:hover #vinyl-back-slider {
+    #record-container:hover #vinyl-back-slider, #record-container.hovering #vinyl-back-slider{
         transform: translateX(-18%);
         -webkit-transform: translateX(-18%);
     }
 
-    #record-container:hover #jacket-thickness {
+    #record-container:hover #jacket-thickness, #record-container.hovering #jacket-thickness {
         transition: 0s;
         opacity: 0;
     }
 
     .translatevinyl {
         transition: transform .5s !important;
-        transform: translateX(-15%);
-        -webkit-transform: translateX(-15%);
+        transform: translateX(-10%);
+        -webkit-transform: translateX(-10%);
     }
 
     .translatevinyl-reverse {
         transition: transform .5s !important;
-        transform: translateX(15%);
-        -webkit-transform: translateX(15%);
+        transform: translateX(10%);
+        -webkit-transform: translateX(10%);
     }
 
     .translatejacket {
@@ -195,20 +199,26 @@
 
 /* Open Vinyl/Sleeve Page */
 
-#sleeve-box {
+#open-record-wrapper {
+    display: none;
+}
+
+#open-record-container {
     height: 100vh;
+    max-height: 80vw;
     overflow: hidden;
     position: relative;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 #sleeve {
-    height: calc(100% - 100px);
-    max-height: 80vw;
-    min-height: min(calc(80vh - 100px), calc(80vw - 100px));
-    min-width: min(calc(80vh - 100px), calc(80vw - 100px));
+    height: 100%;
+    /* max-height: 80vw; */
+    /* min-height: min(calc(80vh - 100px), calc(80vw - 100px)); */
+    /* min-width: min(calc(80vh - 100px), calc(80vw - 100px)); */
     transition: transform 1s;
     background-image: url("../images/sleeve/sleeve-background.png");
     background-size: cover;
@@ -228,6 +238,17 @@
     right: 0px;
     bottom: 0px;
     left: 0px;
+}
+
+
+#jacket-back-large.closed {
+    transform: translateX(calc((100% + 10px) * -1));
+    -webkit-transform: translateX((calc(100% + 10px) * -1));
+}
+
+#jacket-front-large.closed {
+    transform: translateX(calc(100% + 10px));
+    -webkit-transform: translateX(calc(100% + 10px));
 }
 
 .sleevetext {
@@ -267,6 +288,15 @@
     opacity: 10%;
   }
 
+#lyrics-wrapper {
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 1em;
+    overflow-y: scroll;
+    z-index: 2;
+    font-size: 1em;
+}
+
 .notselected {
     opacity: 0.15;
     -webkit-transition: opacity .35s;
@@ -284,36 +314,36 @@
 #jacket-front-large {
     background-image: url("../images/touch-grass-front.jpg");
     background-size: cover;
-    height: calc(100% - 100px);
-    min-height: min(calc(80vh - 100px), calc(80vw - 100px));
-    min-width: min(calc(80vh - 100px), calc(80vw - 100px));
-    position: absolute;
+    height: 100%;
+    /* min-height: min(calc(80vh - 100px), calc(80vw - 100px)); */
+    /* min-width: min(calc(80vh - 100px), calc(80vw - 100px)); */
+    /* position: absolute; */
+    /* max-height: 80vw; */
     border-style: solid;
     border: 1px;
     max-height: 80vw;
     aspect-ratio: 1/1;
     border-radius: 1%;
-    right: calc(60vw + 50vh);
+    /* right: calc(60vw + 70vh); */
     z-index: 2;
-    transition: right 1s; 
+    transition: transform .5s;
     border: 1px solid hsla(52, 81%, 80%, 100%);
 }
 
-#big-vinyl {
-    position: absolute;
+#jacket-back-large {
     background-image: url("../images/touch-grass-back.jpg");
     background-size: cover;
-    height: calc(100% - 100px);
-    position: absolute;
+    height: 100%;
+    /* position: absolute; */
     border-style: solid;
     border: 1px;
-    max-height: 80vw;
-    min-height: min(calc(80vh - 100px), calc(80vw - 100px));
-    min-width: min(calc(80vh - 100px), calc(80vw - 100px));
+    /* max-height: 80vw; */
+    /* min-height: min(calc(80vh - 100px), calc(80vw - 100px)); */
+    /* min-width: min(calc(80vh - 100px), calc(80vw - 100px)); */
     aspect-ratio: 1/1;
     border-radius: 1%;
-    transition: left 1s; 
-    left: calc(60vw + 50vh);
+    transition: transform .5s; 
+    /* left: calc(60vw + 70vh); */
     z-index: -5;
     border: 1px solid hsla(52, 81%, 80%, 100%);
 }
@@ -347,11 +377,12 @@
 }
 
 #vinyl-arrow-reverse {
-    position: relative;
+    margin: auto;
     -moz-transform: scale(-1, -1);
     -o-transform: scale(-1, -1);
     -webkit-transform: scale(-1, -1);
     transform: scale(-1, -1);
+    margin-top: 1em;
 }
 
 #goback-arrow {
@@ -380,15 +411,11 @@
 }
 
 #bandcamp-player {
-    display: none;
     width: 100%;
     margin: auto;
     margin-top: 8px;
-    position: absolute;
     z-index: 2;
-    left: 0;
     border: 0;
-    height: 42px;
 }
 
 #text1 {
@@ -444,14 +471,14 @@
 
     /* Sleeve Page Animations and Transitions */
 
-    .textpng:hover {
+    /* .textpng:hover, .textpng.hovering{
         opacity: 1;
         -webkit-transition: opacity .35s;
         -moz-transition: opacity .35s;
         -ms-transition: opacity .35s;
         -o-transition: opacity .35s;
         transition: opacity .35s;
-    }
+    } */
 
     .fadeout {
         animation: fadeout 1s 1 linear forwards;
@@ -481,13 +508,13 @@
         100% { opacity: 1; }
     }
 
-    #vinyl-arrow-reverse:hover + #big-vinyl {
-        left: calc(50% - (50vh - 50px));
+    /* #vinyl-arrow-reverse:hover + #big-vinyl {
+        left: calc(50% - (70vh - 50px));
     }
     
     #vinyl-arrow-reverse:hover ~ #jacket-front-large {
-        right: calc(50% - (50vh - 50px));
-    }
+        right: calc(50% - (70vh - 50px));
+    } */
 
     .isrotating {
         animation-name: rotating;
@@ -496,7 +523,7 @@
         animation-timing-function: linear;
     }
 
-    .icon:hover {
+    .icon:hover, .icon.hovering{
         filter: brightness(50%);
         -webkit-filter: brightness(50%);
     }
