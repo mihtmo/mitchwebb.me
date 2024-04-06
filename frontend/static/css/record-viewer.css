@@ -43,7 +43,7 @@
     width: fit-content;
     margin: 0;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 1.8fr min(70vh, 70vw) 1.8fr minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 1.8fr min(60vh, 60vw) 1.8fr minmax(0, 1fr);
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -51,8 +51,8 @@
 
 #jacket-front, #jacket-back {
     aspect-ratio: 1/1;
-    height: 70vh;
-    max-height: 70vw;
+    height: 60vh;
+    max-height: 60vw;
     background-size: cover;
     border-radius: 3px;
     transition: transform 1s;
@@ -64,7 +64,7 @@
     position: relative;
     transform: translateZ(1px);
     -webkit-transform: translateZ(1px);
-    margin-left: -10%;
+    margin-left: -6%;
 }
 
 #jacket-front {
@@ -94,8 +94,8 @@
 
 #vinyl-front, #vinyl-back {
     aspect-ratio: 1/1;
-    height: 70vh;
-    max-height: 70vw;
+    height: 60vh;
+    max-height: 60vw;
     background-size: cover;
     z-index: -2;
     transition: transform 1s;
@@ -279,10 +279,11 @@
     height: 80vh;
     max-height: 80vw;
     width: 80vh;
-    max-width: 90vw;
+    max-width: 80vw;
     grid-column: 1;
     grid-row: 1;
     transition: .75s ease-in-out;
+    border-radius: 1%;
 }
 
 #open-record-right-wrapper {
@@ -291,10 +292,11 @@
     height: 80vh;
     max-height: 80vw;
     width: 80vh;
-    max-width: 90vw;
+    max-width: 80vw;
     grid-column: 3;
     grid-row: 1;
     transition: .75s ease-in-out;
+    border-radius: 1%;
 }
 
 #open-record-container.closed #open-record-left-wrapper {
@@ -310,15 +312,14 @@
 }
 
 .jacket-large {
-    height: 80vh;
+    /* height: 80vh; */
     max-height: 80vw;
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     background-size: cover;
     border-style: solid;
     border: 1px;
     aspect-ratio: 1/1;
-    border-radius: 1%;
     transition: transform .75s ease-in-out;
     border: 1px solid hsla(52, 81%, 80%, 100%);
 }
