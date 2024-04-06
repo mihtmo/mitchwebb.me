@@ -1,21 +1,58 @@
 // Collection of reused variable names
 const openRecordWrapper = document.getElementById("open-record-wrapper");
 const recordContainer = document.getElementById("record-container");
-const rotateIcon = document.getElementById("rotate-icon");
+const rotateSleeveIcon = document.getElementById("rotate-sleeve-icon");
+const rotateAlbumIcon = document.getElementById("rotate-album-icon");
 const vinylFront = document.getElementById("vinyl-front");
 const jacketThickness = document.getElementById("jacket-thickness");
 const jacketFront = document.getElementById("jacket-front");
 const jacketBack = document.getElementById("jacket-back");
+const vinylLargeWrapper = document.getElementById("vinyl-large-wrapper");
+const vinylFrontLarge = document.getElementById("vinyl-front-large");
+const vinylBackLarge = document.getElementById("vinyl-back-large");
 const jacketFrontLarge = document.getElementById("jacket-front-large");
 const jacketBackLarge = document.getElementById("jacket-back-large");
 const dummyContainer = document.getElementById("dummy-container");
 const jacketBackSlider = document.getElementById("jacket-back-slider");
 const vinylBackSlider = document.getElementById("vinyl-back-slider")
-const sleevetext = Array.from(document.getElementsByClassName("sleevetext"));
-const singleLyricsText = document.getElementById("singlelyrics-text");
-const goBackArrow = document.getElementById("goback-arrow");
+// const sleeveText = Array.from(document.getElementsByClassName("sleeve-text"));
+// const singleLyricsText = document.getElementById("single-lyrics-text");
 const bandcampPlayer = document.getElementById("bandcamp-player");
-const vinylArrowReverse = document.getElementById("vinyl-arrow-reverse");
+const albumInIcon = document.getElementById("album-in-icon");
+const albumOutIcon = document.getElementById("album-out-icon");
+const openRecordContainer = document.getElementById("open-record-container");
+const openRecordRightWrapper = document.getElementById("open-record-right-wrapper");
+const openRecordLeftWrapper = document.getElementById("open-record-left-wrapper");
+const sleeveWrapper = document.getElementById("sleeve-wrapper");
+
+
+// Attach event listeners
+// recordContainer
+recordContainer.addEventListener("mouseover", expandVinylFull);
+recordContainer.addEventListener("mouseout", expandVinylSlight);
+recordContainer.addEventListener("touchstart", expandVinylFull);
+recordContainer.addEventListener("touchend", expandVinylSlight);
+recordContainer.addEventListener("click", toLinerNotes);
+// rotate-album-icon
+rotateAlbumIcon.addEventListener("mouseover", retractVinyl);
+rotateAlbumIcon.addEventListener("mouseout", expandVinylSlight);
+rotateAlbumIcon.addEventListener("touchstart", expandVinylFull);
+rotateAlbumIcon.addEventListener("touchend", retractVinyl);
+rotateAlbumIcon.addEventListener("click", rotateRecord);
+// album-out-icon
+albumOutIcon.addEventListener("mouseover", expandVinylFull);
+albumOutIcon.addEventListener("mouseout", expandVinylSlight);
+albumOutIcon.addEventListener("touchstart", expandVinylFull);
+albumOutIcon.addEventListener("touchend", expandVinylFull);
+albumOutIcon.addEventListener("click", toLinerNotes);
+// rotate-sleeve-icon
+rotateSleeveIcon.addEventListener("click", rotateSleeve);
+// album-in-icon
+albumInIcon.addEventListener("click", returnToAlbumView);
+albumInIcon.addEventListener("mouseover", closeJacket);
+albumInIcon.addEventListener("mouseleave", openJacket);
+albumInIcon.addEventListener("touchstart", closeJacket);
+albumInIcon.addEventListener("touchend", openJacket);
 
 // Give hoverable elements a 'hovering' class for mobile use
 function addHover(element) {
@@ -30,7 +67,8 @@ function removeHover(element) {
 // Function for moving from outer album view to liner notes view
 function toLinerNotes() {
     dummyContainer.classList.add("fadeout");
-    rotateIcon.classList.add("fadeout");
+    rotateAlbumIcon.classList.add("fadeout");
+    albumOutIcon.classList.add("fadeout");
     openRecordWrapper.classList.remove("fadeout");
     vinylFront.style.transform = "translateX(100vw)";
     jacketFront.style.transform = "translateX(-100vw)";
@@ -41,51 +79,58 @@ function toLinerNotes() {
     // threeButton.style.display = 'none';
     setTimeout(function() { 
         dummyContainer.style.display = "none"; 
-        rotateIcon.style.display = "none"; 
-        openRecordWrapper.style.display = "block"; 
+        rotateAlbumIcon.style.display = "none";
+        albumOutIcon.style.display = "none";
+        openRecordWrapper.style.display = "flex"; 
+        rotateSleeveIcon.style.display = "block"; 
+        albumInIcon.style.display = "block"; 
         openRecordWrapper.classList.add("fadein");
+        rotateSleeveIcon.classList.add("fadein");
+        albumInIcon.classList.add("fadein");
     }, 1000);
     setTimeout(function() { 
         dummyContainer.classList.remove("fadeout"); 
-        rotateIcon.classList.remove("fadeout"); 
-        openRecordWrapper.classList.remove("fadein"); 
+        rotateAlbumIcon.classList.remove("fadeout"); 
+        albumOutIcon.classList.remove("fadeout");
+        openRecordWrapper.classList.remove("fadein");
+        rotateSleeveIcon.classList.remove("fadein");
+        albumInIcon.classList.remove("fadein"); 
     }, 2000);
 }
 
 // Hide vinyl on rotate icon hover
-function retractvinyl() {
-    vinylFront.classList.add("translatevinyl");
-    jacketFront.classList.add("translatejacket");
-    jacketBackSlider.classList.add("translatejacket");
-    vinylBackSlider.classList.add("translatevinyl-reverse");
+function retractVinyl() {
+    recordContainer.classList.remove("expanded-slight");
+    recordContainer.classList.remove("expanded-full");
 }
 
 // Show vinyl again
-function expandvinyl() {
-    vinylFront.classList.remove("translatevinyl");
-    jacketFront.classList.remove("translatejacket");
-    jacketBackSlider.classList.remove("translatejacket");
-    vinylBackSlider.classList.remove("translatevinyl-reverse");
+function expandVinylSlight() {
+    recordContainer.classList.remove("expanded-full");
+    recordContainer.classList.add("expanded-slight");
+}
+
+function expandVinylFull() {
+    recordContainer.classList.remove("expanded-slight");
+    recordContainer.classList.add("expanded-full");
 }
 
 // Close vinyl on back arrow hover
 function closeJacket() {
-    jacketFrontLarge.classList.add("closed");
-    jacketBackLarge.classList.add("closed");
+    openRecordContainer.classList.add("closed");
 }
 
 // Open vinyl after back arrow hover
 function openJacket() {
-    jacketFrontLarge.classList.remove("closed");
-    jacketBackLarge.classList.remove("closed");
+    openRecordContainer.classList.remove("closed");
 }
 
 // Rotate record jacket to see back/front
-function rotaterecord() {
+// This could be shorted and be done through CSS by adding class name
+function rotateRecord() {
     if (recordContainer.classList.contains("isrotated")) {
         recordContainer.style.transform = "rotateY(0deg)";
         recordContainer.classList.remove("isrotated");
-        
     }
     else {
         recordContainer.style.transform = "rotateY(180deg)";
@@ -93,35 +138,62 @@ function rotaterecord() {
     }
 }
 
-// Highlight hovered lyrics
-function boldlyrics(obj) {
-    sleevetext.forEach(text => {
-        if (obj.id == text.id) {
-            return;
-        }
-        else {
-            text.classList.add("notselected");
-        }
-    })
-}
-
-// Return lyrics to original state
-function resetlyrics(obj) {
-    sleevetext.forEach(text => {
-        if (obj.id == text.id) {
-            return;
-        }
-        else {
-            text.classList.remove("notselected")
-        }
-    })
+// Rotate inner sleeve to see back/front
+function rotateSleeve() {
+    // If already showing backside
+    if (sleeveWrapper.classList.contains("isrotated")) {
+        sleeveWrapper.style.transform = "rotateY(0deg)";
+        sleeveWrapper.classList.remove("isrotated");
+        jacketBackLarge.classList.add("fadeout");
+        vinylBackLarge.classList.add("fadeout");
+        setTimeout(function() { 
+            openRecordLeftWrapper.style.zIndex = 5;
+            openRecordRightWrapper.style.zIndex = -5;
+            jacketBackLarge.style.display = "none"; 
+            vinylBackLarge.style.display = "none";
+            jacketFrontLarge.style.display = "block"; 
+            vinylFrontLarge.style.display = "block"; 
+            jacketFrontLarge.classList.add("fadein");
+            vinylFrontLarge.classList.add("fadein");
+        }, 1000);
+        setTimeout(function() { 
+            jacketBackLarge.classList.remove("fadeout"); 
+            vinylBackLarge.classList.remove("fadeout"); 
+            jacketFrontLarge.classList.remove("fadein");
+            vinylFrontLarge.classList.remove("fadein");
+        }, 2000);
+    }
+    // If showing frontside
+    else {
+        sleeveWrapper.style.transform = "rotateY(180deg)";
+        sleeveWrapper.classList.add("isrotated");
+        jacketFrontLarge.classList.add("fadeout");
+        vinylFrontLarge.classList.add("fadeout");
+        setTimeout(function() { 
+            openRecordLeftWrapper.style.zIndex = -5;
+            openRecordRightWrapper.style.zIndex = 5;
+            jacketFrontLarge.style.display = "none"; 
+            vinylFrontLarge.style.display = "none";
+            jacketBackLarge.style.display = "block"; 
+            vinylBackLarge.style.display = "block"; 
+            jacketBackLarge.classList.add("fadein");
+            vinylBackLarge.classList.add("fadein");
+        }, 1000);
+        setTimeout(function() { 
+            jacketFrontLarge.classList.remove("fadeout"); 
+            vinylFrontLarge.classList.remove("fadeout"); 
+            jacketBackLarge.classList.remove("fadein");
+            vinylBackLarge.classList.remove("fadein");
+        }, 2000);
+    }
 }
 
 // Return to album jacket view
-function returntoalbumview() {
-    jacketFrontLarge.classList.add("closed");
-    jacketBackLarge.classList.add("closed");
+function returnToAlbumView() {
+    openRecordWrapper.classList.add("closed");
     openRecordWrapper.classList.add("fadeout");
+    rotateSleeveIcon.classList.add("fadeout");
+    albumInIcon.classList.add("fadeout");
     vinylFront.style.transform = "";
     jacketFront.style.transform = "";
     jacketThickness.style.transform = "";
@@ -131,251 +203,24 @@ function returntoalbumview() {
     // threeButton.style.display = 'block';
     setTimeout(function() { 
         openRecordWrapper.style.display = "none"; 
+        rotateSleeveIcon.style.display = "none";
+        albumInIcon.style.display = "none";
         dummyContainer.style.display = "flex"; 
+        rotateAlbumIcon.style.display = "block"; 
+        albumOutIcon.style.display = "block"; 
         dummyContainer.classList.add("fadein"); 
-        rotateIcon.style.display = "block"; 
-        rotateIcon.classList.add("fadein"); 
+        rotateAlbumIcon.classList.add("fadein"); 
+        albumOutIcon.classList.add("fadein"); 
     }, 1000);
     setTimeout(function() { 
+        openRecordWrapper.classList.remove("fadeout"); 
+        rotateSleeveIcon.classList.remove("fadeout"); 
+        albumInIcon.classList.remove("fadeout");
         dummyContainer.classList.remove("fadein"); 
-        rotateIcon.classList.remove("fadein"); 
+        rotateAlbumIcon.classList.remove("fadein");
+        albumOutIcon.classList.remove("fadein");
         jacketFrontLarge.classList.remove("closed");
-        jacketBackLarge.classList.remove("closed");
-
-    }, 2000);
-}
-
-// Go back to full lyrics view 
-function goback() {
-    singleLyricsText.classList.add("fadeout");
-    goBackArrow.classList.add("fadeout");
-    bandcampPlayer.classList.add("fadeout");
-    setTimeout(function() { 
-        singleLyricsText.style.display = "none"; 
-        singleLyricsText.classList.remove("fadeout"); 
-        goBackArrow.style.display = "none"; 
-        goBackArrow.classList.remove("fadeout"); 
-        bandcampPlayer.classList.remove("fadeout"); 
-        bandcampPlayer.style.display = "none"; 
-    }, 1000);
-    sleevetext.forEach(text => {
-        setTimeout(function() { 
-            text.style.display = "block"; 
-            text.classList.add("fadein"); 
-        }, 1000);
-        setTimeout(function() { 
-            text.classList.remove("fadein"); 
-        }, 2000);
-    })
-};
-
-// Select single set of lyrics and show bandcamp player
-function singlelyrics(obj) {
-    sleevetext.forEach(text => {
-        text.classList.remove("notselected")
-        text.classList.add("fadeout");
-        setTimeout(function() { 
-            text.style.display = "none"; 
-            text.classList.remove("fadeout")
-        }, 1000);
-    })
-    divid = obj.id;
-    if (obj.id == "text1") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>Sophie (Intro)</h3>
-                <div id='lyrics-wrapper'>
-                    [Instrumental]
-                </div>
-            `;
-    }
-
-    else if (obj.id == "text2") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>Heirloom</h3>
-                <div id='lyrics-wrapper'>
-                    <p>
-                        When I go <br>
-                        They'll take me home <br>
-                        To say my last "I'm sorry" <br>
-                        And pick at my bones
-                    </p>
-                    <p>
-                        Make peace and then <br>
-                        Just throw me back again <br>
-                        Mmhmm <br>
-                        Skip all the theatrics <br>
-                        When the curtains have closed
-                    </p>
-                    <p>
-                        When I dig down deep <br>
-                        I find, inside of me, <br>
-                        Not much
-                    </p>
-                    <p>
-                        Just what I owe <br>
-                        All that turning slowly back into what I love <br>
-                        (What I love) <br>
-                        When I can learn to count from ten; <br>
-                        Let it decompose
-                    </p>
-                    <p>
-                        And we may step into the sea before then <br>
-                        Singing "God help us all" <br>
-                        But maybe it's best that it all starts again <br>
-                        I hope I'll have loved you as best as I could by then
-                    </p>
-                    <p>
-                        (And we may step into the sea before then <br>
-                        Screaming "God help us all" <br>
-                        But maybe it's best that it all starts again <br>
-                        I hope I'll have loved you <br>
-                        I hope I'll have loved you by)
-                    </p>
-                    <p>
-                        When I go <br>
-                        They'll take me home <br>
-                        To say my last "I'm sorry"
-                    </p>
-                    <p>
-                        I hope I can still sing by then
-                    </p>
-                </div>
-            `;
-    }
-    
-    else if (obj.id == "text3") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>Silver Arrow, Golden Bird</h3>
-                <div id='lyrics-wrapper'>
-                    <p>
-                        State-owned coal mine <br>
-                        Glean from the land what's left behind <br>
-                        Closed doors, cold eyes <br>
-                        Making believe we're stuck inside
-                    </p>
-                    <p>
-                        "I'm yours, hold tight" <br>
-                        Feathered and glowing half as bright <br>
-                        Gold bird, white lie: <br>
-                        Love is a thing to keep alive
-                    </p>
-                </div>
-            `;
-    }
-
-    else if (obj.id == "text4") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>Marimba</h3>
-                <div id='lyrics-wrapper'>
-                    <p>
-                        There is a bug that lives inside my room <br>
-                        Though pretty often mostly out of view <br>
-                        Oh, little one, I'd like to be beneath the dirt with you
-                    </p>
-                    <p>
-                        You cut my hair beneath a yellow porch-light <br>
-                        A light turned on an hour past my bedtime <br>
-                        A thousand threads of me will fall <br>
-                        Beneath these yellow moons
-                    </p>
-                    <p>
-                        Oh, and I think I could tell you everything <br>
-                        If only I could tell you anything <br>
-                        At all
-                    <p>
-                    </p>
-                        I feel pathetic now that I'm not grade-bound <br>
-                        A caught a cold the day I let my guard down <br>
-                        How could it be more comfortable to lie beneath a boot
-                    </p>
-                    <p>
-                        Oh, and I think I could tell you everything <br>
-                        If only I could tell you anything <br>
-                        I want to tell you everything <br>
-                        Anything
-                    </p>
-                </div>
-            `;
-    }
-    else if (obj.id == "text5") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>𝄐</h3>
-                <div id='lyrics-wrapper'>
-                    [Instrumental]
-                </div>
-            `;
-    }
-    else if (obj.id == "text6") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>Two Steps Outside</h3>
-                <div id='lyrics-wrapper'>
-                    <p>
-                        I've got a hand to hold <br>
-                        Gonna let you hold it <br>
-                        I've got a hand to hold <br>
-                        Gonna I'll let you have it
-                    </p>
-                    <p>
-                        All you have is mine (mine)
-                    </p>
-                    <p>
-                        Oh, little heart of gold <br>
-                        Would you let us see you <br>
-                        Here, in a thicket, <br>
-                        where sage and laurel bloom <br>
-                        Leaves, in a whisper <br>
-                        I hear it too <br>
-                        Oh, little heart of gold <br>
-                        Come and stay here soon
-                    </p>
-                    <p>
-                        All you have is mine (mine) <br>
-                        All that you will find: <br>
-                        Mine
-                    </p>
-                    <p>
-                        I've got a hand to hold <br>
-                        Come and let me hold you <br>
-                        Sleep, little heart of gold <br>
-                        I know what you've been through
-                    </p>
-                    <p>
-                        All you are is mine <br>
-                        And I love you <br>
-                        I cannot change what you've been through <br>
-                        But I'll change you
-                    </p>
-                </div>
-            `
-    }
-    else if (obj.id == "text7") {
-        singleLyricsText.innerHTML = 
-            `
-                <h3>The Same Things (Outro)</h3>
-                <div id='lyrics-wrapper'>
-                    [Guitar, Thunder]
-                </p>
-            `;
-    }
-    setTimeout(function() { 
-        singleLyricsText.style.display = "grid"; 
-        singleLyricsText.classList.add("fadein"); 
-        goBackArrow.style.display = "block"; 
-        goBackArrow.classList.add("fadein"); 
-        bandcampPlayer.style.display = "block"; 
-        bandcampPlayer.classList.add("fadein"); 
-    }, 1000);
-    setTimeout(function() { 
-        goBackArrow.style.display = "default"; 
-        singleLyricsText.classList.remove("fadein"); 
-        goBackArrow.classList.remove("fadein"); 
-        bandcampPlayer.classList.remove("fadein"); 
+        vinylLarge.classList.remove("closed");
     }, 2000);
 }
 

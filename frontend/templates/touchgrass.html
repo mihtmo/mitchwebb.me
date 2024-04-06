@@ -17,14 +17,10 @@
 {% block body %}
 
         <div class="centered">
-        <!-- <div id="in-progress">
-            <h5>
-                This album is not yet released. As a result, this page is not yet finished.
-            </h5>
-        </div> -->
-        <!-- <canvas id="threeRecord" class="three"></canvas> -->
-        <div id="dummy-container" ontouchstart="">
-            <div id="record-container" onclick=toLinerNotes() ontouchstart="addHover(this)" ontouchend="removeHover(this)">
+        <!-- <canvas id="three-record" class="three"></canvas> -->
+        <div id="title">Touch Grass</div>
+        <div id="dummy-container">
+            <div id="record-container" class="expanded-slight">
                 <div id="jacket-front"></div>
                 <div id="jacket-thickness"></div>
                 <div id="jacket-back">
@@ -34,136 +30,41 @@
                 <div id="vinyl-back">
                     <div id="vinyl-back-slider" class="back-slider"></div>
                 </div>
-                <!-- <div id="vinyl-arrow" class="icon" onclick=toLinerNotes()></div> -->
-            </div>
-            <div 
-                id="rotate-icon" 
-                class="icon" 
-                onclick=rotaterecord() 
-                onmouseover=retractvinyl()
-                onmouseout=expandvinyl()
-                ontouchstart="retractvinyl()"
-                ontouchend="expandvinyl()">
             </div>
         </div>
 
         <!-- TODO: Could shorten this by adding some attributes via JS -->
         <div id="open-record-wrapper">
             <div id="open-record-container">
-                <div id="jacket-front-large"></div>
-                <div id="sleeve">
-                    <img 
-                        id="critterscan" 
-                        src="{{ url_for('static', filename='./images/critterscan.png') }}" 
-                        alt="critter"
-                    >
-                    <img 
-                        id="rockscan" 
-                        src="{{ url_for('static', filename='./images/rockscan.png') }}"
-                        alt="rock"
-                    >
-                    <div id="goback-arrow" class="icon" onclick="goback()"></div>
-                    <img 
-                        id="text1" 
-                        class="sleevetext"
-                        onclick="singlelyrics(this)"
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-1intro.png') }}" 
-                        alt="intro" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <img 
-                        id="text2" 
-                        class="sleevetext" 
-                        onmouseover="boldlyrics(this)" 
-                        onmouseout="resetlyrics(this)" 
-                        onclick="singlelyrics(this)" 
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-2heirloom.png') }}" 
-                        alt="two weeks" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <img 
-                        id="text3" 
-                        class="sleevetext" 
-                        onmouseover="boldlyrics(this)" 
-                        onmouseout="resetlyrics(this)" 
-                        onclick="singlelyrics(this)" 
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-3silverbow.png') }}" 
-                        alt="silver bow, golden bird" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <img 
-                        id="text4" 
-                        class="sleevetext" 
-                        onmouseover="boldlyrics(this)" 
-                        onmouseout="resetlyrics(this)" 
-                        onclick="singlelyrics(this)" 
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-4marimba.png') }}" 
-                        alt="marimba" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <img 
-                        id="text5" 
-                        class="sleevetext" 
-                        onmouseover="boldlyrics(this)" 
-                        onmouseout="resetlyrics(this)" 
-                        onclick="singlelyrics(this)" 
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-5fermata.png') }}" 
-                        alt="outro, above" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <img 
-                        id="text6" 
-                        class="sleevetext" 
-                        onmouseover="boldlyrics(this)" 
-                        onmouseout="resetlyrics(this)" 
-                        onclick="singlelyrics(this)" 
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-6twosteps.png') }}" 
-                        alt="two steps outside" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <img 
-                        id="text7" 
-                        class="sleevetext" 
-                        onmouseover="boldlyrics(this)" 
-                        onmouseout="resetlyrics(this)" 
-                        onclick="singlelyrics(this)" 
-                        src="{{ url_for('static', filename='./images/sleeve/sleeve-7outro.png') }}" 
-                        alt="outro, lullaby" 
-                        class="textpng"
-                        ontouchstart="boldlyrics(this)"
-                        ontouchend="resetlyrics(this)"
-                    >
-                    <div id="singlelyrics-text"></div>
+                <div id="open-record-left-wrapper">
+                    <div id="jacket-front-large" class="jacket-large"></div>
+                    <div id="vinyl-back-large" class="vinyl-large"></div>
                 </div>
-                <div id="jacket-back-large"></div>
+                <div id="sleeve-wrapper">
+                    <div id="sleeve-front" class="sleeve"></div>
+                    <div id="sleeve-back" class="sleeve"></div>
+                </div>
+                <div id="open-record-right-wrapper">
+                    <div id="vinyl-front-large" class="vinyl-large"></div>
+                    <div id="jacket-back-large" class="jacket-large"></div>
+                </div>
             </div>
-            <div 
-                id="vinyl-arrow-reverse" class="icon" 
-                onclick="returntoalbumview()" 
-                onmouseover="closeJacket()" 
-                onmouseleave="openJacket()">
-            </div>
+        </div>
+
+        <div id="toolbar">
+            <div id="rotate-album-icon" class="icon rotate-icon"></div>
+            <div id="album-out-icon" class="icon"></div>
+            <div id="rotate-sleeve-icon" class="icon rotate-icon"></div>
+            <div id="album-in-icon" class="icon"></div>
         </div>
 
         <iframe id="bandcamp-player" 
             src="https://bandcamp.com/EmbeddedPlayer/album=2352475633/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/tracklist=true/tracks=207053072,2424835037,672226817,2386923798,3540652947,3586006831,2648903005/esig=7748cee75960a5456065f2a54cba0245/"
         >
-        <a href="https://fuvk.bandcamp.com/album/split-death">
-            Touch Grass by mihtmo
-        </a>
-    </iframe>
+            <a href="https://fuvk.bandcamp.com/album/split-death">
+                Touch Grass by mihtmo
+            </a>
+        </iframe>
 
         <script 
             src="{{ url_for('static', filename='./js/recordViewer.js') }}">
