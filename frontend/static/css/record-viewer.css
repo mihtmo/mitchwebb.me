@@ -1,6 +1,6 @@
 /* Front Screen */
 
-#body {
+body {
     -webkit-touch-callout: none;
     -webkit-user-select: none;  
     -moz-user-select: none;
@@ -161,8 +161,10 @@
     background-image: url("../images/flipicon.png");
     filter: drop-shadow(0px 0px 10px var(--container-shadow));
     background-size: cover;
-    height: 30px;
-    width: 45px;
+    max-height: 60px;
+    max-width: 90px;
+    height: 4vw;
+    width: 6vw;
 }
 
 #rotate-sleeve-icon {
@@ -387,8 +389,10 @@
 #album-out-icon, #album-in-icon {
     filter: drop-shadow(1px 1px 10px var(--container-shadow));
     background-size: cover;
-    height: 30px;
-    width: 45px;
+    max-height: 60px;
+    max-width: 90px;
+    height: 4vw;
+    width: 6vw;
 }
 
 #album-out-icon {
