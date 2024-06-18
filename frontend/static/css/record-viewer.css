@@ -412,9 +412,10 @@ img {
 
 #bandcamp-player {
     margin: auto;
-    margin-top: 8px;
+    margin-top: 2em;
     z-index: 2;
     border: 0;
+    height: 373px;
 }
 
 .fadeout {
