@@ -105,10 +105,10 @@ def touchgrass():
     # Show touch grass page
     return render_template("touchgrass.html")
 
-@app.route("/sound-explorer")
-def sound_explorer():
-    # Show sound explorer page
-    return render_template("sound-explorer.html")
+# @app.route("/sound-explorer")
+# def sound_explorer():
+#     # Show sound explorer page
+#     return render_template("sound-explorer.html")
 
 # @app.route("/entomology-entries")
 # def entomology_entries():

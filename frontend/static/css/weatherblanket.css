@@ -17,6 +17,7 @@
     background-image: url("../images/simple-texture.png");
     background-size: auto;
     pointer-events: none;
+    opacity: 50%;
 }
 
 #weatherblanket-wrapper {
